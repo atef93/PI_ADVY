@@ -9,6 +9,7 @@ public class Employee {
 	
 	@Id
 	private int id;
+	private String nom;
 	
 	public Employee() {
 		// TODO Auto-generated constructor stub
@@ -20,6 +21,14 @@ public class Employee {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 	
 	
