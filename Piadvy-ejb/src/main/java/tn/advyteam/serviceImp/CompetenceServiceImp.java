@@ -1,5 +1,7 @@
 package tn.advyteam.serviceImp;
 
-public class CompetenceServiceImp {
+import tn.advyteam.service.GestionCompetenceLocal;
+
+public class CompetenceServiceImp implements GestionCompetenceLocal {
 
 }

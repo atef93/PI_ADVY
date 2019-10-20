@@ -1,5 +1,7 @@
 package tn.advyteam.serviceImp;
 
-public class EvaluationServiceImp {
+import tn.advyteam.service.GestionEvaluationLocal;
+
+public class EvaluationServiceImp implements GestionEvaluationLocal {
 
 }

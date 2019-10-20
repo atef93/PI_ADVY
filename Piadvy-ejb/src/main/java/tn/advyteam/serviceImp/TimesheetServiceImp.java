@@ -1,5 +1,7 @@
 package tn.advyteam.serviceImp;
 
-public class TimesheetServiceImp {
+import tn.advyteam.service.GestionTimesheetLocal;
+
+public class TimesheetServiceImp implements GestionTimesheetLocal{
 
 }

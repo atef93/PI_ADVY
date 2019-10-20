@@ -1,25 +1,29 @@
 package tn.advyteam.entities;
 
+
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 @Entity
+
 public class Employee implements Serializable{
 
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
 	private String nom;
 	private String prenom;
 	private String adresse;
@@ -85,6 +89,8 @@ public class Employee implements Serializable{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	
 	
 	
 
