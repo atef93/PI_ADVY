@@ -1,5 +1,7 @@
 package tn.advyteam.serviceImp;
 
-public class NoteFraisServiceImp {
+import tn.advyteam.service.GestionNoteFraisLocal;
+
+public class NoteFraisServiceImp implements GestionNoteFraisLocal {
 
 }
