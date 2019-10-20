@@ -1,5 +1,7 @@
 package tn.advyteam.serviceImp;
 
-public class FormationServiceImp {
+import tn.advyteam.service.GestionFormationLocal;
+
+public class FormationServiceImp implements GestionFormationLocal{
 
 }
