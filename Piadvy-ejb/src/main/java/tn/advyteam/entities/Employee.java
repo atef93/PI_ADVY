@@ -22,6 +22,7 @@ public class Employee implements Serializable{
 	private String prenom;
 	private String adresse;
 	private String email;
+	private String sexe;
 	private Boolean isActif;
 	private String password;
 	@Temporal(TemporalType.DATE)
