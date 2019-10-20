@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 
 @Entity
 public class Employee implements Serializable{
@@ -31,6 +33,37 @@ public class Employee implements Serializable{
 	
 	
 	
+	
+	
+	public String getSexe() {
+		return sexe;
+	}
+
+	public void setSexe(String sexe) {
+		this.sexe = sexe;
+	}
+
+	public Etatcivil getEtatcivil() {
+		return etatcivil;
+	}
+
+	public void setEtatcivil(Etatcivil etatcivil) {
+		this.etatcivil = etatcivil;
+	}
+	
+
+	@OneToOne 
+	private Contrat contrat ; 
+
+	public Contrat getContrat() {
+		return contrat;
+	}
+
+	public void setContrat(Contrat contrat) {
+		this.contrat = contrat;
+	}
+	
+
 	public Employee(int id, String nom) {
 		super();
 		this.id = id;
@@ -116,6 +149,24 @@ public class Employee implements Serializable{
 		this.password = password;
 		this.datenaissance = datenaissance;
 		this.etatcivil = etatcivil;
+	}
+	
+	
+
+	public Employee(int id, String nom, String prenom, String adresse, String email, String sexe, Boolean isActif,
+			String password, Date datenaissance, Etatcivil etatcivil, Contrat contrat) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.email = email;
+		this.sexe = sexe;
+		this.isActif = isActif;
+		this.password = password;
+		this.datenaissance = datenaissance;
+		this.etatcivil = etatcivil;
+		this.contrat = contrat;
 	}
 
 	public Employee() {
