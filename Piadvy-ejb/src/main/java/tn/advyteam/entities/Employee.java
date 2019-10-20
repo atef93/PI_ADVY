@@ -1,5 +1,7 @@
 package tn.advyteam.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -12,20 +14,30 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type_emp")
-public class Employee {
+public class Employee implements Serializable{
 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@Column
+	@Column(nullable = false)
 	private String nom;
-	@Column
+	@Column(nullable = false)
 	private String prenom;
 	
 	public Employee() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
+	
+	
+
+	public Employee(String nom, String prenom) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -49,6 +61,13 @@ public class Employee {
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", nom=" + nom + ", prenom=" + prenom + "]";
 	}
 	
 	

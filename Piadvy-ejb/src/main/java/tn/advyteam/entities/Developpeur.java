@@ -15,7 +15,13 @@ public class Developpeur extends Employee implements Serializable {
 	@OneToMany(mappedBy = "developpeur")
 	private List<Timesheet> timesheets;
 
+	public Developpeur() {
+		super();
+	}
 	
+	public Developpeur(String nom, String prenom) {
+		super(nom, prenom);
+	}
 	
 	public List<Timesheet> getTimesheets() {
 		return timesheets;

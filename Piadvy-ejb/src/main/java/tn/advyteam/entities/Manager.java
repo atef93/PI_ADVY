@@ -17,9 +17,12 @@ public class Manager extends Employee implements Serializable{
 	
 	
 	public Manager() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
+	public Manager(String nom, String prenom) {
+		super(nom, prenom);
+	}
 
 	public Manager(List<Projet> projets) {
 		super();

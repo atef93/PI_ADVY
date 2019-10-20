@@ -2,17 +2,16 @@ package tn.advyteam.entities;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Timesheet {
@@ -30,6 +29,14 @@ public class Timesheet {
 	private Date deadline;
 	@OneToMany(mappedBy = "timesheet")
 	private List<Tache> taches;
+	@Column
+	private float heureEstime;
+	@Column
+	private float heurePasse;
+	@Transient
+	private Timer timer;
+	@Transient
+	private TimerTask timerTask;
 	
 	@ManyToOne
 	@JoinColumn(name = "idDeveloppeur", referencedColumnName = "id", insertable=false, updatable=false)
@@ -46,11 +53,12 @@ public class Timesheet {
 	
 	
 
-	public Timesheet(TimesheetEtat timesheetEtat, Date dateDebut, Date deadline) {
+	public Timesheet(TimesheetEtat timesheetEtat, Date dateDebut, Date deadline, float heureEstime) {
 		super();
 		this.timesheetEtat = timesheetEtat;
 		this.dateDebut = dateDebut;
 		this.deadline = deadline;
+		this.heureEstime = heureEstime;
 	}
 
 
@@ -141,6 +149,42 @@ public class Timesheet {
 
 	public void setProjet(Projet projet) {
 		this.projet = projet;
+	}
+
+
+
+	public float getHeureEstime() {
+		return heureEstime;
+	}
+
+
+
+	public float getHeurePasse() {
+		return heurePasse;
+	}
+
+
+
+	public Timer getTimer() {
+		return timer;
+	}
+
+
+
+	public void setHeureEstime(float heureEstime) {
+		this.heureEstime = heureEstime;
+	}
+
+
+
+	public void setHeurePasse(float heurePasse) {
+		this.heurePasse = heurePasse;
+	}
+
+
+
+	public void setTimer(Timer timer) {
+		this.timer = timer;
 	}
 	
 		
