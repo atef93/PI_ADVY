@@ -1,5 +1,6 @@
 package tn.advyteam.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
@@ -12,13 +13,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 @Entity
-public class Timesheet {
+public class Timesheet implements Serializable {
 
 	
 	@EmbeddedId
 	private TimesheetPK timesheetPk;
+	@Column
+	private String titre;
+	@Column
+	private String description;
 	@Column
 	private TimesheetEtat timesheetEtat;
 	@OneToMany(mappedBy = "timesheet")
@@ -39,11 +45,11 @@ public class Timesheet {
 	private TimerTask timerTask;	
 	
 	@ManyToOne
-	@JoinColumn(name = "idDeveloppeur", referencedColumnName = "id", insertable=false, updatable=false)
+	@JoinColumn(name = "idDeveloppeur", referencedColumnName = "id", insertable=false, updatable=false, nullable = true)
 	private Developpeur developpeur;
 	
 	@ManyToOne
-	@JoinColumn(name="idProjet", referencedColumnName = "id", insertable=false, updatable=false)
+	@JoinColumn(name="idProjet", referencedColumnName = "id", insertable=false, updatable=false, nullable = true)
 	private Projet projet;
 	
 	
@@ -53,12 +59,15 @@ public class Timesheet {
 	
 	
 
-	public Timesheet(TimesheetEtat timesheetEtat, Date dateDebut, Date deadline, float heureEstime) {
+	public Timesheet(String titre, String description, TimesheetEtat timesheetEtat,
+						Date dateDebut, Date deadline, float heureEstime) {
 		super();
 		this.timesheetEtat = timesheetEtat;
 		this.dateDebut = dateDebut;
 		this.deadline = deadline;
 		this.heureEstime = heureEstime;
+		this.titre=titre;
+		this.description=description;
 	}
 
 
@@ -186,6 +195,40 @@ public class Timesheet {
 	public void setTimer(Timer timer) {
 		this.timer = timer;
 	}
+
+
+
+	public String getTitre() {
+		return titre;
+	}
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Timesheet [titre=" + titre + ", description=" + description + ", timesheetEtat=" + timesheetEtat
+				+ ", dateDebut=" + dateDebut + ", deadline=" + deadline + ", heureEstime=" + heureEstime
+				+ ", heurePasse=" + heurePasse + ", developpeur=" + developpeur + ", projet=" + projet + "]";
+	}
 	
 		
+	
 }

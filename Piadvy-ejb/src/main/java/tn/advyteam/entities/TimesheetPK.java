@@ -2,11 +2,11 @@ package tn.advyteam.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class TimesheetPK implements Serializable{
-
 	
 	private int idProjet;
 	private int idDeveloppeur;

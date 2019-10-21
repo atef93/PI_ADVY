@@ -23,7 +23,9 @@ public interface GestionTimesheetLocal {
 	/**
 	 * Crud of timesheet
 	 */
+	
 	public void addTimesheet(Timesheet timesheet);
+	public void addTimesheet(int idProjet, int idDeveloper, Timesheet timesheet);
 	public void affectTimesheetToDevloper(Timesheet timesheet, Developpeur developpeur);
 	public List<Timesheet> getAllTimesheetsByDeveloperJPQL(int id);
 	public List<Timesheet> getAllTimesheetsByProject(int id);
