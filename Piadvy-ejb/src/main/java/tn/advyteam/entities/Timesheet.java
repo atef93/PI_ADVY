@@ -36,7 +36,7 @@ public class Timesheet {
 	@Transient
 	private Timer timer;
 	@Transient
-	private TimerTask timerTask;
+	private TimerTask timerTask;	
 	
 	@ManyToOne
 	@JoinColumn(name = "idDeveloppeur", referencedColumnName = "id", insertable=false, updatable=false)

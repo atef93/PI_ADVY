@@ -1,5 +1,6 @@
 package tn.advyteam.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,8 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Projet {
+public class Projet implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5480113447701511433L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -93,6 +98,26 @@ public class Projet {
 
 	public void setCreatedBy(Manager createdBy) {
 		this.createdBy = createdBy;
+	}
+
+
+
+	public List<Timesheet> getTimesheets() {
+		return timesheets;
+	}
+
+
+
+	public void setTimesheets(List<Timesheet> timesheets) {
+		this.timesheets = timesheets;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Projet [id=" + id + ", titre=" + titre + ", description=" + description + ", createdBy=" + createdBy
+				+ "]";
 	}
 
 
