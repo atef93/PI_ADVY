@@ -1,6 +1,6 @@
 package tn.advyteam.entities;
 
-public enum Etatcivil {
-	Mariée,célibataire,Divorcée
-
+public enum Etatcivil 
+{
+	Mariee,celibataire,Divorcee
 }

@@ -3,6 +3,7 @@ package tn.advyteam.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +30,8 @@ public class Contrat implements Serializable {
 	private Float salaire;
 	
 	private TypeContrat typeContrat;
+	
+
 	
 	@OneToOne(mappedBy ="contrat")
 	private  Employee employe ;
@@ -91,7 +94,8 @@ public class Contrat implements Serializable {
 	}
 
 	public Contrat(int reference, Date datedebut, Date datefin, Float salaire, TypeContrat typeContrat,
-			Employee employe) {
+			Employee employe) 
+	{
 		super();
 		this.reference = reference;
 		this.datedebut = datedebut;
@@ -100,6 +104,8 @@ public class Contrat implements Serializable {
 		this.typeContrat = typeContrat;
 		this.employe = employe;
 	}
+
+	
 	
 	
 	

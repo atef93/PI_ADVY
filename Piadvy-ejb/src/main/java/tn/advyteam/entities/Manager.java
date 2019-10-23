@@ -11,7 +11,6 @@ import javax.persistence.OneToMany;
 @DiscriminatorValue(value = "Manager")
 public class Manager extends Employee implements Serializable{
 
-	
 	@OneToMany(mappedBy = "createdBy")
 	private List<Projet> projets;
 	

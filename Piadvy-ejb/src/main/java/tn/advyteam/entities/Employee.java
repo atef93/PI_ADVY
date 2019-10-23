@@ -4,9 +4,12 @@ package tn.advyteam.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +21,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name= "Type_emp")
 public class Employee implements Serializable{
 
 	@Id
@@ -33,11 +37,11 @@ public class Employee implements Serializable{
 	private String password;
 	@Temporal(TemporalType.DATE)
 	private Date datenaissance;
+    @Enumerated(EnumType.STRING)
 	private Etatcivil etatcivil ;
-	
-	
-	
-	
+	@OneToOne(cascade=CascadeType.PERSIST)
+	private Contrat contrat ; 
+
 	
 	public String getSexe() {
 		return sexe;
@@ -46,7 +50,7 @@ public class Employee implements Serializable{
 	public void setSexe(String sexe) {
 		this.sexe = sexe;
 	}
-
+	
 	public Etatcivil getEtatcivil() {
 		return etatcivil;
 	}
@@ -54,10 +58,8 @@ public class Employee implements Serializable{
 	public void setEtatcivil(Etatcivil etatcivil) {
 		this.etatcivil = etatcivil;
 	}
-	
 
-	@OneToOne 
-	private Contrat contrat ; 
+	
 
 	public Contrat getContrat() {
 		return contrat;
@@ -66,7 +68,6 @@ public class Employee implements Serializable{
 	public void setContrat(Contrat contrat) {
 		this.contrat = contrat;
 	}
-	
 
 	public Employee(int id, String nom) {
 		super();
@@ -89,10 +90,6 @@ public class Employee implements Serializable{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
-	
-	
-	
 
 	public String getPrenom() {
 		return prenom;
@@ -178,6 +175,29 @@ public class Employee implements Serializable{
 	public Employee() {
 		super();
 	}
+
+	public Employee(String nom, String prenom) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+	}
+	
+
+	public Employee(String nom, String prenom, String adresse, String email, String sexe, Boolean isActif,
+			String password, Date datenaissance, Etatcivil etatcivil) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.email = email;
+		this.sexe = sexe;
+		this.isActif = isActif;
+		this.password = password;
+		this.datenaissance = datenaissance;
+		this.etatcivil = etatcivil;
+		
+	}
+	
 	
 	
 	
