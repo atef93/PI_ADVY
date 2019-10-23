@@ -3,17 +3,16 @@ package tn.advyteam.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Timesheet implements Serializable {
@@ -25,24 +24,23 @@ public class Timesheet implements Serializable {
 	private String titre;
 	@Column
 	private String description;
-	@Column
+	@Enumerated(EnumType.STRING)
 	private TimesheetEtat timesheetEtat;
 	@OneToMany(mappedBy = "timesheet")
 	private List<CommentTimesheet> commentsTimesheet;
-	@Column
+	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
-	@Column
+	@Temporal(TemporalType.DATE)
 	private Date deadline;
 	@OneToMany(mappedBy = "timesheet")
 	private List<Tache> taches;
 	@Column
-	private float heureEstime;
+	private long heureEstime;
 	@Column
-	private float heurePasse;
-	@Transient
-	private Timer timer;
-	@Transient
-	private TimerTask timerTask;	
+	private long heurePasse;
+	@Column(name = "minutePasse")
+	private long minutePasse;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "idDeveloppeur", referencedColumnName = "id", insertable=false, updatable=false, nullable = true)
@@ -60,7 +58,7 @@ public class Timesheet implements Serializable {
 	
 
 	public Timesheet(String titre, String description, TimesheetEtat timesheetEtat,
-						Date dateDebut, Date deadline, float heureEstime) {
+						Date dateDebut, Date deadline, long heureEstime) {
 		super();
 		this.timesheetEtat = timesheetEtat;
 		this.dateDebut = dateDebut;
@@ -168,32 +166,20 @@ public class Timesheet implements Serializable {
 
 
 
-	public float getHeurePasse() {
+	public long getHeurePasse() {
 		return heurePasse;
 	}
 
 
 
-	public Timer getTimer() {
-		return timer;
-	}
-
-
-
-	public void setHeureEstime(float heureEstime) {
+	public void setHeureEstime(long heureEstime) {
 		this.heureEstime = heureEstime;
 	}
 
 
 
-	public void setHeurePasse(float heurePasse) {
-		this.heurePasse = heurePasse;
-	}
-
-
-
-	public void setTimer(Timer timer) {
-		this.timer = timer;
+	public void setHeurePasse(long f) {
+		this.heurePasse = f;
 	}
 
 
@@ -218,6 +204,19 @@ public class Timesheet implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	
+
+
+	public long getMinutePasse() {
+		return minutePasse;
+	}
+
+
+
+	public void setMinutePasse(long minutePasse) {
+		this.minutePasse = minutePasse;
 	}
 
 

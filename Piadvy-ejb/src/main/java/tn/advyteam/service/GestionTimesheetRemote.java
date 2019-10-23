@@ -1,8 +1,6 @@
 package tn.advyteam.service;
 
 import java.util.List;
-
-import javax.ejb.Local;
 import javax.ejb.Remote;
 
 import tn.advyteam.entities.Developpeur;
@@ -12,6 +10,8 @@ import tn.advyteam.entities.Timesheet;
 @Remote
 public interface GestionTimesheetRemote {
 
+	
+	
 	/**
 	 * 
 	 * Crud of projet
@@ -30,5 +30,11 @@ public interface GestionTimesheetRemote {
 	public void affectTimesheetToDevloper(Timesheet timesheet, Developpeur developpeur);
 	public List<Timesheet> getAllTimesheetsByDeveloperJPQL(int id);
 	public List<Timesheet> getAllTimesheetsByProject(int id);
-	
+	public Timesheet getTimesheet(int idP, int idD);
+	public void updateHeureMinuteTimesheet(int idP, int idD);
+	public void startTracking();
+	public void stopTracking();
+	public Timesheet getTimeshetByid(int id);
+
+
 }

@@ -1,9 +1,12 @@
 package tn.advyteam.serviceImp;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import tn.advyteam.entities.Developpeur;
@@ -19,9 +22,16 @@ import tn.advyteam.service.GestionTimesheetRemote;
 @Stateful
 public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesheetRemote{
 
+
+	Instant debut = null;
+	Instant fin = null; 
+	
+	
 	
 	@PersistenceContext
 	EntityManager em;
+	
+	
 	
 	/**
 	 * 
@@ -90,7 +100,7 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 	public void affectTimesheetToDevloper(Timesheet timesheet, Developpeur developpeur) {
 		timesheet.setDeveloppeur(developpeur);
 		em.merge(timesheet);
-	}
+	}	
 
 	@Override
 	public List<Timesheet> getAllTimesheetsByDeveloperJPQL(int id) {
@@ -116,5 +126,52 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 		em.persist(timesheet);
 		
 	}
+
+	@Override
+	public void updateHeureMinuteTimesheet(int idP, int idD) {
+
+		stopTracking();
+		long hours = Duration.between(debut, fin).toHours();
+		long minutes = Duration.between(debut, fin).toMinutes() - (hours * 60);
+		
+		Timesheet timesheet=getTimesheet(idP, idD);
+		timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
+		timesheet.setMinutePasse(timesheet.getMinutePasse()+minutes);	
+		
+		debut = null;
+		fin = null;
+		
+		em.merge(timesheet);
+	}
+
+	@Override
+	public Timesheet getTimesheet(int idP, int idD) {
+		
+		Query query = em.createQuery("select t from Timesheet t where t.timesheetPk.idProjet=:idP and t.timesheetPk.idDeveloppeur=:idD", Timesheet.class);
+		
+		query.setParameter("idP", idP);
+		query.setParameter("idD", idD);
+		return (Timesheet) query.getSingleResult();
+	}
+
+	@Override
+	public void startTracking() {
+		debut = Instant.now();
+		
+	}
+
+	@Override
+	public void stopTracking() {
+
+		fin = Instant.now();
+		
+	}
+
+	@Override
+	public Timesheet getTimeshetByid(int id) {
+		return em.find(Timesheet.class, id);
+	}
+
+
 
 }

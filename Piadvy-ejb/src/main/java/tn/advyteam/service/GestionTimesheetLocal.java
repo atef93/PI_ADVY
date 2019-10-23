@@ -29,4 +29,10 @@ public interface GestionTimesheetLocal {
 	public void affectTimesheetToDevloper(Timesheet timesheet, Developpeur developpeur);
 	public List<Timesheet> getAllTimesheetsByDeveloperJPQL(int id);
 	public List<Timesheet> getAllTimesheetsByProject(int id);
+	public Timesheet getTimesheet(int idP, int idD);	
+	public void updateHeureMinuteTimesheet(int idP, int idD);
+	public void startTracking();
+	public void stopTracking();
+	public Timesheet getTimeshetByid(int id);
+
 }
