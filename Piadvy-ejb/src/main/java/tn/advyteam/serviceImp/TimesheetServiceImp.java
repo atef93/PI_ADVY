@@ -135,8 +135,18 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 		long minutes = Duration.between(debut, fin).toMinutes() - (hours * 60);
 		
 		Timesheet timesheet=getTimesheet(idP, idD);
-		timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
-		timesheet.setMinutePasse(timesheet.getMinutePasse()+minutes);	
+		
+		
+		if(timesheet.getMinutePasse()+minutes>=59) {
+			hours+=1;
+			long ecart = Math.abs((timesheet.getMinutePasse()+minutes)-60);
+			timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
+			timesheet.setMinutePasse(ecart);	
+		}
+		else {
+			timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
+			timesheet.setMinutePasse(timesheet.getMinutePasse()+minutes);	
+		}
 		
 		debut = null;
 		fin = null;
