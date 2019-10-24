@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+
+
+
+<h:head>
+	<!--=============== basic  ===============-->
+	<meta charset="UTF-8" />
+	<title>Citybook -Directory Listing Template</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="robots" content="index, follow" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<!--=============== css  ===============-->
+	<link type="text/css" rel="stylesheet" href="../../css/reset.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/plugins.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/color.css" />
+	<!--=============== favicons ===============-->
+	<link rel="shortcut icon" href="../images/favicon.ico" />
+</h:head>
+
+<body>
+
+	<!-- loader -->
+	<div class="loader-wrap">
+		<div class="pin"></div>
+		<div class="pulse"></div>
+	</div>
+	<!--  loader end -->
+	<!-- Main   -->
+	<div id="main">
+	
+	
+		<ui:include src="/views/timesheetviews/header.xhtml" />
+			<!-- wrapper -->
+
+	<div id="wrapper">
+		<!--content -->
+
+		<div class="content">
+			<!--section -->
+			<section id="sec1"> <!-- container -->
+
+			<div class="container">
+				<!-- profile-edit-wrap -->
+
+				<div class="profile-edit-wrap">
+
+					<div class="profile-edit-page-header">
+
+						<h2>Timesheet</h2>
+
+						<div class="breadcrumbs">
+							<a href="#">Home</a><a href="#">Dasboard</a>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="col-md-3">
+
+							<div class="fixed-bar fl-wrap">
+
+								<div class="user-profile-menu-wrap fl-wrap">
+									<!-- user-profile-menu-->
+
+									<div class="user-profile-menu">
+
+										<h3>Gestin de projet</h3>
+
+										<ul>
+
+											<li><a href="ajouterProjet.xhtml"><i
+													class="fa fa-user-o" /> Ajouter Projet</a></li>
+
+											<li><a href="dashboard-messages.html"><i
+													class="fa fa-envelope-o" /> Consulter Liste Projet <span>3</span></a></li>
+
+											<li><a href="dashboard-password.html"><i
+													class="fa fa-unlock-alt" />Les statistique</a></li>
+										</ul>
+									</div>
+									<!-- user-profile-menu end-->
+									
+									<!-- user-profile-menu-->
+
+									<div class="user-profile-menu">
+
+										<h3>Gestion de Timesheet</h3>
+
+										<ul>
+									
+											<li><a href="dashboard-myprofile.html">
+											<i class="fa fa-user-o" /> Ajouter les timesheets</a></li>
+
+											<li><a href="dashboard-messages.html"><i
+													class="fa fa-envelope-o" /> Liste Timesheet <span>3</span></a></li>
+
+											<li><a href="dashboard-password.html"><i
+													class="fa fa-unlock-alt" />Change Password</a></li>
+										</ul>
+									</div>
+									<!-- user-profile-menu end-->
+									<!-- user-profile-menu-->
+
+									
+									
+									<!-- user-profile-menu end-->
+									<a href="#" class="log-out-btn">Log Out</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-9">
+							
+							
+
+						</div>
+					</div>
+				</div>
+				<!--profile-edit-wrap end -->
+			</div>
+			<!--container end --> </section>
+			<!-- section end -->
+
+			<div class="limit-box fl-wrap" />
+			<!--section -->
+			<section class="gradient-bg">
+
+			<div class="cirle-bg">
+
+				<div class="bg" data-bg="images/bg/circle.png" />
+			</div>
+
+			<div class="container">
+
+				<div class="join-wrap fl-wrap">
+
+					<div class="row">
+
+						<div class="col-md-8">
+
+							<h3>Do You Have Questions ?</h3>
+
+							<p>Lorem ipsum dolor sit amet, harum dolor nec in, usu
+								molestiae at no.</p>
+						</div>
+
+						<div class="col-md-4">
+							<a href="contacts.html" class="join-wrap-btn">Get In Touch <i
+								class="fa fa-envelope-o" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			</section>
+			<!-- section end -->
+		</div>
+	</div>
+	<!-- wrapper end -->
+		<ui:include src="/views/timesheetviews/footer.xhtml" />
+
+
+
+	</div>
+	<!--=============== scripts  ===============-->
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/plugins.js"></script>
+	<script type="text/javascript" src="../../js/scripts.js"></script>
+</body>
+</html>

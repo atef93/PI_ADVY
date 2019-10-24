@@ -1,11 +1,12 @@
 package tn.advyteam.entities;
 
-
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,13 +19,15 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-
-public class Employee implements Serializable{
-
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type_emp")
+public class Employee implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@Column(nullable = false)
 	private String nom;
+	@Column(nullable = false)
 	private String prenom;
 	private String adresse;
 	private String email;
@@ -33,12 +36,12 @@ public class Employee implements Serializable{
 	private String password;
 	@Temporal(TemporalType.DATE)
 	private Date datenaissance;
-	private Etatcivil etatcivil ;
-	
-	
-	
-	
-	
+	private Etatcivil etatcivil;
+
+	public Employee() {
+		super();
+	}
+
 	public String getSexe() {
 		return sexe;
 	}
@@ -54,10 +57,9 @@ public class Employee implements Serializable{
 	public void setEtatcivil(Etatcivil etatcivil) {
 		this.etatcivil = etatcivil;
 	}
-	
 
-	@OneToOne 
-	private Contrat contrat ; 
+	@OneToOne
+	private Contrat contrat;
 
 	public Contrat getContrat() {
 		return contrat;
@@ -66,12 +68,17 @@ public class Employee implements Serializable{
 	public void setContrat(Contrat contrat) {
 		this.contrat = contrat;
 	}
-	
 
 	public Employee(int id, String nom) {
 		super();
 		this.id = id;
 		this.nom = nom;
+	}
+
+	public Employee(String nom, String prenom) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
 	}
 
 	public int getId() {
@@ -90,16 +97,17 @@ public class Employee implements Serializable{
 		this.nom = nom;
 	}
 
-	
-	
-	
-
 	public String getPrenom() {
 		return prenom;
 	}
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", nom=" + nom + ", prenom=" + prenom + "]";
 	}
 
 	public String getAdresse() {
@@ -142,9 +150,8 @@ public class Employee implements Serializable{
 		this.datenaissance = datenaissance;
 	}
 
-	
 	public Employee(int id, String nom, String prenom, String adresse, String email, Boolean isActif, String password,
-			Date datenaissance,Etatcivil etatcivil) {
+			Date datenaissance, Etatcivil etatcivil) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -156,8 +163,6 @@ public class Employee implements Serializable{
 		this.datenaissance = datenaissance;
 		this.etatcivil = etatcivil;
 	}
-	
-	
 
 	public Employee(int id, String nom, String prenom, String adresse, String email, String sexe, Boolean isActif,
 			String password, Date datenaissance, Etatcivil etatcivil, Contrat contrat) {
@@ -175,11 +180,4 @@ public class Employee implements Serializable{
 		this.contrat = contrat;
 	}
 
-	public Employee() {
-		super();
-	}
-	
-	
-	
-	
 }

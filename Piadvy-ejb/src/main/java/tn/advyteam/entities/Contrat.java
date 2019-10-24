@@ -16,6 +16,9 @@ import javax.persistence.TemporalType;
 public class Contrat implements Serializable {
 
 	
+	
+	
+	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int reference;
@@ -82,6 +85,10 @@ public class Contrat implements Serializable {
 		this.typeContrat = typeContrat;
 	}
 
+	
+	public Contrat() {
+		// TODO Auto-generated constructor stub
+	}
 	public Contrat(Date datedebut, Date datefin, Float salaire, TypeContrat typeContrat) {
 		super();
 		this.datedebut = datedebut;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -12,14 +13,21 @@ import javax.persistence.OneToMany;
 public class Manager extends Employee implements Serializable{
 
 	
-	@OneToMany(mappedBy = "createdBy")
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1565436632067145554L;
+	@OneToMany(mappedBy = "createdBy", fetch = FetchType.EAGER)
 	private List<Projet> projets;
 	
 	
 	public Manager() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
+	public Manager(String nom, String prenom) {
+		super(nom, prenom);
+	}
 
 	public Manager(List<Projet> projets) {
 		super();
