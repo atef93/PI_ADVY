@@ -1,5 +1,7 @@
 package tn.advyteam.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -8,10 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type_emp")
+@DiscriminatorColumn(name = "employe")
 public class Employee {
 
 	
@@ -22,7 +26,10 @@ public class Employee {
 	private String nom;
 	@Column
 	private String prenom;
-	
+	@ManyToMany
+	private List<Evaluation> evaluation;
+	@OneToMany (mappedBy="employe")
+	private List<EvaluationFile> file;
 	public Employee() {
 		// TODO Auto-generated constructor stub
 	}
@@ -49,6 +56,22 @@ public class Employee {
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
+	}
+
+	public List<Evaluation> getEvaluation() {
+		return evaluation;
+	}
+
+	public void setEvaluation(List<Evaluation> evaluation) {
+		this.evaluation = evaluation;
+	}
+
+	public List<EvaluationFile> getFile() {
+		return file;
+	}
+
+	public void setFile(List<EvaluationFile> file) {
+		this.file = file;
 	}
 	
 	

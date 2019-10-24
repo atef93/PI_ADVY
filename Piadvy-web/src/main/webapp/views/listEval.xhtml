@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+<h:form>
+<h:dataTable value="#{evaluationBean.eval}" var="evaluationannuel" border="1">
+
+<h:column>
+<f:facet name="header">
+<h:outputText value="nom"/>
+</f:facet>
+<h:outputText value="#{evaluationannuel.nom}"/>
+</h:column>
+
+<h:column>
+<f:facet name="header">
+<h:outputText value="description"/>
+</f:facet>
+<h:outputText value="#{evaluationannuel.description}"/>
+</h:column>
+
+<h:column>
+<f:facet name="header">
+<h:outputText value="etat"/>
+</f:facet>
+<h:outputText value="#{evaluationannuel.etat}"/>
+</h:column>
+
+<h:column>
+<f:facet name="header">
+<h:outputText value="type"/>
+</f:facet>
+<h:outputText value="#{evaluationannuel.type}"/>
+</h:column>
+
+<h:column>
+<f:facet name="header">
+<h:outputText value="objectif"/>
+</f:facet>
+<h:outputText value="#{evaluationannuel.objectif}"/>
+</h:column>
+
+<h:column>
+<f:facet name="header">
+<h:outputText value="date auto_eval"/>
+</f:facet>
+<h:outputText value="#{evaluationannuel.dateEcheance}">
+   <f:convertDateTime pattern="dd/MM/yyyy"  />
+ </h:outputText>
+</h:column>
+
+<h:column>
+<f:facet name="header">
+<h:outputText value="rendez vous"/>
+</f:facet>
+<h:outputText value="#{evaluationannuel.rendezVous}">
+   <f:convertDateTime pattern="dd/MM/yyyy"  />
+ </h:outputText>
+</h:column>
+
+<h:column>
+<f:facet name="header">
+<h:outputText value="Action"/>
+</f:facet>
+
+<h:commandButton value="supprimer" type="submit" action="#{evaluationBean.supprimer(evaluationannuel.id)}" />
+<h:commandButton action="#{evaluationBean.modifier(evaluationannuel)}" value="modifier"/>
+</h:column>
+
+
+</h:dataTable>
+</h:form>
+
+<h:form rendered="true">
+<h:panelGrid columns="2">
+
+<h:outputText value="Sujet" />
+<h:inputText value="#{evaluationBean.nom}" />
+
+<h:outputText value="Description" />
+<h:inputText value="#{evaluationBean.description}" />
+
+<h:outputText value="Type"/>
+<h:selectOneMenu value="#{evaluationBean.type}">
+<f:selectItem itemLabel="Selectionner le type d'evaluation" itemValue="" />
+<f:selectItems value="#{data.evaluationType}" />
+</h:selectOneMenu>
+
+
+
+<h:outputText value="etat" />
+<h:inputText value="#{evaluationBean.etat}" />
+
+<h:outputText value="Objectif" />
+<h:inputText value="#{evaluationBean.objectif}" />
+
+<h:outputText value="date auto_eval" />
+<h:inputText value="#{evaluationBean.dateEcheance}">
+    <f:convertDateTime pattern="MM/dd/yyyy" />
+    
+</h:inputText>
+
+<h:outputText value="RendezVous" />
+<h:inputText value="#{evaluationBean.rendezVous}">
+    <f:convertDateTime pattern="MM/dd/yyyy" />
+</h:inputText>
+
+
+
+<h:commandButton action="#{evaluationBean.addEval()}" value="Ajouter" />
+<h:commandButton action="#{evaluationBean.mettreAjour()}" value="modifier"/>
+
+</h:panelGrid>
+</h:form>
+
+</html>
