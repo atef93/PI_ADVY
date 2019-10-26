@@ -170,8 +170,10 @@
 												</h:panelGrid>
 
 												<p:commandButton value="voir"
-													action="#{projectBean.voirProjet(projet)}"
-													icon="pi pi-check" />
+													action="#{projectBean.voirProjet(projet.id)}"													
+													icon="pi pi-check" >
+													 <f:param name="idProjet" value="#{projet.id}" />
+												</p:commandButton>	
 
 												<p:commandButton value="supprimer"
 													action="#{projectBean.supprimerProjet(projet.id)}"

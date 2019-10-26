@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
@@ -15,6 +16,7 @@ import tn.advyteam.entities.Projet;
 import tn.advyteam.service.GestionTimesheetRemote;
 
 @ManagedBean
+@ApplicationScoped
 public class ProjectBean implements Serializable{
 	
 	
@@ -31,6 +33,7 @@ public class ProjectBean implements Serializable{
 	@PostConstruct
 	public void init() {
 		projets = timesheetServiceImp.getAllProjectsByManager(idManager);
+		selectedProjet = new Projet();
 	}
 	
 	
@@ -109,9 +112,12 @@ public class ProjectBean implements Serializable{
 
 	}
 	
-	public String voirProjet(Projet projet) {
-		selectedProjet=projet;
-		return "voirProjet.xhtml?faces-redirect=true";
+	
+	public String voirProjet(int projet) throws IOException {
+		selectedProjet=timesheetServiceImp.getProjectById(projet);
+		System.out.println(selectedProjet);
+		return "voirProjet.xhtml";
+		//FacesContext.getCurrentInstance().getExternalContext().redirect("voirProjet.xhtml");
 	}
 	
 	
