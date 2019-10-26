@@ -9,7 +9,6 @@
 
 
 
-
 <h:head>
 	<!--=============== basic  ===============-->
 	<meta charset="UTF-8" />
@@ -26,9 +25,62 @@
 	<link type="text/css" rel="stylesheet" href="../../css/color.css" />
 	<!--=============== favicons ===============-->
 	<link rel="shortcut icon" href="../images/favicon.ico" />
+
+
+	<style type="text/css">
+/*demo*/
+.ui-dataview-list .ui-dataview-row {
+	border-bottom: 1px solid #A8A8A8;
+	padding: 25px 10px;
+	/* with the exported variables from Nova and Luna Themes*/
+	border-bottom-color: var(- -input-border-color, #A8A8A8);
+}
+
+.logo {
+	width: 5%;
+}
+
+.detail {
+	width: 85%;
+	padding-left: 25px;
+}
+
+body .ui-staticmessage.ui-message {
+	width: 100%;
+}
+</style>
+	<style type="text/css">
+.label {
+	width: 20%;
+	padding: 4px;
+}
+
+.value {
+	width: 80%;
+	padding: 4px;
+}
+
+.grid {
+	width: 100%;
+}
+
+.error {
+	color: red;
+}
+
+.outputLabel {
+	font-weight: bold;
+}
+
+.grid {
+	width: 33%;
+	padding: 4px;
+}
+</style>
+
 </h:head>
 
-<body>
+<h:body>
 
 	<!-- loader -->
 	<div class="loader-wrap">
@@ -123,54 +175,56 @@
 
 							<div class="col-md-9">
 
-								<!-- profile-edit-container-->
+								<div class="dashboard-list-box fl-wrap">
 
-								<div class="profile-edit-container">
+									<div class="dashboard-header fl-wrap">
 
-									<div class="profile-edit-header fl-wrap">
-										<h4>Bon Courage</h4>
+										<h3>Ajouter Timesheet for projet</h3>
 									</div>
 
-									<br /> <br /> <br />
-									<h:form>
-										<p:panel id="panel" header="BOOSTER UN PROJET">
+									<!-- dashboard-list end-->
 
 
-											<p:messages id="msgs" />
+									<div class="col-md-4">
 
-											<h:panelGrid columns="3" cellpadding="10" cellspacing="5"
-												width="100%">
+										<div class="fl-wrap">
+											<!--box-widget-item -->
 
-												<p:outputLabel for="titre" value="Titre de projet" />
-												<p:inputText id="titre" value="#{projectBean.titre}"
-													required="true" label="titre">
-													<f:validateLength minimum="2" />
-												</p:inputText>
+											<div class="box-widget-item fl-wrap">
+
+												<div class="box-widget-item-header">
+
+													<h3>Detail de projet :</h3>
+
+													#{projectBean.selectedProjet.titre}
+													#{projectBean.selectedProjet.description}
+												
+												</div>
 
 
-												<p:message for="titre" display="icon" />
+											</div>
+											<!--box-widget-item end -->
 
+										</div>
+									</div>
+									<div class="col-md-8">
+										<div class="fl-wrap">
+											<!--box-widget-item -->
 
+											<div class="box-widget-item fl-wrap">
 
-												<p:outputLabel for="desc" value="description" />
-												<p:inputTextarea id="desc"
-													value="#{projectBean.description}" label="desc"
-													required="true">
-													<f:validateLength minimum="2" />
-<!-- 													<p:ajax update="msgLastname" event="keyup" /> -->
-												</p:inputTextarea>
+												<div class="box-widget-item-header">
+													<h3>Ajouter Timesheet au projet :</h3>
+													<ui:include src="/views/timesheetviews/addTimesheet.xhtml" />
 
-												<p:message for="desc" id="msgLastname" display="icon" />
-											</h:panelGrid>
+												</div>
 
-											<p:commandButton value="Save" update="panel"
-												action="#{projectBean.addProject()}" icon="pi pi-check"
-												resetValues="true"/>
+											</div>
+										</div>
+									</div>
 
-										</p:panel>
-									</h:form>
+									<!-- dashboard-list end-->
 								</div>
-								<!-- profile-edit-container end-->
 							</div>
 						</div>
 					</div>
@@ -223,5 +277,5 @@
 	<script type="text/javascript" src="../../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../../js/plugins.js"></script>
 	<script type="text/javascript" src="../../js/scripts.js"></script>
-</body>
+</h:body>
 </html>
