@@ -14,9 +14,13 @@ public class TestCRUD {
 		EmployeServiceImp employeServiceImp = new EmployeServiceImp();
 		
 		//Developpeur developpeur = new Developpeur("Atef", "Jlassi");
-		Employee employee = new Employee("jihed", "ousleti");
+		//Employee employee = new Employee("jihed", "ousleti");
+		//employeServiceImp.addemploye(employee);
+
+		//employeServiceImp.delete(1);
 		
-		employeServiceImp.addemploye(employee);
+		System.out.println("sffffffffffff");
+		//employeServiceImp.MD5("jihed");
 		
 	}
 

@@ -13,6 +13,7 @@
 <h:form>
 
 <h:dataTable value="#{employeBean.listemploye}" var="employe" border="1">
+
 	<h:column>
 		<f:facet name="header">
 			<h:outputText value="nom"></h:outputText>
@@ -58,6 +59,28 @@
 	<h:outputText value="Actif"></h:outputText>
 </f:facet>
 <h:outputText value="#{employe.isActif == true ? 'oui' : 'Non'}"></h:outputText>
+</h:column>
+
+<h:column>		
+<f:facet name="header">
+	<h:outputText value="Type contrat"></h:outputText>
+</f:facet>
+<h:outputText value="#{employe.contrat.typeContrat}"></h:outputText>
+</h:column>
+
+	<h:column>		
+ 	<f:facet name="header">
+			<h:outputText value="Date de debut contrat"></h:outputText>
+		</f:facet>
+	<h:outputText value="#{employe.contrat.datedebut}"></h:outputText>
+</h:column>
+
+
+	<h:column>		
+ 	<f:facet name="header">
+			<h:outputText value="Date de debut contrat"></h:outputText>
+		</f:facet>
+	<h:outputText value="#{employe.contrat.datefin}"></h:outputText>
 </h:column>
 <h:column>
 <f:facet name="header">

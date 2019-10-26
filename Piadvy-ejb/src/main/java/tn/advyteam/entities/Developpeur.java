@@ -28,19 +28,6 @@ public class Developpeur extends Employee implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-
-	public Developpeur(int id, String nom, String prenom, String adresse, String email, Boolean isActif,
-			String password, Date datenaissance, Etatcivil etatcivil) {
-		super(id, nom, prenom, adresse, email, isActif, password, datenaissance, etatcivil);
-		// TODO Auto-generated constructor stub
-	}
-
-	public Developpeur(int id, String nom, String prenom, String adresse, String email, String sexe, Boolean isActif,
-			String password, Date datenaissance, Etatcivil etatcivil, Contrat contrat) {
-		super(id, nom, prenom, adresse, email, sexe, isActif, password, datenaissance, etatcivil, contrat);
-		// TODO Auto-generated constructor stub
-	}
 
 	public Developpeur(int id, String nom) {
 		super(id, nom);
@@ -48,16 +35,22 @@ public class Developpeur extends Employee implements Serializable {
 	}
 
 	public Developpeur(String nom, String prenom, String adresse, String email, String sexe, Boolean isActif,
-			String password, Date datenaissance, Etatcivil etatcivil) {
-		super(nom, prenom, adresse, email, sexe, isActif, password, datenaissance, etatcivil);
+			Date datenaissance, Etatcivil etatcivil) {
+		super(nom, prenom, adresse, email, sexe, isActif, datenaissance, etatcivil);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Developpeur(String nom, String prenom) {
-		super(nom, prenom);
+	public Developpeur(String nom, String prenom, String adresse, String email, String sexe, Boolean isActif,
+			String password, Date datenaissance, Etatcivil etatcivil,String role) {
+		super(nom, prenom, adresse, email, sexe, isActif, password, datenaissance, etatcivil,role);
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	
+	
+	
+
 	
 	
 	

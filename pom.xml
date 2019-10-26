@@ -87,6 +87,15 @@
                 <type>war</type>
                 <scope>compile</scope>
             </dependency>
+            
+            
+            <!-- https://mvnrepository.com/artifact/com.joyent.util/fast-md5 -->
+			<dependency>
+    			<groupId>com.joyent.util</groupId>
+    			<artifactId>fast-md5</artifactId>
+    			<version>2.7.1</version>
+			</dependency>
+            
 
             <!-- JBoss distributes a complete set of Java EE 7 APIs including
                 a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or 

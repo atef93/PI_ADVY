@@ -3,6 +3,7 @@ package tn.advyteam.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import javax.persistence.Id;
 
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,8 +43,32 @@ public class Employee implements Serializable{
 	private Etatcivil etatcivil ;
 	@OneToOne(cascade=CascadeType.PERSIST)
 	private Contrat contrat ; 
+	private String role ;
 
 	
+	
+	@OneToMany(mappedBy="employee" , cascade= {CascadeType.REMOVE} )
+	private List<Publication> lstPub;
+
+	@OneToMany(mappedBy="employee" , cascade= {CascadeType.REMOVE} )
+	private List<Commentairepub> lstcom;
+	
+	public List<Publication> getLstPub() {
+		return lstPub;
+	}
+
+	public void setLstPub(List<Publication> lstPub) {
+		this.lstPub = lstPub;
+	}
+
+	public List<Commentairepub> getLstcom() {
+		return lstcom;
+	}
+
+	public void setLstcom(List<Commentairepub> lstcom) {
+		this.lstcom = lstcom;
+	}
+
 	public String getSexe() {
 		return sexe;
 	}
@@ -140,51 +166,29 @@ public class Employee implements Serializable{
 	}
 
 	
-	public Employee(int id, String nom, String prenom, String adresse, String email, Boolean isActif, String password,
-			Date datenaissance,Etatcivil etatcivil) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.adresse = adresse;
-		this.email = email;
-		this.isActif = isActif;
-		this.password = password;
-		this.datenaissance = datenaissance;
-		this.etatcivil = etatcivil;
-	}
-	
-	
 
-	public Employee(int id, String nom, String prenom, String adresse, String email, String sexe, Boolean isActif,
-			String password, Date datenaissance, Etatcivil etatcivil, Contrat contrat) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.adresse = adresse;
-		this.email = email;
-		this.sexe = sexe;
-		this.isActif = isActif;
-		this.password = password;
-		this.datenaissance = datenaissance;
-		this.etatcivil = etatcivil;
-		this.contrat = contrat;
-	}
+	
+	
 
 	public Employee() {
 		super();
 	}
 
-	public Employee(String nom, String prenom) {
+	public Employee(String nom, String prenom, String adresse, String email, String sexe, Boolean isActif,
+			Date datenaissance, Etatcivil etatcivil) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
+		this.adresse = adresse;
+		this.email = email;
+		this.sexe = sexe;
+		this.isActif = isActif;
+		this.datenaissance = datenaissance;
+		this.etatcivil = etatcivil;
 	}
-	
 
 	public Employee(String nom, String prenom, String adresse, String email, String sexe, Boolean isActif,
-			String password, Date datenaissance, Etatcivil etatcivil) {
+			String password, Date datenaissance, Etatcivil etatcivil ,String role) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -195,9 +199,25 @@ public class Employee implements Serializable{
 		this.password = password;
 		this.datenaissance = datenaissance;
 		this.etatcivil = etatcivil;
-		
+		this.role = role ;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
+	
+
+	
+	
+	
+	
+
+
 	
 	
 	

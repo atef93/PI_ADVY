@@ -11,6 +11,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<h:outputText value="Bonjour #{employeBean.employe.contrat.typeContrat}"></h:outputText>
+
+
 <h:form> 
 <h:panelGrid columns="2">
 <h:outputText value="nom"></h:outputText>
@@ -31,17 +35,15 @@
 			<f:selectItem itemLabel="H" itemValue="H"/>
 			<f:selectItem itemLabel="F" itemValue="F"/>
 		</h:selectOneMenu>
-		
-<h:outputText value="password"></h:outputText>
-<h:inputText value="#{employeBean.password}"></h:inputText>		
-
-<h:outputText value="Date naissance"></h:outputText>
-<p:datePicker id="date1" value="#{employeBean.datenaissance}" showIcon="true" />
-
-
+	
 <h:outputText value="Actif / Inactif"></h:outputText>
 	<h:selectBooleanCheckbox value="#{employeBean.isActif}"></h:selectBooleanCheckbox>
 	
+
+
+	<h:outputText value="Date naissance"></h:outputText>
+<p:datePicker id="date1" value="#{employeBean.datenaissance}" showIcon="true" />
+
 	<h:outputText value="Etat"></h:outputText>
 		<h:selectOneMenu value="#{employeBean.etatcivil}" >
 		<f:selectItem itemLabel="Slectionner votre etat " itemValue=""/>
@@ -50,13 +52,40 @@
         <f:selectItem itemLabel="Divorcee" itemValue="Divorcee" />
 		</h:selectOneMenu>	
 		
+		<h:outputText value="password"></h:outputText>
+        <p:password id="nonFeedback" value="#{employeBean.password}" />
+		
+		
 		<h:outputText value="Salaire de l'employe"></h:outputText>
 <h:inputText value="#{employeBean.salaire}"></h:inputText>
 <h:outputText value="Date debut  du contat"></h:outputText>
 <p:datePicker id="date2" value="#{employeBean.datedebut}" showIcon="true" />
 <h:outputText value="Date Fin  du contat"></h:outputText>
 <p:datePicker id="date3" value="#{employeBean.datefin}" showIcon="true" />
-<h:commandButton action="#{employeBean.AjouterContratemp()}" value="Ajouter contrat" /> 
+
+	<h:outputText value="Type Contrat"></h:outputText>
+		<h:selectOneMenu value="#{employeBean.typeContrat}" >
+		<f:selectItem itemLabel="Slectionner Type  contrat " itemValue=""/>
+		<f:selectItem itemLabel="CDI" itemValue="CDI" />
+        <f:selectItem itemLabel="CDD" itemValue="CDD" />
+        <f:selectItem itemLabel="CTT" itemValue="CTT" />
+        <f:selectItem itemLabel="CDP" itemValue="CDP" />
+		</h:selectOneMenu>	
+		
+		<h:outputText value="Role"></h:outputText>
+		<h:selectOneMenu value="#{employeBean.role}" >
+		<f:selectItem itemLabel="Slectionner le  role " itemValue=""/>
+		<f:selectItem itemLabel="CHEF" itemValue="CHEF" /> 
+		</h:selectOneMenu>	
+		
+		
+	<h:commandButton action="#{employeBean.AjouterContratemp()}" value="Ajouter contrat" /> 
+
+
+<h:commandButton action="#{employeBean.doLogout()}" value="Logout"  />
+
+
+
 		
 </h:panelGrid>
 </h:form>

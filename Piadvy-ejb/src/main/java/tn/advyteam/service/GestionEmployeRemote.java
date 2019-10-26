@@ -1,5 +1,7 @@
 package tn.advyteam.service;
 
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -18,5 +20,5 @@ public interface GestionEmployeRemote {
     public void addContrat (Contrat contrat); 
 	public void ajoutercontratemploye(Developpeur developpeur, Contrat contrat);
 	public void addemploye (Employee developpeur);
-    
+ 
 }

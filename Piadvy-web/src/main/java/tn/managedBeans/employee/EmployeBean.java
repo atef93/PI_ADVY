@@ -1,13 +1,16 @@
 package tn.managedBeans.employee;
 
 import java.io.Serializable;
+import java.security.GeneralSecurityException;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +27,8 @@ import tn.advyteam.serviceImp.EmployeServiceImp;
 
 
 @ManagedBean(name="employeBean")
+@SessionScoped
+
 public class EmployeBean implements Serializable{
 	
 	@EJB
@@ -41,6 +46,10 @@ public class EmployeBean implements Serializable{
 	private List<Employee> listemploye ;
 	private Employee employe ;
 	private Developpeur developpeur;
+	private String login ;
+	private  Boolean loggeIn;
+	private String  role ;
+
 	
 	//contrat
 	private int reference;
@@ -50,13 +59,13 @@ public class EmployeBean implements Serializable{
 	private TypeContrat typeContrat;
 	
 	
-
+/*
 	public void AjouterEmploye() 
 	{
 		employeServiceImp.addemploye(new Developpeur(nom, prenom));
 	
 	}
-	
+	*/
 
 	public Employee getEmploye() {
 		return employe;
@@ -69,10 +78,38 @@ public class EmployeBean implements Serializable{
 	}
 
 	@PostConstruct
-	public void init() {
-		this.getEmployes();
+	public void init() 
+	{
+		getEmployes();
+		//employeServiceImp.test("sss");
 	}
 
+	
+	public String doLogin()
+	{
+		String navigateto = "null"; 
+		employe=employeServiceImp.getEmployebyEmailAndPassword(login,employeServiceImp.MD5(password));
+		if (employe != null  && employe.getIsActif()== true )
+		{ navigateto="/Welcom?faces-redirect=true"; loggeIn = true ;}
+		else {FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad credentials or  you are not actif"));}
+		return navigateto;					
+	}
+	
+	public String doLogout() 
+	{
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "/Login?face-redirect=true";
+		
+	}
+	
+	public String Ajutemp()
+	{
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "/AjouterEmployee?face-redirect=true";
+		
+	}
+	
+	
 
 	
 	public String getAdresse() {
@@ -157,17 +194,12 @@ public class EmployeBean implements Serializable{
 		this.etatcivil = etatcivil;
 	}
 
-	
-
 
 	public List<Employee> getEmployes()
 	{
 		listemploye = employeServiceImp.emps();
 		System.out.println(listemploye.size());
-		System.out.println(employe.getContrat());
-
 		return listemploye; 
-		
 	}
 
 	public List<Employee> getListemploye() {
@@ -198,7 +230,8 @@ public class EmployeBean implements Serializable{
 
 	public void AjouterContratemp() 
 	{
-		employeServiceImp.ajoutercontratemploye(new Developpeur(nom, prenom, adresse, email, sexe, isActif, password, datenaissance, etatcivil),new Contrat(datedebut, datefin, salaire, typeContrat));
+	employeServiceImp.ajoutercontratemploye(new Developpeur(nom, prenom, adresse, email, sexe, isActif, password, datenaissance, etatcivil, role) ,new Contrat(datedebut, datefin, salaire, typeContrat));
+
 	}
 	
 	public int getReference() {
@@ -258,6 +291,68 @@ public class EmployeBean implements Serializable{
 	public void setTypeContrat(TypeContrat typeContrat) {
 		this.typeContrat = typeContrat;
 	}
+
+
+
+	public Developpeur getDeveloppeur() {
+		return developpeur;
+	}
+
+
+
+	public void setDeveloppeur(Developpeur developpeur) {
+		this.developpeur = developpeur;
+	}
+
+
+
+	public String getLogin() {
+		return login;
+	}
+
+
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+
+
+	public Boolean getLoggeIn() {
+		return loggeIn;
+	}
+
+
+
+	public void setLoggeIn(Boolean loggeIn) {
+		this.loggeIn = loggeIn;
+	}
+
+
+
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+	public String getRole() {
+		return role;
+	}
+
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	
 	
 	
 
