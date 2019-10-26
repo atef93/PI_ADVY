@@ -77,7 +77,18 @@ body .ui-staticmessage.ui-message {
 	padding: 4px;
 }
 </style>
+	<style type="text/css">
+.column {
+	font-weight: bold;
+}
+</style>
 
+ 
+<style type="text/css">
+    .value {
+        font-weight: bold;
+    }
+</style>
 </h:head>
 
 <h:body>
@@ -195,7 +206,42 @@ body .ui-staticmessage.ui-message {
 												<div class="box-widget-item-header">
 
 													<h3>Detail de projet :</h3>
-													#{projectBean.selectedProjet.titre}																								
+													<br /> <br />
+
+
+
+												
+														<h:panelGrid columns="2" columnClasses="column"
+															cellpadding="10px" cellspacing="30px">
+															
+															
+<!-- 															<h:outputLabel for="Titre" value="Titre:" /> -->
+<!-- 															<p:inplace id="Titre"> -->
+<!-- 																<p:inputText value="#{projectBean.selectedProjet.titre}" /> -->
+<!-- 															</p:inplace> -->
+
+
+<!-- 															<h:outputLabel for="Desc" value="Description:" /> -->
+<!-- 															<p:inplace id="Desc"> -->
+<!-- 																<p:inputText -->
+<!-- 																	value="#{projectBean.selectedProjet.description}" /> -->
+<!-- 															</p:inplace> -->
+
+															<div class="ui-g">
+																<div class="ui-g-12 ui-md-3">
+																	<p:staticMessage severity="info" summary="Titre"
+																		detail="#{projectBean.selectedProjet.titre}" />
+																</div>
+															</div>
+															<div class="ui-g">
+																<div class="ui-g-12 ui-md-3">
+																	<p:staticMessage severity="info" summary="Description"
+																		detail="#{projectBean.selectedProjet.titre}" />
+																</div>
+															</div>
+															</h:panelGrid>
+													
+
 												</div>
 
 
@@ -213,6 +259,7 @@ body .ui-staticmessage.ui-message {
 												<div class="box-widget-item-header">
 													<h3>Ajouter Timesheet au projet :</h3>
 													<br />
+													
 													<ui:include src="/views/timesheetviews/addTimesheet.xhtml" />
 
 												</div>
@@ -267,13 +314,51 @@ body .ui-staticmessage.ui-message {
 		</div>
 		<!-- wrapper end -->
 		<ui:include src="/views/timesheetviews/footer.xhtml" />
-
-
-
 	</div>
 	<!--=============== scripts  ===============-->
 	<script type="text/javascript" src="../../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../../js/plugins.js"></script>
 	<script type="text/javascript" src="../../js/scripts.js"></script>
+	
+	<!-- ============================================ -->
+	<script type="text/javascript">    
+    PrimeFaces.locales['de'] = {
+        closeText: 'Schließen',
+        prevText: 'Zurück',
+        nextText: 'Weiter',
+        monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+        monthNamesShort: ['Jan', 'Feb', 'März', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+        dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+        dayNamesShort: ['Son', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam'],
+        dayNamesMin: ['S', 'M', 'D', 'M ', 'D', 'F ', 'S'],
+        weekHeader: 'Woche',
+        FirstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: '',
+        timeOnlyTitle: 'Nur Zeit',
+        timeText: 'Zeit',
+        hourText: 'Stunde',
+        minuteText: 'Minute',
+        secondText: 'Sekunde',
+        currentText: 'Aktuelles Datum',
+        ampm: false,
+        month: 'Monat',
+        week: 'Woche',
+        day: 'Tag',
+        allDayText: 'Ganzer Tag'
+    };
+</script>
+
+
+<!-- //////////////////////////////////////// -->
+
+<script type="text/javascript">
+    //<![CDATA[
+    function dateTemplateFunc(date) {
+        return '<span style="background-color:' + ((date.day < 21 && date.day > 10) ? '#81C784' : 'inherit') + ';border-radius:50%;padding: .25em;width: 1.75em; height:1.75em; display:block;">' + date.day + '</span>';
+    }
+    //]]>
+</script>
 </h:body>
 </html>

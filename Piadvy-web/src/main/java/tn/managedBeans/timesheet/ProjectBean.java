@@ -128,4 +128,17 @@ public class ProjectBean implements Serializable{
 
 	}
 	
+	public void modifierProjet(int id) {
+		Projet projet = new Projet();
+		
+		selectedProjet=timesheetServiceImp.getProjectById(id);
+		//projet.setId(selectedProjet.getId());
+		projet.setTitre(selectedProjet.getTitre());
+		projet.setDescription(selectedProjet.getDescription());
+		
+		timesheetServiceImp.updateProject(selectedProjet, selectedProjet.getId());
+		
+
+	}
+	
 }
