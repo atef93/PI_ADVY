@@ -2,14 +2,19 @@ package tn.managedBeans.timesheet;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.event.SelectEvent;
 
 import tn.advyteam.entities.Manager;
 import tn.advyteam.entities.Projet;
@@ -19,9 +24,10 @@ import tn.advyteam.service.GestionTimesheetRemote;
 @ApplicationScoped
 public class ProjectBean implements Serializable{
 	
-	
+
 	@EJB
 	GestionTimesheetRemote timesheetServiceImp;
+	
 	
 	private String titre;
 	private String description;
@@ -40,6 +46,20 @@ public class ProjectBean implements Serializable{
 	public ProjectBean() {
 		// TODO Auto-generated constructor stub
 	}
+	
+    public void onDateSelect(SelectEvent event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+    }
+
+    
+	
+    public void save() {        
+        FacesMessage msg = new FacesMessage("Successful", "Welcome :");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+	
 	
 	public String getTitre() {
 		return titre;
@@ -83,10 +103,6 @@ public class ProjectBean implements Serializable{
 	public void setIdManager(int idManager) {
 		this.idManager = idManager;
 	}
-
-
-	
-	
 
 
 	public Projet getSelectedProjet() {

@@ -27,37 +27,22 @@
 	<link rel="shortcut icon" href="../../images/favicon.ico" />
 
 
-
 	<style type="text/css">
-.box, .sample-layout>div {
-	background-color: #cce4f7;
-	text-align: center;
-	padding-top: 1em;
-	padding-bottom: 1em;
-	border-radius: 4px;
+/*demo*/
+.ui-dataview-list .ui-dataview-row {
+	border-bottom: 1px solid #A8A8A8;
+	padding: 25px 10px;
+	/* with the exported variables from Nova and Luna Themes*/
+	border-bottom-color: var(- -input-border-color, #A8A8A8);
 }
 
-.box-stretched {
-	height: 100%;
+.logo {
+	width: 5%;
 }
 
-.sample-layout {
-	margin: 0;
-}
-
-.sample-layout>div {
-	border: 1px solid #ffffff;
-}
-
-.vertical-container {
-	margin: 0;
-	height: 200px;
-	background: #efefef;
-	border-radius: 4px;
-}
-
-.nested-grid .p-col-4 {
-	padding-bottom: 1em;
+.detail {
+	width: 85%;
+	padding-left: 25px;
 }
 </style>
 
@@ -158,50 +143,21 @@
 
 							<div class="col-md-9">
 
-								<p:panelGrid columns="1" layout="grid">
-									<p:panel id="ouvert" header="Ouvert" style="margin-bottom:50px">
+								<div class="dashboard-list-box fl-wrap">
 
-										<h:form id="form">
-											<p:dataGrid var="projet" value="#{projectBean.projets}"
-												id="cars">
-												<p:panel header="#{projet.titre}" style="text-align:center">
-													<p:commandButton value="voir"
-														action="#{projectBean.voirProjet(projet.id)}"
-														icon="pi pi-check">
-														<f:param name="idProjet" value="#{projet.id}" />
-													</p:commandButton>
-													<p:commandButton value="voir"
-														action="#{projectBean.voirProjet(projet.id)}"
-														icon="pi pi-check">
-														<f:param name="idProjet" value="#{projet.id}" />
-													</p:commandButton>
-<!-- 													<p:commandButton value="voir" id="iconOnly" -->
-<!-- 														style="margin-right:20px;" icon="pi pi-save" -->
-<!-- 														title="Icon Only" /> -->
-													<p:selectOneMenu id="country"
-														value="#{dropdownView.names.get(1)}" style="width:150px">
-													
-														<f:selectItem itemLabel="Select Country" itemValue="#{dropdownView}"
-															noSelectionOption="true" />
-														<f:selectItems value="#{dropdownView.names}" />
-													</p:selectOneMenu>
-												</p:panel>
-											</p:dataGrid>
-										</h:form>
+									<div class="dashboard-header fl-wrap">
 
-									</p:panel>
+										<h3>Calendrier</h3>
+									</div>
 
-									<p:panel id="encours" header="En Cours"
-										style="margin-bottom:50px">
+									<!-- dashboard-list end-->
 
-									</p:panel>
 
-									<p:panel id="termine" header="Termine"
-										style="margin-bottom:50px">
 
-									</p:panel>
-								</p:panelGrid>
-								<!-- dashboard-list end-->
+
+
+									<!-- dashboard-list end-->
+								</div>
 							</div>
 						</div>
 					</div>

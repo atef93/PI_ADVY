@@ -87,7 +87,7 @@ public class TimesheetBean {
 	
 	public void addTimesheet(int id) {
 		
-		idP = 7;
+		idP = 6;
 		System.out.println(titre);
 		System.out.println(heureEstime+" heure");
 		System.out.println(description);

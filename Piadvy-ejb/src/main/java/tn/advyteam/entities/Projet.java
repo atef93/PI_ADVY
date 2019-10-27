@@ -1,6 +1,7 @@
 package tn.advyteam.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Projet implements Serializable {
@@ -29,6 +32,8 @@ public class Projet implements Serializable {
 	private Manager createdBy;
 	@OneToMany(mappedBy = "projet")
 	private List<CommentProjet> commentsProjet;
+
+	
 	@OneToMany(mappedBy = "projet")
 	private List<Timesheet> timesheets;
 	
@@ -111,6 +116,11 @@ public class Projet implements Serializable {
 	public void setTimesheets(List<Timesheet> timesheets) {
 		this.timesheets = timesheets;
 	}
+
+
+	
+
+
 
 
 

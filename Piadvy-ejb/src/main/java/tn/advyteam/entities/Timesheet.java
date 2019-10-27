@@ -4,10 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -18,7 +22,11 @@ import javax.persistence.TemporalType;
 public class Timesheet implements Serializable {
 
 	
-	@EmbeddedId
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	@Embedded
 	private TimesheetPK timesheetPk;
 	@Column
 	private String titre;
@@ -67,6 +75,7 @@ public class Timesheet implements Serializable {
 		this.titre=titre;
 		this.description=description;
 	}
+	
 
 
 
@@ -217,6 +226,19 @@ public class Timesheet implements Serializable {
 
 	public void setMinutePasse(long minutePasse) {
 		this.minutePasse = minutePasse;
+	}
+
+	
+
+
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
