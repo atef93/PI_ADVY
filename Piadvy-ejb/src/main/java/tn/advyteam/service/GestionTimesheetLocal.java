@@ -34,5 +34,7 @@ public interface GestionTimesheetLocal {
 	public void startTracking();
 	public void stopTracking();
 	public Timesheet getTimeshetByid(int id);
-
+	public List<Developpeur> getAllDeveloppeur();
+	
+	
 }

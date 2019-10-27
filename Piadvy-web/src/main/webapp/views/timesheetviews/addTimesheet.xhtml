@@ -15,26 +15,51 @@
 			<h:panelGrid columns="2" cellpadding="10" width="100%"
 				cellspacing="10">
 				<h:outputLabel for="name" value="Titre" />
-				<p:inputText id="name" required="true" cols="25" />
+				<p:inputText id="name" required="true" cols="25"
+					value="#{timesheetBean.titre}" />
 
 
-				<p:outputLabel for="@next" value="Heure estimé" />
-				<p:spinner id="number" value="1" cols="25" />
+				<p:outputLabel for="input1" value="Heure estimé" />
+				<p:inputNumber id="input1" value="#{timesheetBean.heureEstime}">
 
-				<p:outputLabel for="popup" value="Popup:" />
-				<p:datePicker id="popup" value="#{timesheetBean.date1}" />
+				</p:inputNumber>
 
-				<p:outputLabel for="popup" value="Popup:" />
-				<p:datePicker id="popup" value="#{timesheetBean.date2}" />
+				<p:outputLabel for="popup1" value="Date debut" />
+				<p:datePicker id="popup1" value="#{timesheetBean.date1}" />
+
+				<p:outputLabel for="popup2" value="Date d'écheance" />
+				<p:datePicker id="popup2" value="#{timesheetBean.date2}" />
 
 				<p:outputLabel for="@next" value="Description" />
-				<p:inputTextarea rows="4" cols="25" maxlength="10" autoResize="true" />
+				<p:inputTextarea rows="4" cols="25" maxlength="10" autoResize="true"
+					value="#{timesheetBean.description}" />
+
+
+				<p:outputLabel for="advanced" value="Choisissez un Developpeur" />
+				<p:selectOneListbox id="advanced"
+					value="#{timesheetBean.selectedName}"
+					converter="javax.faces.Integer" var="n" filter="true"
+					filterMatchMode="contains">
+
+					<f:selectItems value="#{timesheetBean.names}" var="theme"
+						itemLabel="#{theme}" itemValue="#{theme}" />
+
+					<p:column>
+						<h:graphicImage
+							name="/showcase/images/themeswitcher/themeswitcher-#{t.name}.png"
+							alt="#{t.name}" styleClass="ui-theme" />
+					</p:column>
+
+					<p:column>
+						<h:outputText value="#{n}" />
+					</p:column>
+				</p:selectOneListbox>
 
 			</h:panelGrid>
-			
+
 			<p:dialog modal="true" resizable="false" header="Values"
 				widgetVar="dlg" showEffect="fold">
-				<p:panelGrid id="display" columns="4"
+				<p:panelGrid id="display1" columns="4"
 					columnClasses="label,value,label,value">
 
 
@@ -47,7 +72,7 @@
 
 			<p:dialog modal="true" resizable="false" header="Values"
 				widgetVar="dlg" showEffect="fold">
-				<p:panelGrid id="display" columns="4"
+				<p:panelGrid id="display2" columns="4"
 					columnClasses="label,value,label,value">
 
 
@@ -57,9 +82,11 @@
 					</h:outputText>
 				</p:panelGrid>
 			</p:dialog>
-			
+			<p:commandButton value="Save"
+				action="#{timesheetBean.addTimesheet()}" icon="pi pi-check"
+				resetValues="true" />
 		</p:panel>
-			<p:commandButton value="Submit" update="panel" />
-		
+
+
 	</h:form>
 </ui:composition>

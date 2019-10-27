@@ -182,6 +182,12 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 		return em.find(Timesheet.class, id);
 	}
 
+	@Override
+	public List<Developpeur> getAllDeveloppeur() {
+		TypedQuery<Developpeur> query = em.createQuery("select d from Developpeur d", Developpeur.class);
+		return query.getResultList();
+	}
+
 
 
 }

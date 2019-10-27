@@ -35,6 +35,8 @@ public interface GestionTimesheetRemote {
 	public void startTracking();
 	public void stopTracking();
 	public Timesheet getTimeshetByid(int id);
+	public List<Developpeur> getAllDeveloppeur();
+
 
 
 }
