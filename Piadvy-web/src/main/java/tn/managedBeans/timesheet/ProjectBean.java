@@ -15,7 +15,7 @@ import tn.advyteam.entities.Manager;
 import tn.advyteam.entities.Projet;
 import tn.advyteam.service.GestionTimesheetRemote;
 
-@ManagedBean
+@ManagedBean(name = "projectBean" , eager = true)
 @ApplicationScoped
 public class ProjectBean implements Serializable{
 	

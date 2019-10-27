@@ -10,49 +10,56 @@
 	<h:form id="form">
 		<p:growl id="msgs" showDetail="true" />
 
+
+
+
 		<p:panel id="panel" header="Form" style="margin-bottom:10px;">
-			<p:messages id="messages" />
+
+			<h:outputLabel  value="#{projectBean.selectedProjet.id}" /> 
 			<h:panelGrid columns="2" cellpadding="10" width="100%"
 				cellspacing="10">
+
+
 				<h:outputLabel for="name" value="Titre" />
 				<p:inputText id="name" required="true" cols="25"
 					value="#{timesheetBean.titre}" />
 
 
 				<p:outputLabel for="input1" value="Heure estimé" />
-				<p:inputNumber id="input1" value="#{timesheetBean.heureEstime}">
-
+				<p:inputNumber id="input1" value="#{timesheetBean.heureEstime}"
+					requiredMessage="ce champs est obligatoire" required="true">
 				</p:inputNumber>
 
 				<p:outputLabel for="popup1" value="Date debut" />
-				<p:datePicker id="popup1" value="#{timesheetBean.date1}" />
+				<p:datePicker id="popup1" value="#{timesheetBean.date1}"
+					requiredMessage="ce champs est obligatoire" required="true" />
 
 				<p:outputLabel for="popup2" value="Date d'écheance" />
-				<p:datePicker id="popup2" value="#{timesheetBean.date2}" />
+				<p:datePicker id="popup2" value="#{timesheetBean.date2}"
+					required="true" />
+
+
 
 				<p:outputLabel for="@next" value="Description" />
 				<p:inputTextarea rows="4" cols="25" maxlength="10" autoResize="true"
-					value="#{timesheetBean.description}" />
-
+					value="#{timesheetBean.description}" required="true" />
 
 				<p:outputLabel for="advanced" value="Choisissez un Developpeur" />
-				<p:selectOneListbox id="advanced"
-					value="#{timesheetBean.selectedName}"
-					converter="javax.faces.Integer" var="n" filter="true"
-					filterMatchMode="contains">
+				<p:selectOneListbox id="advanced" value="#{timesheetBean.index}"
+					var="n" filter="true" filterMatchMode="contains">
 
-					<f:selectItems value="#{timesheetBean.names}" var="theme"
-						itemLabel="#{theme}" itemValue="#{theme}" />
+					<f:selectItems value="#{timesheetBean.developpeurs}" var="devp"
+						itemLabel="#{devp.nom}" itemValue="#{devp.id}" />
 
-					<p:column>
-						<h:graphicImage
-							name="/showcase/images/themeswitcher/themeswitcher-#{t.name}.png"
-							alt="#{t.name}" styleClass="ui-theme" />
-					</p:column>
+
 
 					<p:column>
 						<h:outputText value="#{n}" />
 					</p:column>
+
+
+
+
 				</p:selectOneListbox>
 
 			</h:panelGrid>
@@ -64,7 +71,7 @@
 
 
 					<h:outputText value="Popup:" />
-					<h:outputText value="#{timesheetBean.date1}">
+					<h:outputText value="#{timesheetBean.date1}" required="true">
 						<f:convertDateTime pattern="MM/dd/yyyy" />
 					</h:outputText>
 				</p:panelGrid>
@@ -77,13 +84,13 @@
 
 
 					<h:outputText value="Popup:" />
-					<h:outputText value="#{timesheetBean.date2}">
+					<h:outputText value="#{timesheetBean.date2}" required="true">
 						<f:convertDateTime pattern="MM/dd/yyyy" />
 					</h:outputText>
 				</p:panelGrid>
 			</p:dialog>
 			<p:commandButton value="Save"
-				action="#{timesheetBean.addTimesheet()}" icon="pi pi-check"
+				action="#{timesheetBean.addTimesheet(projectBean.selectedProjet.id)}" icon="pi pi-check"
 				resetValues="true" />
 		</p:panel>
 

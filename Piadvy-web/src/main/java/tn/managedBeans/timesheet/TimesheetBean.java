@@ -10,27 +10,42 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.component.FacesComponent;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+
 import org.primefaces.event.SelectEvent;
 import tn.advyteam.entities.Developpeur;
 import tn.advyteam.entities.Projet;
+import tn.advyteam.entities.Timesheet;
+import tn.advyteam.entities.TimesheetEtat;
 import tn.advyteam.service.GestionTimesheetRemote;
 
+@FacesComponent("addtimesheet")
 @ManagedBean
 @ApplicationScoped
 public class TimesheetBean {
 
-	private Developpeur developpeur;
-	private Projet projet;
+	private Developpeur developpeur= new Developpeur();
 	private String titre;
     private Date date1;
     private Date date2;
     private int heureEstime;
-    private List<String> names;
-    private String selectedName;
+   
     private String description;
     private List<Developpeur> developpeurs = new ArrayList<>();
-    
+    private List<Integer> idDevs;
+    private List<String> names;
+    private String selectedName;
+    private int selectedIdDev;
+    private int index;
+	private Projet projet;
+	private int idP;
+	
+	@Inject
+	ProjectBean projetB;
+	
 	@EJB
 	GestionTimesheetRemote timesheetServiceImp;
     
@@ -43,10 +58,11 @@ public class TimesheetBean {
 	public void init() {
 		
 		names = new ArrayList<String>();
+		idDevs = new ArrayList<>();
 		
-		names.add("Atef");
-		names.add("wassim");
-		names.add("arafet");
+//		names.add("Atef");
+//		names.add("wassim");
+//		names.add("arafet");
 		
 //		Developpeur dev = new Developpeur("Atef", "Jlassi");
 //		Developpeur dev2 = new Developpeur("Foulen", "Ben foulen");
@@ -60,21 +76,35 @@ public class TimesheetBean {
 //		developpeurs.add(dev2);
 //		developpeurs.add(dev3);
 		
-//		developpeurs = timesheetServiceImp.getAllDeveloppeur();
-//		
-//		for(Developpeur dev: developpeurs) {
-//			names.add(dev.getNom());
-//		}
+		developpeurs = timesheetServiceImp.getAllDeveloppeur();
+		
+		for(Developpeur dev: developpeurs) {
+			names.add(dev.getNom());
+			idDevs.add(dev.getId());
+		}
 	
 	}
 	
-	public void addTimesheet() {
+	public void addTimesheet(int id) {
 		
+		idP = 7;
 		System.out.println(titre);
 		System.out.println(heureEstime+" heure");
 		System.out.println(description);
+		System.out.println(index);
 		System.out.println(date1);
 		System.out.println(date2);
+		System.out.println(projetB.getSelectedProjet().getId());
+		//System.out.println(projectB.getSelectedProjet().getId());	
+		timesheetServiceImp.addTimesheet(idP, index, new Timesheet(titre, description, TimesheetEtat.TODO, date1, date2, heureEstime));
+		
+		
+		titre=null;
+		heureEstime=0;
+		description=null;
+		selectedName=null;
+		date1=null;
+		date2=null;
 	}
 	
 	
@@ -191,9 +221,42 @@ public class TimesheetBean {
 	public void setDeveloppeurs(List<Developpeur> developpeurs) {
 		this.developpeurs = developpeurs;
 	}
-	
-	
 
+
+	public List<Integer> getIdDevs() {
+		return idDevs;
+	}
+
+	public void setIdDevs(List<Integer> idDevs) {
+		this.idDevs = idDevs;
+	}
+	
+	
+    
+	public int getSelectedIdDev() {
+		return selectedIdDev;
+	}
+
+	public void setSelectedIdDev(int selectedIdDev) {
+		this.selectedIdDev = selectedIdDev;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	public int getIdP() {
+		return idP;
+	}
+
+	public void setIdP(int idP) {
+		this.idP = idP;
+	}
+	
 	
 	
 	
