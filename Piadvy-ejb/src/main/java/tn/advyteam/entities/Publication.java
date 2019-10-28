@@ -87,6 +87,11 @@ public class Publication implements Serializable  {
 		this.dateCreation = dateCreation;
 	}
 	
+	public Publication( String description) {
+		super();
+		
+		this.description = description;
+	}
 	
 	
 	

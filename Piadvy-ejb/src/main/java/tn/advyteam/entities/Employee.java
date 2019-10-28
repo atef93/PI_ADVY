@@ -27,6 +27,11 @@ import javax.persistence.TemporalType;
 @DiscriminatorColumn(name= "Type_emp")
 public class Employee implements Serializable{
 
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -44,6 +49,8 @@ public class Employee implements Serializable{
 	@OneToOne(cascade=CascadeType.PERSIST)
 	private Contrat contrat ; 
 	private String role ;
+	@Column(columnDefinition="MEDIUMTEXT")
+	private String image ;
 
 	
 	
@@ -84,8 +91,6 @@ public class Employee implements Serializable{
 	public void setEtatcivil(Etatcivil etatcivil) {
 		this.etatcivil = etatcivil;
 	}
-
-	
 
 	public Contrat getContrat() {
 		return contrat;
@@ -188,7 +193,7 @@ public class Employee implements Serializable{
 	}
 
 	public Employee(String nom, String prenom, String adresse, String email, String sexe, Boolean isActif,
-			String password, Date datenaissance, Etatcivil etatcivil ,String role) {
+			String password, Date datenaissance, Etatcivil etatcivil ,String role,String image) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -200,6 +205,7 @@ public class Employee implements Serializable{
 		this.datenaissance = datenaissance;
 		this.etatcivil = etatcivil;
 		this.role = role ;
+		this.image= image;
 	}
 
 	public String getRole() {
@@ -208,6 +214,14 @@ public class Employee implements Serializable{
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	

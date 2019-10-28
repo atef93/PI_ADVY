@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<!--=============== basic  ===============-->
+	<meta charset="UTF-8" />
+	<title>Citybook -Directory Listing Template</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="robots" content="index, follow" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<!--=============== css  ===============-->
+	<link type="text/css" rel="stylesheet" href="../../css/reset.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/plugins.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/color.css" />
+	<!--=============== favicons ===============-->
+	<link rel="shortcut icon" href="../images/favicon.ico" />
+</h:head>
+
+<body>
+
+	<!-- loader -->
+	<div class="loader-wrap">
+		<div class="pin"></div>
+		<div class="pulse"></div>
+	</div>
+	<!--  loader end -->
+	<!-- Main   -->
+	<div id="main">
+
+
+		<ui:include src="/views/employeeviews/header.xhtml" />
+		<!-- wrapper -->
+
+		<div id="wrapper">
+			<!--content -->
+
+			<div class="content">
+				<!--section -->
+				<section id="sec1"> <!-- container -->
+
+				<div class="container">
+					<!-- profile-edit-wrap -->
+
+					<div class="profile-edit-wrap">
+
+						<div class="profile-edit-page-header">
+
+							<h2>Gestion de Employee</h2>
+
+							<div class="breadcrumbs">
+								<a href="#">Home</a><a href="#">Dasboard</a>
+							</div>
+						</div>
+
+						<div class="row">
+
+							<div class="col-md-3">
+
+								<div class="fixed-bar fl-wrap">
+
+									<div class="user-profile-menu-wrap fl-wrap">
+										<!-- user-profile-menu-->
+											<div class="user-profile-menu">
+
+											<h3>Gestion de Employe</h3>
+
+											<ul>
+														<li><a href="Profile.xhtml"><i
+														class="fa fa-user-o" /> Profile Employee</a></li>
+	
+				
+												<li><a href="addemployee.xhtml"><i
+														class="fa fa-user-o" /> Ajouter Employee</a></li>
+
+												<li><a href="ListEmployee.xhtml"><i
+														class="fa fa-envelope-o" /> List Empolyee </a></li>
+
+											</ul>
+										</div>
+										<!-- user-profile-menu end-->
+
+										<!-- user-profile-menu-->
+
+								
+
+<h:form>
+										<!-- user-profile-menu end-->
+										<h:commandButton class="log-out-btn" action="#{employeBean.doLogout()}"
+												value="Logout" />
+												</h:form>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-9">
+							<div class="content">     
+							 <div class="profile-edit-header fl-wrap">
+                                                <h4>Basic Informations</h4>
+                                            </div>                            
+								   <div class="box-widget opening-hours">
+                                               				 <div class="box-widget-content">
+                                                   			 <h:form   class="add-comment custom-form" enctype="multipart/form-data">
+                                                       		 <fieldset>
+                                                           		 <label><i class="fa fa-user-o"></i></label>
+                                                            		<h:inputText type="text" pt:placeholder="Your Name *" value="#{employeBean.nom}"/>
+                                                            		<div class="clearfix"></div>
+                                                            		<label><i class="fa fa-user-o"></i></label>
+                                                            		<h:inputText type="text" pt:placeholder="Your Prename *" value="#{employeBean.prenom}"/>
+                                                            		<div class="clearfix"></div>
+                                                            		<label><i class="fa fa-user-o"></i></label>
+                                                            		<h:inputText type="text" pt:placeholder="Your Password *" value="#{employeBean.password}"/>
+                                                            		<div class="clearfix"></div>
+                                                     				<label><i class="fa fa-user-o"></i></label>
+                                                            		<h:inputText type="text" pt:placeholder="Your Adresse *" value="#{employeBean.adresse}" />
+                                                            		<div class="clearfix"></div>
+                                                            		<label><i class="fa fa-user-o"></i></label>
+                                                            		<h:inputText type="text" pt:placeholder="Your Email *" value="#{employeBean.email}"/>
+                                                            		<div class="clearfix"></div>
+                                                            
+	
+          <label><i class="fa fa-calendar-o"></i></label>
+        <h:inputText type="Date" pt:placeholder="Date  Naissance Example : 09/12/2019" value="#{employeBean.datenaissance}">     
+          <f:convertDateTime pattern="d/M/yyyy" />
+		  </h:inputText>
+         
+         
+    
+           
+           
+              <span class="selectbox" style="display: inline-block; position: !important;; z-index: 10;">
+                                                         
+
+		<h:selectOneMenu class="selectbox"  value="#{employeBean.sexe}">
+			<f:selectItem itemLabel="Slectionner le  sexe " itemValue=""/>
+			<f:selectItem itemLabel="H" itemValue="H"/>
+			<f:selectItem itemLabel="F" itemValue="F"/>
+		</h:selectOneMenu>   		
+          </span>                                              
+                                                            		
+                                                            		
+                                              
+<span class="selectbox" style="display: inline-block; position: !important;; z-index: 10;">
+
+		<h:selectOneMenu class="selectbox" value="#{employeBean.etatcivil}" >
+		<f:selectItem itemLabel="Slectionner votre etat " itemValue=""/>
+		<f:selectItem itemLabel="Mariee" itemValue="Mariee" />
+        <f:selectItem itemLabel="celibataire" itemValue="celibataire" />
+        <f:selectItem itemLabel="Divorcee" itemValue="Divorcee" />
+		</h:selectOneMenu>	
+		</span> 
+		
+		
+		
+		<span class="selectbox" style="display: inline-block; position: !important;; z-index: 10;">
+		
+		<h:selectOneMenu class="selectbox" value="#{employeBean.role}" >
+		<f:selectItem itemLabel="Slectionner le  role " itemValue=""/>
+		<f:selectItem itemLabel="CHEF" itemValue="CHEF" /> 
+		</h:selectOneMenu>	
+				</span> 
+		
+		
+		   <div class="profile-edit-header fl-wrap" style="margin-top:30px">
+                  <h4>Add contrat</h4>
+           </div>
+<span class="selectbox" style="display: inline-block; position: !important;; z-index: 10;">
+                                                    <h:selectOneMenu class="selectbox"  value="#{employeBean.typeContrat}" >
+													<f:selectItem itemLabel="Slectionner Type  contrat " itemValue=""/>
+													<f:selectItem itemLabel="CDI" itemValue="CDI" />
+     					  							<f:selectItem itemLabel="CDD" itemValue="CDD" />
+      					  							<f:selectItem itemLabel="CTT" itemValue="CTT" />
+        											<f:selectItem itemLabel="CDP" itemValue="CDP" />
+													</h:selectOneMenu>	
+												
+</span>
+
+
+									
+
+
+ 
+                                 		<label><i class="fa fa-calendar-o"></i></label>
+        <h:inputText type="Date" pt:placeholder="Date Debut Contrat Example : 09/12/2019" value="#{employeBean.datedebut}"> 
+           <f:convertDateTime pattern="d/M/yyyy" />
+		  </h:inputText>
+        
+        <label><i class="fa fa-calendar-o"></i></label>
+       <h:inputText type="Date" pt:placeholder="Date Fin Contrat Example : 09/12/2019" value="#{employeBean.datefin}"> 
+    <f:convertDateTime pattern="d/M/yyyy" />
+		  </h:inputText>
+	<label><i class="fa fa-user-o"></i></label>
+	
+       <h:inputText type="text" pt:placeholder="Employe Salaire *" value="#{employeBean.salaire}"/>
+    
+
+
+
+
+
+   <div class="profile-edit-header fl-wrap" style="margin-top:30px">
+                  <h4>Actif / Inactif Employee</h4>
+           </div>
+  												<div class=" fl-wrap filter-tags">
+                                                    <h4>Etat Employee </h4>
+										<h:selectBooleanCheckbox value="#{employeBean.isActif}"></h:selectBooleanCheckbox>
+                                                    <label for="check-a">Actif / Inactif</label>
+                                                    
+                                                </div>
+                                                
+                     <div class="profile-edit-header fl-wrap" style="margin-top:30px">  		
+                     <div class="change-photo-btn">
+                    
+                       <p>Choose image</p>  
+ 					<p:fileUpload value="#{employeBean.file}" mode="simple" skinSimple="true" class="custom-file-input" />                     
+             		</div>
+               		</div>
+       
+                           				
+                                                        		</fieldset>
+                                                        		<h:commandButton  class="log-out-btn" action="#{employeBean.AjouterContratemp()}" value="Ajouter contrat" /> 
+                                                        		
+                                                   			 </h:form>
+                                                			</div>
+                                        </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--profile-edit-wrap end -->
+				</div>
+				
+				 </section>
+			
+			</div>
+		</div>
+		<!-- wrapper end -->
+		<ui:include src="/views/employeeviews/footer.xhtml" />
+
+
+
+	</div>
+	<!--=============== scripts  ===============-->
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/plugins.js"></script>
+	<script type="text/javascript" src="../../js/scripts.js"></script>
+</body>
+</html>

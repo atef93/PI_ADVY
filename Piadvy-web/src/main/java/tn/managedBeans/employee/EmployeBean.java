@@ -2,33 +2,30 @@ package tn.managedBeans.employee;
 
 import java.io.Serializable;
 import java.security.GeneralSecurityException;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+
+import org.primefaces.model.UploadedFile;
 
 import tn.advyteam.entities.Contrat;
 import tn.advyteam.entities.Developpeur;
 import tn.advyteam.entities.Employee;
 import tn.advyteam.entities.Etatcivil;
+
 import tn.advyteam.entities.TypeContrat;
 import tn.advyteam.serviceImp.EmployeServiceImp;
 
 
-@ManagedBean(name="employeBean")
+@ManagedBean
 @SessionScoped
-
 public class EmployeBean implements Serializable{
 	
 	@EJB
@@ -49,8 +46,10 @@ public class EmployeBean implements Serializable{
 	private String login ;
 	private  Boolean loggeIn;
 	private String  role ;
+	private UploadedFile file;
+	private String encodedString="";
+	private String description;
 
-	
 	//contrat
 	private int reference;
 	private Date datedebut;
@@ -82,6 +81,7 @@ public class EmployeBean implements Serializable{
 	{
 		getEmployes();
 		//employeServiceImp.test("sss");
+		
 	}
 
 	
@@ -90,16 +90,16 @@ public class EmployeBean implements Serializable{
 		String navigateto = "null"; 
 		employe=employeServiceImp.getEmployebyEmailAndPassword(login,employeServiceImp.MD5(password));
 		if (employe != null  && employe.getIsActif()== true )
-		{ navigateto="/Welcom?faces-redirect=true"; loggeIn = true ;}
+		{ navigateto= "/views/employeeviews/Profile?faces-redirect=true"; loggeIn = true ;}
 		else {FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad credentials or  you are not actif"));}
 		return navigateto;					
 	}
 	
 	public String doLogout() 
-	{
+	{String navigateto = "null"; 
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "/Login?face-redirect=true";
-		
+		{ navigateto = "/views/employeeviews/Login?face-redirect=true";}
+		return navigateto;
 	}
 	
 	public String Ajutemp()
@@ -108,9 +108,6 @@ public class EmployeBean implements Serializable{
 		return "/AjouterEmployee?face-redirect=true";
 		
 	}
-	
-	
-
 	
 	public String getAdresse() {
 		return adresse;
@@ -226,12 +223,29 @@ public class EmployeBean implements Serializable{
 		employeServiceImp.addContrat(new Contrat(datedebut, datefin, salaire, typeContrat));
 	
 	}
+	public String upload() {
+		if (file != null) {
 
+
+		}
+		System.out.println(encodedString+"nik omk e5dem");
+	 return	encodedString;
+	
+		} 
+
+		
+
+	
 
 	public void AjouterContratemp() 
 	{
-	employeServiceImp.ajoutercontratemploye(new Developpeur(nom, prenom, adresse, email, sexe, isActif, password, datenaissance, etatcivil, role) ,new Contrat(datedebut, datefin, salaire, typeContrat));
-
+		byte[] fileContent = file.getContents();
+		String encodedString = Base64.getEncoder().encodeToString(fileContent);
+		System.out.println(encodedString);
+		
+	employeServiceImp.ajoutercontratemploye(new Developpeur(nom, prenom, adresse, email, sexe, isActif, password, datenaissance, etatcivil, role, encodedString) ,new Contrat(datedebut, datefin, salaire, typeContrat));
+	getEmployes();
+	System.out.println(encodedString);
 	}
 	
 	public int getReference() {
@@ -351,9 +365,45 @@ public class EmployeBean implements Serializable{
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+
+
+	public UploadedFile getFile() {
+		return file;
+	}
+
+
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
+
+
+
+	public String getEncodedString() {
+		return encodedString;
+	}
+
+
+
+	public void setEncodedString(String encodedString) {
+		this.encodedString = encodedString;
+	}
 	
 	
-	
+ 
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
 
 }

@@ -34,10 +34,8 @@ public class Contrat implements Serializable {
     @Enumerated(EnumType.STRING)
 	private TypeContrat typeContrat;
 	
-
-	
-		@OneToOne(mappedBy ="contrat")
-		private  Employee employe ;
+    @OneToOne(mappedBy ="contrat")
+	private  Employee employe ;
 	
 	
 	public Employee getEmploye() {

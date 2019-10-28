@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+
+
+
+<h:head>
+	<!--=============== basic  ===============-->
+	<meta charset="UTF-8" />
+	<title>Citybook -Directory Listing Template</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="robots" content="index, follow" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<!--=============== css  ===============-->
+	<link type="text/css" rel="stylesheet" href="../../css/reset.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/plugins.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/color.css" />
+	<!--=============== favicons ===============-->
+	<link rel="shortcut icon" href="../images/favicon.ico" />
+</h:head>
+
+<body>
+
+	<!-- loader -->
+	<div class="loader-wrap">
+		<div class="pin"></div>
+		<div class="pulse"></div>
+	</div>
+	<!--  loader end -->
+	<!-- Main   -->
+	<div id="main">
+
+
+		<ui:include src="/views/employeeviews/header.xhtml" />
+		<!-- wrapper -->
+
+		<div id="wrapper">
+			<!--content -->
+
+			<div class="content">
+				<!--section -->
+				<section id="sec1"> <!-- container -->
+
+				<div class="container">
+					<!-- profile-edit-wrap -->
+
+					<div class="profile-edit-wrap">
+
+						<div class="profile-edit-page-header">
+
+							<h2>Gestion de Employe</h2>
+
+							<div class="breadcrumbs">
+								<a href="#">Home</a><a href="#">Dasboard</a>
+							</div>
+						</div>
+
+						<div class="row">
+
+							<div class="col-md-3">
+
+								<div class="fixed-bar fl-wrap">
+
+									<div class="user-profile-menu-wrap fl-wrap">
+										<!-- user-profile-menu-->
+
+										<div class="user-profile-menu">
+
+											<h3>Gestion de Employe</h3>
+
+											<ul>
+										<li><a href="Profile.xhtml"><i
+														class="fa fa-user-o" /> Profile Employee</a></li>
+												<li><a href="addemployee.xhtml"><i
+														class="fa fa-user-o" /> Ajouter Employee</a></li>
+
+												<li><a href="ListEmployee.xhtml"><i
+														class="fa fa-envelope-o" /> List Empolyee </a></li>
+
+											</ul>
+										</div>
+										
+
+
+										<!-- user-profile-menu end-->
+									<h:form>
+											<h:commandButton class="log-out-btn" action="#{employeBean.doLogout()}"
+											value="Logout"/>
+											</h:form>		
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-9">
+
+
+		
+							
+			<div class="content">
+				<div class="join-wrap fl-wrap">
+				<div class="list-main-wrap fl-wrap card-listing">
+						 
+						
+
+								<div class="container">
+									<ui:repeat value="#{employeBean.listemploye}" var="employe"	border="1">
+									<!-- listing-item -->
+									<div class="listing-item" style="width: 25%;">
+										<article class="geodir-category-listing fl-wrap">
+										<div class="geodir-category-img">
+											<img src="../../images/all/8.jpg" alt="" />
+											<div class="overlay"></div>
+
+										</div>
+										<div class="geodir-category-content fl-wrap">
+											<a class="listing-geodir-category" href="listing.html">Profile</a>				
+											<p>Prenom : #{employe.prenom}</p>
+											<p>Nom : #{employe.nom}</p>
+											<p>Email : #{employe.email}</p>
+											<p>Type contrat : #{employe.contrat.typeContrat}</p>
+											<p>Date debut contrat :</p><p> #{employe.contrat.datedebut} </p>
+											<p>Date fin contrat :</p><p> #{employe.contrat.datefin}</p>
+										<p>Actif ? : #{employe.isActif == true ? 'oui' : 'Non'}</p>
+											<div class="geodir-category-options fl-wrap">											
+												<div class="geodir-category-location">
+													<a href="#"><i class="fa fa-map-marker"
+														aria-hidden="true"></i>#{employe.adresse}</a>
+												</div>
+											</div>
+											
+											<div class="geodir-category-options fl-wrap">											
+												<div class="geodir-category-location">
+												<h:form>
+											  <h:commandButton class="btn  circle-btn    color-red red-btn" action="#{employeBean.supprimer(employe.id)}" value="supprimer"></h:commandButton>
+</h:form>
+												</div>
+											</div>
+										</div>
+										</article>
+									</div>
+									<!-- listing-item end-->
+
+
+								
+							</ui:repeat>
+						 </div>
+					</div>
+                                                      
+														</div>
+						</div>
+							</div>
+						</div>
+					</div>
+					<!--profile-edit-wrap end -->
+				</div>
+				<!--container end --> </section>
+				<!-- section end -->
+
+				<div class="limit-box fl-wrap" />
+				<!--section -->
+				<section class="gradient-bg">
+
+				<div class="cirle-bg">
+
+					<div class="bg" data-bg="images/bg/circle.png" />
+				</div>
+
+				<div class="container">
+
+					<div class="join-wrap fl-wrap">
+
+						<div class="row">
+
+							<div class="col-md-8">
+
+								<h3>Do You Have Questions ?</h3>
+
+								<p>Lorem ipsum dolor sit amet, harum dolor nec in, usu
+									molestiae at no.</p>
+							</div>
+
+							<div class="col-md-4">
+								<a href="contacts.html" class="join-wrap-btn">Get In Touch <i
+									class="fa fa-envelope-o" /></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				</section>
+				<!-- section end -->
+			</div>
+		</div>
+		<!-- wrapper end -->
+		<ui:include src="/views/employeeviews/footer.xhtml" />
+
+
+
+	</div>
+	<!--=============== scripts  ===============-->
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/plugins.js"></script>
+	<script type="text/javascript" src="../../js/scripts.js"></script>
+</body>
+</html>

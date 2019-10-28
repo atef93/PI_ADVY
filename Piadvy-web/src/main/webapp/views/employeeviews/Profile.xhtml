@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+
+
+
+
+
+<h:head>
+	<!--=============== basic  ===============-->
+	<meta charset="UTF-8" />
+	<title>Citybook -Directory Listing Template</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="robots" content="index, follow" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<!--=============== css  ===============-->
+	<link type="text/css" rel="stylesheet" href="../../css/reset.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/plugins.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/color.css" />
+	<!--=============== favicons ===============-->
+	<link rel="shortcut icon" href="../images/favicon.ico" />
+</h:head>
+
+<body>
+
+	<!-- loader -->
+	<div class="loader-wrap">
+		<div class="pin"></div>
+		<div class="pulse"></div>
+	</div>
+	<!--  loader end -->
+	<!-- Main   -->
+	<div id="main">
+
+
+		<ui:include src="/views/employeeviews/header.xhtml" />
+		<!-- wrapper -->
+
+		<div id="wrapper">
+			<!--content -->
+
+			<div class="content">
+				<!--section -->
+				<section id="sec1"> <!-- container -->
+
+				<div class="container">
+					<!-- profile-edit-wrap -->
+
+					<div class="profile-edit-wrap">
+
+						<div class="profile-edit-page-header">
+
+							<h2>Gestion de Employee</h2>
+
+							<div class="breadcrumbs">
+								<a href="#">Home</a><a href="#">Dasboard</a>
+							</div>
+						</div>
+
+						<div class="row">
+
+							<div class="col-md-3">
+
+								<div class="fixed-bar fl-wrap">
+
+									<div class="user-profile-menu-wrap fl-wrap">
+										<!-- user-profile-menu-->
+											<div class="user-profile-menu">
+
+											<h3>Gestion de Employe</h3>
+
+											<ul>
+													<li><a href="Profile.xhtml"><i
+														class="fa fa-user-o" /> Profile Employee</a></li>
+														
+												<li><a href="addemployee.xhtml"><i
+														class="fa fa-user-o" /> Ajouter Employee</a></li>
+
+												<li><a href="ListEmployee.xhtml"><i
+														class="fa fa-envelope-o" /> List Empolyee </a></li>
+
+											</ul>
+										</div>
+										<!-- user-profile-menu end-->
+
+										<!-- user-profile-menu-->
+
+								
+
+
+										<!-- user-profile-menu end-->
+										<h:form>
+											<h:commandButton class="log-out-btn" action="#{employeBean.doLogout()}"
+											value="Logout"/>
+											</h:form>		
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-9">
+							<div class="content">     
+							 <div class="profile-edit-header fl-wrap">
+                                                <h4>Basic Informations</h4>
+                                                
+                                                 <div class="box-widget-item fl-wrap">
+                                            <div class="box-widget-item-header">
+                                                <h3>About Athor : </h3>
+                                            </div>
+                                            <div class="box-widget list-author-widget">
+                                                <div class="list-author-widget-header shapes-bg-small  color-bg fl-wrap">
+                                                    <span class="list-author-widget-link"><a href="#">  #{employeBean.employe.nom} #{employeBean.employe.prenom} </a></span>
+                                                    <img src="../images/avatar/4.jpg" alt=""></img>
+                                                </div>
+                                                <div class="box-widget-content">
+                                                    <div class="list-author-widget-text">
+                                                        <div class="list-author-widget-contacts">           
+                                                       <p><h:outputText value="Nom : #{employeBean.employe.nom}"></h:outputText></p>
+                                                        <p><h:outputText value="Prenom :  #{employeBean.employe.prenom}"></h:outputText></p>
+                                                        <p><h:outputText value="Sexe : #{employeBean.employe.sexe}"></h:outputText></p>
+                                                        <p><h:outputText value="Etat civil : #{employeBean.employe.etatcivil}"></h:outputText></p>
+                                                         <p><h:outputText value="Actif : #{employeBean.employe.isActif== true ? 'oui' : 'Non'}"></h:outputText></p>
+                                                          <p><h:outputText value="Date debut contrat : #{employeBean.employe.contrat.datedebut}"></h:outputText></p>
+                                                          <p><h:outputText value="Date fin  contrat : #{employeBean.employe.contrat.datefin}"></h:outputText></p>
+                                                          <p><h:outputText value="Date fin  contrat : #{employeBean.employe.class}"></h:outputText></p>
+                                                         <p><h:outputText value="Type contrat : #{employeBean.employe.contrat.typeContrat}"></h:outputText></p>
+ 
+                                           </div>
+                 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                
+                                                
+                                            </div>                            
+								 
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--profile-edit-wrap end -->
+				</div>
+				
+				 </section>
+			
+			</div>
+		</div>
+		<!-- wrapper end -->
+		<ui:include src="/views/employeeviews/footer.xhtml" />
+
+
+
+	</div>
+	<!--=============== scripts  ===============-->
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/plugins.js"></script>
+	<script type="text/javascript" src="../../js/scripts.js"></script>
+</body>
+</html>

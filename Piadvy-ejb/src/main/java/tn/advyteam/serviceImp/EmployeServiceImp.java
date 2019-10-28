@@ -17,6 +17,7 @@ import javax.xml.bind.DatatypeConverter;
 import tn.advyteam.entities.Contrat;
 import tn.advyteam.entities.Developpeur;
 import tn.advyteam.entities.Employee;
+import tn.advyteam.entities.Publication;
 import tn.advyteam.service.GestionEmployeLocal;
 import tn.advyteam.service.GestionEmployeRemote;
 
@@ -26,10 +27,12 @@ public class EmployeServiceImp implements GestionEmployeLocal, GestionEmployeRem
 	
 	@PersistenceContext
 	EntityManager em;
+	
 	private String password;
 	Employee employee ;
 	Developpeur developpeur;
 	List<Employee> listemp ;
+	Publication publication ;
 
 
 	
@@ -113,12 +116,7 @@ public class EmployeServiceImp implements GestionEmployeLocal, GestionEmployeRem
 		    return password;
 	}
 		
-	/*
-	 * public String test(String p) throws GeneralSecurityException { p=
-	 * "sssssssss"; return EmployeServiceImp.MD5(p);
-	 * 
-	 * }
-	 */
+	
 
 	public void ajoutercontratemploye(Developpeur developpeur, Contrat contrat)  
 	{
@@ -128,11 +126,13 @@ public class EmployeServiceImp implements GestionEmployeLocal, GestionEmployeRem
 	}
 
 	
-	public Developpeur getDeveloppeur() {
+	public Developpeur getDeveloppeur()
+	{
 		return developpeur;
 	}
 
-	public void setDeveloppeur(Developpeur developpeur) {
+	public void setDeveloppeur(Developpeur developpeur) 
+	{
 		this.developpeur = developpeur;
 	}
 
@@ -146,7 +146,6 @@ public class EmployeServiceImp implements GestionEmployeLocal, GestionEmployeRem
 		Employee employe = null ; 
 			
 		try {employe = query.getSingleResult();
-			
 					} 
 		
 		catch (Exception e){System.out.println("Errer:" + e ) ;}
@@ -154,6 +153,8 @@ public class EmployeServiceImp implements GestionEmployeLocal, GestionEmployeRem
 		return employe;
 	}
 
+ 
+	
 	
 	
 	

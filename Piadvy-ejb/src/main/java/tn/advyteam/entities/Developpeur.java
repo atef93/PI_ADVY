@@ -41,10 +41,12 @@ public class Developpeur extends Employee implements Serializable {
 	}
 
 	public Developpeur(String nom, String prenom, String adresse, String email, String sexe, Boolean isActif,
-			String password, Date datenaissance, Etatcivil etatcivil,String role) {
-		super(nom, prenom, adresse, email, sexe, isActif, password, datenaissance, etatcivil,role);
+			String password, Date datenaissance, Etatcivil etatcivil, String role, String image) {
+		super(nom, prenom, adresse, email, sexe, isActif, password, datenaissance, etatcivil, role, image);
 		// TODO Auto-generated constructor stub
 	}
+
+	
 	
 	
 	

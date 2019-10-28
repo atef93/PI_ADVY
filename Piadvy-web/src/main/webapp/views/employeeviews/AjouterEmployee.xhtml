@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+	       xmlns:f="http://java.sun.com/jsf/core" 
+	       xmlns:h="http://java.sun.com/jsf/html"
+	       xmlns:ui="http://java.sun.com/jsf/facelets"
+	       xmlns:p="http://primefaces.org/ui"
+	       >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+
+<h:outputText value="Bonjour #{employeBean.employe.contrat.typeContrat}"></h:outputText>
+
+<!-- 
+<h:form> 
+<h:panelGrid columns="2">
+<h:outputText value="nom"></h:outputText>
+<h:inputText value="#{employeBean.nom}"></h:inputText>
+
+<h:outputText value="prenom"></h:outputText>
+<h:inputText value="#{employeBean.prenom}"></h:inputText>
+
+<h:outputText value="adresse"></h:outputText>
+<h:inputText value="#{employeBean.adresse}"></h:inputText>
+
+<h:outputText value="email"></h:outputText>
+<h:inputText value="#{employeBean.email}"></h:inputText>
+
+<h:outputText value="Sexe"></h:outputText>
+		<h:selectOneMenu value="#{employeBean.sexe}">
+			<f:selectItem itemLabel="Slectionner le  sexe " itemValue=""/>
+			<f:selectItem itemLabel="H" itemValue="H"/>
+			<f:selectItem itemLabel="F" itemValue="F"/>
+		</h:selectOneMenu>
+	
+<h:outputText value="Actif / Inactif"></h:outputText>
+	<h:selectBooleanCheckbox value="#{employeBean.isActif}"></h:selectBooleanCheckbox>
+	
+
+
+	<h:outputText value="Date naissance"></h:outputText>
+<p:datePicker id="date1" value="#{employeBean.datenaissance}" showIcon="true" />
+
+	<h:outputText value="Etat"></h:outputText>
+		<h:selectOneMenu value="#{employeBean.etatcivil}" >
+		<f:selectItem itemLabel="Slectionner votre etat " itemValue=""/>
+		<f:selectItem itemLabel="Mariee" itemValue="Mariee" />
+        <f:selectItem itemLabel="celibataire" itemValue="celibataire" />
+        <f:selectItem itemLabel="Divorcee" itemValue="Divorcee" />
+		</h:selectOneMenu>	
+		
+		<h:outputText value="password"></h:outputText>
+        <p:password id="nonFeedback" value="#{employeBean.password}" />
+		
+		
+		<h:outputText value="Salaire de l'employe"></h:outputText>
+<h:inputText value="#{employeBean.salaire}"></h:inputText>
+
+
+<h:outputText value="Date debut  du contat"></h:outputText>
+
+
+
+<p:datePicker id="date2" value="#{employeBean.datedebut}" showIcon="true" />
+<h:outputText value="Date Fin  du contat"></h:outputText>
+<p:datePicker id="date3" value="#{employeBean.datefin}" showIcon="true" />
+
+	<h:outputText value="Type Contrat"></h:outputText>
+		<h:selectOneMenu value="#{employeBean.typeContrat}" >
+		<f:selectItem itemLabel="Slectionner Type  contrat " itemValue=""/>
+		<f:selectItem itemLabel="CDI" itemValue="CDI" />
+        <f:selectItem itemLabel="CDD" itemValue="CDD" />
+        <f:selectItem itemLabel="CTT" itemValue="CTT" />
+        <f:selectItem itemLabel="CDP" itemValue="CDP" />
+		</h:selectOneMenu>	
+		
+		
+		<h:outputText value="Role"></h:outputText>
+		<h:selectOneMenu value="#{employeBean.role}" >
+		<f:selectItem itemLabel="Slectionner le  role " itemValue=""/>
+		<f:selectItem itemLabel="CHEF" itemValue="CHEF" /> 
+		</h:selectOneMenu>	
+		
+		
+	<h:commandButton action="#{employeBean.AjouterContratemp()}" value="Ajouter contrat" /> 
+
+	<h:commandButton action="#{employeBean.doLogout()}" value="Logout"  />
+
+
+
+		
+</h:panelGrid>
+</h:form> -->
+
+</body>
+</html>

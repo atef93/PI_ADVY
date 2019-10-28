@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+       <!-- header  -->
+            <header class="main-header dark-header fs-header sticky">
+                <div class="header-inner">
+                    <div class="logo-holder">
+                        <a href="index.html"><img src="../images/logo.png" alt=""/></a>
+                    </div>
+                    
+                    <div class="header-search vis-header-search col-md-4">
+                        <div class="header-search-input-item">
+                            <input type="text" placeholder="Keywords" value=""/>
+                        </div>
+                        <div class="header-search-select-item">
+                            <select data-placeholder="All Categories" class="chosen-select" >
+                                <option>All Categories</option>
+                                <option>Shops</option>
+                                <option>Hotels</option>
+                                <option>Restaurants</option>
+                                <option>Fitness</option>
+                                <option>Events</option>
+                            </select>
+                        </div>
+                        <button class="header-search-button" onclick="window.location.href='listing.html'">Search</button>
+                    </div>
+                    <div class="show-search-button"><i class="fa fa-search"></i> <span>Search</span></div>
+                    <div class="header-user-menu">
+                        <div class="header-user-name">
+                            <span><img src="../images/avatar/4.jpg" alt=""/></span>
+                            Hello , Alisa
+                        </div>
+                        <ul>
+                            <li><a href="dashboard-myprofile.html"> Edit profile</a></li>
+                            <li><a href="dashboard-add-listing.html"> Add Listing</a></li>
+                            <li><a href="dashboard-bookings.html">  Bookings  </a></li>
+                            <li><a href="dashboard-review.html"> Reviews </a></li>
+                            <li><a href="#">Log Out</a></li>
+                        </ul>
+                    </div>
+                    <!-- nav-button-wrap--> 
+                    <div class="nav-button-wrap color-bg">
+                        <div class="nav-button">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <!-- nav-button-wrap end-->
+                    <!--  navigation --> 
+                    <div class="nav-holder main-menu">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="views/employeeviews/addemployee.xhtml">Gestion Employe</a>               
+                                </li>
+                                <li>
+                                    <a href="blog.html">Evaluation</a>
+                                </li>
+                                <li>
+                                	<a href="../views/timesheetviews/timesheet.xhtml">Timesheet</a>   
+                                </li>
+                           		<li>
+                                    <a href="#">Gestion Competence</a>                
+                                </li>
+                           		<li>
+                                    <a href="#">Gestion Formation</a>                
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- navigation  end -->
+                </div>
+            </header>
+            <!--  header end -->	
+
+</ui:composition>
