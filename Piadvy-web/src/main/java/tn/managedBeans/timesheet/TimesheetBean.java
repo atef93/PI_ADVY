@@ -10,7 +10,6 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.component.FacesComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -82,12 +81,11 @@ public class TimesheetBean {
 			names.add(dev.getNom());
 			idDevs.add(dev.getId());
 		}
-	
 	}
 	
 	public void addTimesheet(int id) {
 		
-		idP = 6;
+		idP = 15;
 		System.out.println(titre);
 		System.out.println(heureEstime+" heure");
 		System.out.println(description);

@@ -10,8 +10,6 @@ import tn.advyteam.entities.Timesheet;
 @Remote
 public interface GestionTimesheetRemote {
 
-	
-	
 	/**
 	 * 
 	 * Crud of projet
@@ -31,12 +29,14 @@ public interface GestionTimesheetRemote {
 	public List<Timesheet> getAllTimesheetsByDeveloperJPQL(int id);
 	public List<Timesheet> getAllTimesheetsByProject(int id);
 	public Timesheet getTimesheet(int idP, int idD);
-	public void updateHeureMinuteTimesheet(int idP, int idD);
+	public void updateHeureMinuteTimesheet(Timesheet timesheet);
 	public void startTracking();
 	public void stopTracking();
 	public Timesheet getTimeshetByid(int id);
 	public List<Developpeur> getAllDeveloppeur();
-
-
+	public void updateTimesheetState(Timesheet timesheet);
+	public Timesheet getTimesheetById(int id);
+	public List<Timesheet> getTimesheetDP(int idP, int idD);
+	public List<Projet> getAllProjetByEmploye(int id);
 
 }

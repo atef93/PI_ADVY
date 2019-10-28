@@ -165,15 +165,16 @@
 
 											<p:panel header="#{projet.titre}" style="text-align:center">
 												<h:panelGrid columns="1" style="width:100%">
-													<img src="../../../images/bg/6.jpg" width="55px" height="55px" />
+													<img src="../../../images/bg/6.jpg" width="55px"
+														height="55px" />
 													<h:outputText value="#{projet.description}" />
 												</h:panelGrid>
 
 												<p:commandButton value="voir"
-													action="#{projectBean.voirProjet(projet.id)}"													
-													icon="pi pi-check" >
-													 <f:param name="idProjet" value="#{projet.id}" />
-												</p:commandButton>	
+													action="#{projectBean.voirProjet(projet.id)}"
+													icon="pi pi-check">
+													<f:param name="idProjet" value="#{projet.id}" />
+												</p:commandButton>
 
 												<p:commandButton value="supprimer"
 													action="#{projectBean.supprimerProjet(projet.id)}"
@@ -190,47 +191,49 @@
 							</div>
 						</div>
 					</div>
-					<!--profile-edit-wrap end -->
 				</div>
-				<!--container end --> </section>
-				<!-- section end -->
+				<!--profile-edit-wrap end -->
+			
+			<!--container end -->
+			</section>
+			<!-- section end -->
 
-				<div class="limit-box fl-wrap" />
-				<!--section -->
-				<section class="gradient-bg">
+			<div class="limit-box fl-wrap" />
+			<!--section -->
+			<section class="gradient-bg">
 
-				<div class="cirle-bg">
+			<div class="cirle-bg">
 
-					<div class="bg" data-bg="images/bg/circle.png" />
-				</div>
+				<div class="bg" data-bg="images/bg/circle.png" />
+			</div>
 
-				<div class="container">
+			<div class="container">
 
-					<div class="join-wrap fl-wrap">
+				<div class="join-wrap fl-wrap">
 
-						<div class="row">
+					<div class="row">
 
-							<div class="col-md-8">
+						<div class="col-md-8">
 
-								<h3>Do You Have Questions ?</h3>
+							<h3>Do You Have Questions ?</h3>
 
-								<p>Lorem ipsum dolor sit amet, harum dolor nec in, usu
-									molestiae at no.</p>
-							</div>
+							<p>Lorem ipsum dolor sit amet, harum dolor nec in, usu
+								molestiae at no.</p>
+						</div>
 
-							<div class="col-md-4">
-								<a href="contacts.html" class="join-wrap-btn">Get In Touch <i
-									class="fa fa-envelope-o" /></a>
-							</div>
+						<div class="col-md-4">
+							<a href="contacts.html" class="join-wrap-btn">Get In Touch <i
+								class="fa fa-envelope-o" /></a>
 						</div>
 					</div>
 				</div>
-				</section>
-				<!-- section end -->
 			</div>
+			</section>
+			<!-- section end -->
 		</div>
-		<!-- wrapper end -->
-		<ui:include src="/views/timesheetviews/footer.xhtml" />
+	</div>
+	<!-- wrapper end -->
+	<ui:include src="/views/timesheetviews/footer.xhtml" />
 
 
 

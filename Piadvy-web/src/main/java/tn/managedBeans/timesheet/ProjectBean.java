@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -18,6 +19,7 @@ import org.primefaces.event.SelectEvent;
 
 import tn.advyteam.entities.Manager;
 import tn.advyteam.entities.Projet;
+import tn.advyteam.entities.Timesheet;
 import tn.advyteam.service.GestionTimesheetRemote;
 
 @ManagedBean(name = "projectBean" , eager = true)
@@ -35,6 +37,12 @@ public class ProjectBean implements Serializable{
 	private int idManager=1;
 	private int idProjet;
 	private Projet selectedProjet;
+	
+	private String color;
+	
+	
+	
+	private List<Timesheet> timesheets = new ArrayList<>();
 	
 	@PostConstruct
 	public void init() {
@@ -113,6 +121,30 @@ public class ProjectBean implements Serializable{
 	public void setSelectedProjet(Projet selectedProjet) {
 		this.selectedProjet = selectedProjet;
 	}
+	
+	
+
+
+	public List<Timesheet> getTimesheets() {
+		return timesheets;
+	}
+
+
+	public void setTimesheets(List<Timesheet> timesheets) {
+		this.timesheets = timesheets;
+	}
+	
+	
+
+
+	public String getColor() {
+		return this.color;
+	}
+
+
+	public void setColor(String color) {
+		this.color = color;
+	}
 
 
 	public void addProject() throws IOException {
@@ -131,6 +163,12 @@ public class ProjectBean implements Serializable{
 	
 	public String voirProjet(int projet) throws IOException {
 		selectedProjet=timesheetServiceImp.getProjectById(projet);
+		timesheets=timesheetServiceImp.getAllTimesheetsByProject(selectedProjet.getId());
+		
+		for(Timesheet time: timesheets) {
+			System.out.println(time);
+		}
+		
 		System.out.println(selectedProjet);
 		return "voirProjet.xhtml";
 		//FacesContext.getCurrentInstance().getExternalContext().redirect("voirProjet.xhtml");
@@ -157,4 +195,82 @@ public class ProjectBean implements Serializable{
 
 	}
 	
+	
+	
+	
+	
+	
+	
+	//========================================== Create Filter =========================//
+	
+	private List<Timesheet> filteredTimesheet;
+	
+	   public boolean filterByPrice(Object value, Object filter, Locale locale) {
+	        String filterText = (filter == null) ? null : filter.toString().trim();
+	        if(filterText == null||filterText.equals("")) {
+	            return true;
+	        }
+	         
+	        if(value == null) {
+	            return false;
+	        }
+	         
+	        return ((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0;
+	}
+	   public boolean filterByTitre(String titre) {
+	        String filterText = (titre == null) ? null : titre.toString().trim();
+	        if(filterText == null||filterText.equals("")) {
+	            return true;
+	        }
+	         
+	        
+	        return false; 
+	}
+	
+	    List<String> titres = new ArrayList<>();
+
+	   
+	   public List<String> getTitres() {
+	        for(Timesheet t: timesheets) {
+	        	titres.add(t.getTitre());
+	        }
+	        return titres;
+	    }
+
+
+	public List<Timesheet> getFilteredTimesheet() {
+		return filteredTimesheet;
+	}
+
+
+	public void setFilteredTimesheet(List<Timesheet> filteredTimesheet) {
+		this.filteredTimesheet = filteredTimesheet;
+	}
+
+
+	public void setTitres(List<String> titres) {
+		this.titres = titres;
+	}
+	     
+//	    public List<String> getColors() {
+//	        return service.getColors();
+//	    }
+//	     
+//	    public List<Car> getCars() {
+//	        return cars;
+//	    }
+//	 
+//	    public List<Car> getFilteredCars() {
+//	        return filteredCars;
+//	    }
+//	 
+//	    public void setFilteredCars(List<Car> filteredCars) {
+//	        this.filteredCars = filteredCars;
+//	    }
+//	 
+//	    public void setService(CarService service) {
+//	        this.service = service;
+//	    }
+	   
+	   
 }

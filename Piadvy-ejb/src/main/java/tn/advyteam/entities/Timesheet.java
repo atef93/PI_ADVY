@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,9 +19,12 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Timesheet implements Serializable {
+	
 
-	
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -34,12 +36,12 @@ public class Timesheet implements Serializable {
 	private String description;
 	@Enumerated(EnumType.STRING)
 	private TimesheetEtat timesheetEtat;
-	@OneToMany(mappedBy = "timesheet")
-	private List<CommentTimesheet> commentsTimesheet;
+	
 	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
 	@Temporal(TemporalType.DATE)
 	private Date deadline;
+	
 	@OneToMany(mappedBy = "timesheet")
 	private List<Tache> taches;
 	@Column
@@ -95,17 +97,12 @@ public class Timesheet implements Serializable {
 		return timesheetEtat;
 	}
 
-	public List<CommentTimesheet> getCommentsTimesheet() {
-		return commentsTimesheet;
-	}
+
 
 	public void setTimesheetEtat(TimesheetEtat timesheetEtat) {
 		this.timesheetEtat = timesheetEtat;
 	}
 
-	public void setCommentsTimesheet(List<CommentTimesheet> commentsTimesheet) {
-		this.commentsTimesheet = commentsTimesheet;
-	}
 
 
 
@@ -245,7 +242,7 @@ public class Timesheet implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Timesheet [titre=" + titre + ", description=" + description + ", timesheetEtat=" + timesheetEtat
+		return "id= "+ id +", Timesheet titre=" + titre + ", description=" + description + ", timesheetEtat=" + timesheetEtat
 				+ ", dateDebut=" + dateDebut + ", deadline=" + deadline + ", heureEstime=" + heureEstime
 				+ ", heurePasse=" + heurePasse + ", developpeur=" + developpeur + ", projet=" + projet + "]";
 	}

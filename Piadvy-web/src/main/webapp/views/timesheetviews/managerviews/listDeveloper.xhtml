@@ -229,183 +229,49 @@ body .ui-staticmessage.ui-message {
 									<!-- dashboard-list end-->
 
 
-									<div class="col-md-4">
 
-										<div class="fl-wrap">
-											<!--box-widget-item -->
-
-											<div class="box-widget-item fl-wrap">
-
-												<div class="box-widget-item-header">
-
-													<h3>Detail de projet :</h3>
-													<br /> <br />
-
-
-
-
-													<h:panelGrid columns="2" columnClasses="column"
-														cellpadding="10px" cellspacing="30px">
-
-														<div class="ui-g">
-															<div class="ui-g-12 ui-md-3">
-																<p:staticMessage severity="info" summary="Titre"
-																	detail="#{projectBean.selectedProjet.titre}" />
-															</div>
-														</div>
-														<div class="ui-g">
-															<div class="ui-g-12 ui-md-3">
-																<p:staticMessage severity="info" summary="Description"
-																	detail="#{projectBean.selectedProjet.titre}" />
-															</div>
-														</div>
-
-														<div class="ui-g">
-															<div class="ui-g-12 ui-md-3">
-																<p:staticMessage severity="info" summary="id"
-																	detail="#{projectBean.selectedProjet.id}" />
-															</div>
-														</div>
-													</h:panelGrid>
-
-
-												</div>
-
-
-											</div>
-											<!--box-widget-item end -->
-
-										</div>
-									</div>
-									<div class="col-md-8">
-										<div class="fl-wrap">
-											<!--box-widget-item -->
-
-											<div class="box-widget-item fl-wrap">
-
-												<div class="box-widget-item-header">
-													<h3>Ajouter Timesheet au projet :</h3>
-													<br />
-
-													<ui:include src="/views/timesheetviews/addTimesheet.xhtml" />
-
-												</div>
-
-											</div>
-										</div>
-									</div>
 
 
 									<!-- dashboard-list end-->
-									<div class="col-md-12">
+									<div class="col-md-9">
 
 										<div class="dashboard-list-box fl-wrap">
 
-											<div class="dashboard-header fl-wrap">
 
-												<h3>Les timesheets du projet</h3>
-											</div>
 
 
 											<div>
+
+
 												<h:form>
-													<p:dataTable var="timesheet"
-														value="#{projectBean.timesheets}" widgetVar="carsTable"
-														emptyMessage="No cars found with given criteria">
-
+													<p:dataTable var="developer"
+														value="#{developerStat.developpeurs}">
 														<f:facet name="header">
-															<p:outputPanel>
-																<h:outputText value="Search all fields:" />
-																<p:inputText id="globalFilter"
-																	onkeyup="PF('carsTable').filter()" style="width:100%"
-																	placeholder="Enter keyword" />
-															</p:outputPanel>
+													        List of devs
+													    </f:facet>
+
+														<p:column headerText="Id">
+															<h:outputText value="#{developer.id}" />
+														</p:column>
+
+														<p:column headerText="nom">
+															<h:outputText value="#{developer.nom}" />
+														</p:column>
+
+														<p:column headerText="prenom">
+															<h:outputText value="#{developer.prenom}" />
+														</p:column>
+
+														<p:column headerText="action">
+															<p:commandButton value="consulter"
+																action="#{developerStat.consulteDevPr(developer.id)}">
+															</p:commandButton>
+														</p:column>
+
+
+														<f:facet name="footer">
+
 														</f:facet>
-
-														<p:column filterBy="#{timesheet.id}" headerText="Id"
-															filterMatchMode="contains" visible="false">
-															<h:outputText value="#{timesheet.id}" />
-														</p:column>
-
-
-
-														<p:column filterBy="#{timesheet.titre}" headerText="Titre"
-															filterMatchMode="exact"
-															filterFunction="#{projectBean.filterByTitre()}">
-															<f:facet name="filter">
-
-															</f:facet>
-															<h:outputText value="#{timesheet.titre}" />
-														</p:column>
-
-														<p:column filterBy="#{car.color}" headerText="Etat"
-															filterMatchMode="in">
-															<f:facet name="filter">
-																<p:selectCheckboxMenu label="Colors"
-																	onchange="PF('carsTable').filter()" scrollHeight="150"
-																	styleClass="custom-filter">
-																	<f:selectItems value="#{dtFilterView.colors}" />
-																</p:selectCheckboxMenu>
-															</f:facet>
-															<h:outputText value="#{timesheet.timesheetEtat}" />
-														</p:column>
-														<p:column filterBy="#{timesheet.dateDebut}"
-															headerText="Date debut" filterMatchMode="lte">
-															<f:facet name="filter">
-																<p:spinner onchange="PF('carsTable').filter()"
-																	styleClass="year-spinner custom-filter">
-																	<f:converter converterId="javax.faces.Integer" />
-																</p:spinner>
-															</f:facet>
-															<h:outputText value="#{timesheet.dateDebut}" />
-														</p:column>
-														<p:column filterBy="#{timesheet.deadline}"
-															headerText="Date fin" filterMatchMode="lte">
-															<f:facet name="filter">
-																<p:spinner onchange="PF('carsTable').filter()"
-																	styleClass="year-spinner custom-filter">
-																	<f:converter converterId="javax.faces.Integer" />
-																</p:spinner>
-															</f:facet>
-															<h:outputText value="#{timesheet.dateDebut}" />
-														</p:column>
-
-
-														<p:column filterBy="#{timesheet.heureEstime}"
-															headerText="HE"
-															filterFunction="#{dtFilterView.filterByPrice}">
-															<h:outputText value="#{timesheet.heureEstime}">
-																<f:convertNumber currencySymbol="h" type="currency" />
-															</h:outputText>
-														</p:column>
-														<p:column filterBy="#{timesheet.heurePasse}"
-															headerText="HP"
-															filterFunction="#{dtFilterView.filterByPrice}">
-															<h:outputText value="#{timesheet.heurePasse}">
-																<f:convertNumber currencySymbol="h" type="currency" />
-															</h:outputText>
-														</p:column>
-														<p:column filterBy="#{timesheet.minutePasse}"
-															headerText="MP"
-															filterFunction="#{dtFilterView.filterByPrice}">
-
-
-															<p:commandButton value="supprimer"
-																action="#{projectBean.voirProjet(projet.id)}">
-																<f:param name="idProjet" value="#{projet.id}" />
-															</p:commandButton>
-														</p:column>
-
-														<p:column filterBy="#{timesheet.heureEstime}"
-															headerText="Color">
-
-															<p:commandButton value="modifier"
-																action="#{projectBean.voirProjet(projet.id)}">
-																<f:param name="idProjet" value="#{projet.id}" />
-															</p:commandButton>
-
-
-														</p:column>
 													</p:dataTable>
 												</h:form>
 											</div>
@@ -440,7 +306,7 @@ body .ui-staticmessage.ui-message {
 
 							<div class="col-md-8">
 
-								<h3>Do You Have Questions ?</h3>
+								<h3>Doo You Have Questions ?</h3>
 
 								<p>Lorem ipsum dolor sit amet, harum dolor nec in, usu
 									molestiae at no.</p>

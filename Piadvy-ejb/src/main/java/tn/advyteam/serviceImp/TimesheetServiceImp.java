@@ -129,30 +129,30 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 	}
 
 	@Override
-	public void updateHeureMinuteTimesheet(int idP, int idD) {
+	public void updateHeureMinuteTimesheet(Timesheet timesheet2) {
 
+		
+		
+		
 		stopTracking();
 		long hours = Duration.between(debut, fin).toHours();
 		long minutes = Duration.between(debut, fin).toMinutes() - (hours * 60);
 		
-		Timesheet timesheet=getTimesheet(idP, idD);
-		
-		
-		if(timesheet.getMinutePasse()+minutes>=59) {
+		if(timesheet2.getMinutePasse()+minutes>=59) {
 			hours+=1;
-			long ecart = Math.abs((timesheet.getMinutePasse()+minutes)-60);
-			timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
-			timesheet.setMinutePasse(ecart);	
+			long ecart = Math.abs((timesheet2.getMinutePasse()+minutes)-60);
+			timesheet2.setHeurePasse(timesheet2.getHeurePasse()+hours);
+			timesheet2.setMinutePasse(ecart);	
 		}
 		else {
-			timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
-			timesheet.setMinutePasse(timesheet.getMinutePasse()+minutes);	
+			timesheet2.setHeurePasse(timesheet2.getHeurePasse()+hours);
+			timesheet2.setMinutePasse(timesheet2.getMinutePasse()+minutes);	
 		}
 		
 		debut = null;
 		fin = null;
 		
-		em.merge(timesheet);
+		em.merge(timesheet2);
 	}
 
 	@Override
@@ -186,6 +186,35 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 	@Override
 	public List<Developpeur> getAllDeveloppeur() {
 		TypedQuery<Developpeur> query = em.createQuery("select d from Developpeur d", Developpeur.class);
+		return query.getResultList();
+	}
+
+	@Override
+	public void updateTimesheetState(Timesheet timesheet) {
+		em.merge(timesheet);
+		
+	}
+
+	@Override
+	public Timesheet getTimesheetById(int id) {
+		
+		return em.find(Timesheet.class, id);
+	}
+
+	@Override
+	public List<Timesheet> getTimesheetDP(int idP, int idD) {
+		TypedQuery<Timesheet> query = em.createQuery("select t from Timesheet t where t.timesheetPk.idProjet=:idP and t.timesheetPk.idDeveloppeur=:idD", Timesheet.class);	
+		query.setParameter("idP", idP);
+		query.setParameter("idD", idD);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Projet> getAllProjetByEmploye(int id) {
+		TypedQuery<Projet> query = em.
+				createQuery("select DISTINCT p from Projet p join p.timesheets t join t.developpeur d where d.id=:id", Projet.class);
+		query.setParameter("id", id);
+		
 		return query.getResultList();
 	}
 

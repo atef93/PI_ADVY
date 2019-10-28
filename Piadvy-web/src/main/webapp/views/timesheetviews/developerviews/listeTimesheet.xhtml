@@ -26,40 +26,12 @@
 	<!--=============== favicons ===============-->
 	<link rel="shortcut icon" href="../../images/favicon.ico" />
 
-
-
 	<style type="text/css">
-.box, .sample-layout>div {
-	background-color: #cce4f7;
-	text-align: center;
-	padding-top: 1em;
-	padding-bottom: 1em;
-	border-radius: 4px;
-}
-
-.box-stretched {
-	height: 100%;
-}
-
-.sample-layout {
-	margin: 0;
-}
-
-.sample-layout>div {
-	border: 1px solid #ffffff;
-}
-
-.vertical-container {
-	margin: 0;
-	height: 200px;
-	background: #efefef;
-	border-radius: 4px;
-}
-
-.nested-grid .p-col-4 {
-	padding-bottom: 1em;
+.value {
+	font-weight: bold;
 }
 </style>
+
 
 </h:head>
 
@@ -158,33 +130,25 @@
 
 							<div class="col-md-9">
 
-								<p:panelGrid columns="1" layout="grid">
+								<p:panelGrid columns="3" layout="grid" style="color:blue;">
 									<p:panel id="ouvert" header="Ouvert" style="margin-bottom:50px">
 
-										<h:form id="form">
-											<p:dataGrid var="projet" value="#{projectBean.projets}"
-												id="cars">
-												<p:panel header="#{projet.titre}" style="text-align:center">
-													<p:commandButton value="voir"
-														action="#{projectBean.voirProjet(projet.id)}"
-														icon="pi pi-check">
-														<f:param name="idProjet" value="#{projet.id}" />
-													</p:commandButton>
-													<p:commandButton value="voir"
-														action="#{projectBean.voirProjet(projet.id)}"
-														icon="pi pi-check">
-														<f:param name="idProjet" value="#{projet.id}" />
-													</p:commandButton>
-<!-- 													<p:commandButton value="voir" id="iconOnly" -->
-<!-- 														style="margin-right:20px;" icon="pi pi-save" -->
-<!-- 														title="Icon Only" /> -->
-													<p:selectOneMenu id="country"
-														value="#{dropdownView.names.get(1)}" style="width:150px">
+										<h:form id="form1">
+
+											<p:dataGrid columns="1" var="timesheet"
+												value="#{timesheetDeveloperBean.todo}" id="cars">
+												<p:panel header="#{timesheet.titre}"
+													style="text-align:center">
 													
-														<f:selectItem itemLabel="Select Country" itemValue="#{dropdownView}"
-															noSelectionOption="true" />
-														<f:selectItems value="#{dropdownView.names}" />
-													</p:selectOneMenu>
+													<p:commandButton value="doing"
+														action="#{timesheetDeveloperBean.doing(timesheet)}"
+														id="iconOnly1" icon="pi pi-save" title="Icon Only">
+													</p:commandButton>
+
+													<p:commandButton value="done"
+														action="#{timesheetDeveloperBean.done(timesheet)}"
+														id="iconOnly2" icon="pi pi-save" title="Icon Only">
+													</p:commandButton>
 												</p:panel>
 											</p:dataGrid>
 										</h:form>
@@ -194,11 +158,61 @@
 									<p:panel id="encours" header="En Cours"
 										style="margin-bottom:50px">
 
+										<h:form id="form2">
+											<p:dataGrid columns="1" var="timesheet"
+												value="#{timesheetDeveloperBean.doing}" id="cars">
+												<p:panel header="#{timesheet.titre}"
+													style="text-align:center">
+													
+													<p:commandButton value="start"
+														action="#{timesheetDeveloperBean.startTracking(timesheet)}"
+														icon="pi pi-check">
+														<f:param name="idProjet" value="#{projet.id}" />
+													</p:commandButton>
+													
+													<p:commandButton value="stop"
+														action="#{timesheetDeveloperBean.endTraking(timesheet)}"
+														icon="pi pi-check">
+														<f:param name="idProjet" value="#{projet.id}" />
+													</p:commandButton>
+
+
+													<p:commandButton value="todo"
+														action="#{timesheetDeveloperBean.todo(timesheet)}"
+														id="iconOnly1" icon="pi pi-save" title="Icon Only">
+													</p:commandButton>
+
+													<p:commandButton value="done"
+														action="#{timesheetDeveloperBean.done(timesheet)}"
+														id="iconOnly2" icon="pi pi-save" title="Icon Only">
+													</p:commandButton>
+												</p:panel>
+											</p:dataGrid>
+										</h:form>
 									</p:panel>
 
 									<p:panel id="termine" header="Termine"
 										style="margin-bottom:50px">
 
+										<h:form id="form3">
+											<p:dataGrid columns="1" var="timesheet"
+												value="#{timesheetDeveloperBean.done}" id="cars">
+												<p:panel header="#{timesheet.titre}"
+													style="text-align:center">
+													
+
+													<p:commandButton value="todo"
+														action="#{timesheetDeveloperBean.todo(timesheet)}"
+														id="iconOnly1" icon="pi pi-save" title="Icon Only">
+													</p:commandButton>
+
+													<p:commandButton value="doing"
+														action="#{timesheetDeveloperBean.doing(timesheet)}"
+														id="iconOnly2" icon="pi pi-save" title="Icon Only">
+													</p:commandButton>
+												</p:panel>
+											</p:dataGrid>
+										</h:form>
 									</p:panel>
 								</p:panelGrid>
 								<!-- dashboard-list end-->
