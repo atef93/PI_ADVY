@@ -9,16 +9,14 @@ import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue(value = "devloppeur")
-public class Developpeur extends Employee implements Serializable {
+public class Developpeur extends Employee implements Serializable{
 
 
-
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
 	@OneToMany(mappedBy = "developpeur")
 	private List<Timesheet> timesheets;
 

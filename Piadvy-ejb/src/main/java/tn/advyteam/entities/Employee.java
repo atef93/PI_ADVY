@@ -21,13 +21,6 @@ import javax.persistence.TemporalType;
 @DiscriminatorColumn(name = "type_emp")
 public class Employee implements Serializable {
 	
-	
-
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;

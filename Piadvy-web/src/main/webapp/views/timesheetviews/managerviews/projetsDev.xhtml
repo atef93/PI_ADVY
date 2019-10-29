@@ -237,60 +237,57 @@ body .ui-staticmessage.ui-message {
 
 										<div class="dashboard-list-box fl-wrap">
 
+											<h:form>
+												<p:dataTable var="projet" value="#{developerStat.projet}">
 
-
-
-											<div>
-
-
-												<h:form>
-													<p:dataTable var="projet"
-														value="#{developerStat.projet}">
-														<f:facet name="header">
+													<f:facet name="header">
 													        List of Carsss
 													    </f:facet>
 
-														<p:column headerText="Id developer">
-															<h:outputText value="#{developerStat.idD}" />
-														</p:column>
-														
-														<p:column headerText="Id Projet">
-															<h:outputText value="#{projet.id}" />
-														</p:column>
-														
-														<p:column headerText="Nom Dev">
-															<h:outputText value="#{developer.nom}" />
-														</p:column>
+													<p:column headerText="Id developer">
+														<h:outputText value="#{developerStat.idD}" />
+													</p:column>
 
-														<p:column headerText="Nom Pro">
-															<h:outputText value="#{projet.titre}" />
-														</p:column>
+													<p:column headerText="Id Projet">
+														<h:outputText value="#{projet.id}" />
+													</p:column>
 
-														<p:column headerText="action">
-															<p:commandButton value="consulter"
-																action="#{developerStat.consulteDevPr(developer.id)}">
-															</p:commandButton>
-														</p:column>
+													<p:column headerText="Nom Dev">
+														<h:outputText value="#{developer.nom}" />
+													</p:column>
+
+													<p:column headerText="Nom Pro">
+														<h:outputText value="#{projet.titre}" />
+													</p:column>
+
+													<p:column headerText="action">
+														<p:commandButton value="consulte"
+															action="#{developerStat.consulteRondement(developerStat.idD, projet.id)}">
+														</p:commandButton>
+													</p:column>
+													<f:facet name="footer">
+
+													</f:facet>
 
 
-														<f:facet name="footer">
+												</p:dataTable>
 
-														</f:facet>
-													</p:dataTable>
-												</h:form>
-											</div>
+											</h:form>
 										</div>
 									</div>
+
+									<div class="col-md-12">
+
+									</div>
 								</div>
-
-
 							</div>
 
+
 						</div>
+
 					</div>
-					<!--profile-edit-wrap end -->
 				</div>
-				<!--container end --> </section>
+				<!--profile-edit-wrap end --> <!--container end --> </section>
 				<!-- section end -->
 
 				<div class="limit-box fl-wrap" />

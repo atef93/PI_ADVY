@@ -18,9 +18,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Timesheet implements Serializable {
+public class Timesheet implements Serializable{
 	
-
 	/**
 	 * 
 	 */
@@ -50,6 +49,8 @@ public class Timesheet implements Serializable {
 	private long heurePasse;
 	@Column(name = "minutePasse")
 	private long minutePasse;
+	
+	
 	
 	
 	@ManyToOne

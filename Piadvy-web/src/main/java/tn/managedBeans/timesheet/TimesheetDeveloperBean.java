@@ -137,7 +137,7 @@ public class TimesheetDeveloperBean implements Serializable {
    }
    
    public void endTraking(Timesheet timesheet) {
-	   timesheetServiceImp.updateHeureMinuteTimesheet(timesheet);
+	   timesheetServiceImp.updateHeureMinuteTimesheet();
    }
    
     

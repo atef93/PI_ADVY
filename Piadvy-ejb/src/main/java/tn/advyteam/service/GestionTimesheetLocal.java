@@ -30,7 +30,7 @@ public interface GestionTimesheetLocal {
 	public List<Timesheet> getAllTimesheetsByDeveloperJPQL(int id);
 	public List<Timesheet> getAllTimesheetsByProject(int id);
 	public Timesheet getTimesheet(int idP, int idD);	
-	public void updateHeureMinuteTimesheet(Timesheet timesheet);
+	public void updateHeureMinuteTimesheet();
 	public void startTracking();
 	public void stopTracking();
 	public Timesheet getTimeshetByid(int id);
@@ -39,7 +39,7 @@ public interface GestionTimesheetLocal {
 	public Timesheet getTimesheetById(int id);
 	public List<Timesheet> getTimesheetDP(int idP, int idD);
 	public List<Projet> getAllProjetByEmploye(int id);
-
+	
 	
 	
 	

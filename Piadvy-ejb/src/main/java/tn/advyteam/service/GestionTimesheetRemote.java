@@ -29,7 +29,7 @@ public interface GestionTimesheetRemote {
 	public List<Timesheet> getAllTimesheetsByDeveloperJPQL(int id);
 	public List<Timesheet> getAllTimesheetsByProject(int id);
 	public Timesheet getTimesheet(int idP, int idD);
-	public void updateHeureMinuteTimesheet(Timesheet timesheet);
+	public void updateHeureMinuteTimesheet();
 	public void startTracking();
 	public void stopTracking();
 	public Timesheet getTimeshetByid(int id);

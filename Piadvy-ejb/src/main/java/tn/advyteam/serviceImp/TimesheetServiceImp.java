@@ -129,30 +129,40 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 	}
 
 	@Override
-	public void updateHeureMinuteTimesheet(Timesheet timesheet2) {
+	public void updateHeureMinuteTimesheet() {
 
+		startTracking();
 		
+		Timesheet timesheet = getTimesheetById(11);
+
+		System.out.println(timesheet);
 		
-		
+		try {
+			Thread.sleep(60000);
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
+		}
 		stopTracking();
+
 		long hours = Duration.between(debut, fin).toHours();
 		long minutes = Duration.between(debut, fin).toMinutes() - (hours * 60);
 		
-		if(timesheet2.getMinutePasse()+minutes>=59) {
+		if(timesheet.getMinutePasse()+minutes>=59) {
 			hours+=1;
-			long ecart = Math.abs((timesheet2.getMinutePasse()+minutes)-60);
-			timesheet2.setHeurePasse(timesheet2.getHeurePasse()+hours);
-			timesheet2.setMinutePasse(ecart);	
+			long ecart = Math.abs((timesheet.getMinutePasse()+minutes)-60);
+			timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
+			timesheet.setMinutePasse(ecart);	
 		}
 		else {
-			timesheet2.setHeurePasse(timesheet2.getHeurePasse()+hours);
-			timesheet2.setMinutePasse(timesheet2.getMinutePasse()+minutes);	
+			timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
+			timesheet.setMinutePasse(timesheet.getMinutePasse()+minutes);	
 		}
 		
 		debut = null;
 		fin = null;
-		
-		em.merge(timesheet2);
+		System.out.println("klk");
+		em.merge(timesheet);
 	}
 
 	@Override
@@ -168,14 +178,11 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 	@Override
 	public void startTracking() {
 		debut = Instant.now();
-		
 	}
 
 	@Override
 	public void stopTracking() {
-
 		fin = Instant.now();
-		
 	}
 
 	@Override
