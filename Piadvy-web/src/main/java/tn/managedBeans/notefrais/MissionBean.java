@@ -85,7 +85,7 @@ public class MissionBean implements Serializable {
 		Employee E = new Employee();
 		E.setId(1);
 		E.setNom("foulen");
-		E.setPrenom("sdqds");
+		E.setPrenom("sdqds");jhhjhjhjhj
 		sdsddsds
 	
 	// FacesContext.getCurrentInstance().
