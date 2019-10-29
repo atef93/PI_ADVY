@@ -86,6 +86,7 @@ public class MissionBean implements Serializable {
 		E.setId(1);
 		E.setNom("foulen");
 		E.setPrenom("sdqds");
+		sdsddsds
 	
 	// FacesContext.getCurrentInstance().
     //getExternalContext().redirect("AjouterMission.xhtml");
