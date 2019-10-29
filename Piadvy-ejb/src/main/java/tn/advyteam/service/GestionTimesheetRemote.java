@@ -30,8 +30,8 @@ public interface GestionTimesheetRemote {
 	public List<Timesheet> getAllTimesheetsByProject(int id);
 	public Timesheet getTimesheet(int idP, int idD);
 	public void updateHeureMinuteTimesheet();
-	public void startTracking();
-	public void stopTracking();
+	public void startTracking(Timesheet timesheet);
+	public void stopTracking(Timesheet timesheet);
 	public Timesheet getTimeshetByid(int id);
 	public List<Developpeur> getAllDeveloppeur();
 	public void updateTimesheetState(Timesheet timesheet);

@@ -131,7 +131,7 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 	@Override
 	public void updateHeureMinuteTimesheet() {
 
-		startTracking();
+		//startTracking();
 		
 		Timesheet timesheet = getTimesheetById(11);
 
@@ -143,7 +143,7 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 			
 			e.printStackTrace();
 		}
-		stopTracking();
+		//stopTracking();
 
 		long hours = Duration.between(debut, fin).toHours();
 		long minutes = Duration.between(debut, fin).toMinutes() - (hours * 60);
@@ -175,14 +175,41 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 		return (Timesheet) query.getSingleResult();
 	}
 
+	
+	
+
 	@Override
-	public void startTracking() {
-		debut = Instant.now();
+	public void startTracking(Timesheet timesheet) {
+		timesheet.setDebut(Instant.now());
+		
 	}
 
 	@Override
-	public void stopTracking() {
-		fin = Instant.now();
+	public void stopTracking(Timesheet timesheet) {
+		timesheet.setFin(Instant.now());
+		
+		long hours = Duration.between(timesheet.getDebut(), timesheet.getFin()).toHours();
+		long minutes = Duration.between(timesheet.getDebut(), timesheet.getFin()).toMinutes() - (hours * 60);
+		
+		if(timesheet.getMinutePasse()+minutes>=59) {
+			hours+=1;
+			long ecart = Math.abs((timesheet.getMinutePasse()+minutes)-60);
+			timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
+			timesheet.setMinutePasse(ecart);	
+		}
+		else {
+			timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
+			timesheet.setMinutePasse(timesheet.getMinutePasse()+minutes);	
+		}
+		
+		em.merge(timesheet);
+		
+		timesheet.setDebut(null);
+		timesheet.setFin(null);
+		
+		System.out.println("klk");
+		
+		
 	}
 
 	@Override

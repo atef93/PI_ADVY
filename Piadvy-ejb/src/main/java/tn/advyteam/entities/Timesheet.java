@@ -1,6 +1,7 @@
 package tn.advyteam.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 public class Timesheet implements Serializable{
@@ -50,6 +52,11 @@ public class Timesheet implements Serializable{
 	@Column(name = "minutePasse")
 	private long minutePasse;
 	
+	
+	@Transient
+	private Instant debut = null;
+	@Transient
+	private  Instant fin = null;  
 	
 	
 	
@@ -237,6 +244,31 @@ public class Timesheet implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+
+	
+
+	public Instant getDebut() {
+		return debut;
+	}
+
+
+
+	public Instant getFin() {
+		return fin;
+	}
+
+
+
+	public void setDebut(Instant debut) {
+		this.debut = debut;
+	}
+
+
+
+	public void setFin(Instant fin) {
+		this.fin = fin;
 	}
 
 
