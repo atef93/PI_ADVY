@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+
+
+
+<h:head>
+	<!--=============== basic  ===============-->
+	<meta charset="UTF-8" />
+	<title>Citybook -Directory Listing Template</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="robots" content="index, follow" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<!--=============== css  ===============-->
+	<link type="text/css" rel="stylesheet" href="../../css/reset.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/plugins.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/color.css" />
+	<!--=============== favicons ===============-->
+	<link rel="shortcut icon" href="../images/favicon.ico" />
+</h:head>
+
+<body>
+
+	
+	<!--  loader end -->
+	<!-- Main   -->
+	<div id="main">
+	<div class="row">
+    <div class="col-md-3">
+    <div class="fixed-bar fl-wrap" style="z-index: 1000;">
+	<div class="col-md-9">
+	<div class="dashboard-list-box fl-wrap">
+                                            <div class="dashboard-header fl-wrap">
+                                                <h3>Liste des missions</h3>
+                                            </div>
+                                            <!-- dashboard-list end-->    
+                                            <div class="dashboard-list">
+                                                <div class="dashboard-message">
+											
+                                                    <span class="new-dashboard-item">New</span>
+                                    <ui:repeat var="f" value="#{missionBean.missions}">
+                                                    
+                                                    <div class="dashboard-listing-table-text">
+                                                        <h4>#{f.libelle}</h4>
+                                                        <h3>#{f.description}</h3>
+                                                        
+                                                        <ul class="dashboard-listing-table-opt  fl-wrap">
+                                                        <h:commandLink action="#" value="Edit" >
+                                                        
+                                                            <li> <i class="fa fa-pencil-square-o"></i></li>
+                                                            </h:commandLink>
+                                                         <h:commandLink action="#" value="Delete" class="del-btn" >
+                                                        
+                                                            <li> <i class="fa fa-trash-o"></i></li>
+                                                            </h:commandLink>
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                   </ui:repeat>
+                                                </div>
+                                                
+         
+         </div>   
+         </div>                            
+         </div>
+             </div>
+	</div>
+	</div>
+		<ui:include src="/views/header.xhtml" />
+			<!-- wrapper -->
+
+			<!-- wrapper end -->
+		<ui:include src="/views/footer.xhtml" />
+
+
+
+	</div>
+	<!--=============== scripts  ===============-->
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/plugins.js"></script>
+	<script type="text/javascript" src="../../js/scripts.js"></script>
+</body>
+</html>

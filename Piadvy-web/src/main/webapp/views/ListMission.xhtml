@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      > 
+      
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+<h:form>
+<h:dataTable  value="#{missionBean.missions}" var="a" border="1" selectionMode="single" > 
+<h:column >
+<f:facet name="header">
+<h:outputText value="Libelle"/>
+</f:facet>
+<h:outputText value="#{a.libelle}"/>
+</h:column>
+
+<h:column>
+<f:facet name="header">
+<h:outputText value="description"/>
+</f:facet>
+<h:outputText value="#{a.description}"/>
+</h:column>
+
+<h:column>
+<f:facet name="header">
+<h:outputText value="etat"/>
+</f:facet>
+<h:outputText value="#{a.etat}"/>
+</h:column>
+<h:column>
+<f:facet name=" footer">
+<h:outputText value="Demande"></h:outputText>
+
+</f:facet>
+<h:commandButton value="Ajouter Mission" actionListener="#{missionBean.addDemande(a)}" />
+</h:column>
+
+
+</h:dataTable>
+</h:form>
+</body>
+</html>
