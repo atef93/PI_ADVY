@@ -127,10 +127,13 @@
 <h:inputTextarea row="6" cols="33" value="#{missionBean.description}" />
 
 <div align="center" style="margin-top:50px;">
-<p:remoteCommand name="rc" update="msgs" action="#{remoteCommandView.execute}" />
-     
-    <p:growl id="msgs" showDetail="true" />
-<p:commandButton action="#{missionBean.addMission()}" value="Ajouter Mission"  class="btn  big-btn  color-bg flat-btn" id="notification"/>
+
+    <h:panelGrid columns="1" cellpadding="5">
+<h:commandButton action="#{missionBean.addMission()}" value="Ajouter Mission" type="Button" onclick="PF('dlg3').show();" class="btn  big-btn  color-bg flat-btn" id="notification"/>
+ </h:panelGrid>
+ <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
+    <h:outputText value="This dialog has nice effects." />
+</p:dialog>
 <script src="../../js/push.js">
 $("notification").click(function(){push.create("bien");}):
 </script>

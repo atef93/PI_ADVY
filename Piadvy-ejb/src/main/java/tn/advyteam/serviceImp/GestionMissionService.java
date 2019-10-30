@@ -52,6 +52,11 @@ public int addDemandeMission(DemandeMission d) {
 public void affecter(int idDem,int idMiss) {
 		Mission mi = em.find(Mission.class, idMiss);
 		DemandeMission dm = em.find(DemandeMission.class, idDem);
+		Employee e = new Employee();
+		e.setId(1);
+		e.setNom("slim");
+		e.setPrenom("slim");
+		dm.setEmployees(e);
 		dm.setMissions(mi);
 
 }
