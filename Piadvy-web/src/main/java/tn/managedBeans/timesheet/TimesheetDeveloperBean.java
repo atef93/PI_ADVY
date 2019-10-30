@@ -19,42 +19,35 @@ import tn.advyteam.service.GestionTimesheetRemote;
 @ApplicationScoped
 public class TimesheetDeveloperBean implements Serializable {
 
+	private TimesheetEtat state;
+	private String to;
 
-	private TimesheetEtat state; 
-    private String to;
-    
-	
 	@EJB
 	GestionTimesheetRemote timesheetServiceImp;
-	
-	
-	
-	
+
 	List<Timesheet> alltimesheet;
 	List<Timesheet> todo;
 	List<Timesheet> doing;
 	List<Timesheet> done;
-	
+
 	public TimesheetDeveloperBean() {
 		alltimesheet = new ArrayList<>();
 		todo = new ArrayList<Timesheet>();
 		doing = new ArrayList<Timesheet>();
 		done = new ArrayList<Timesheet>();
 	}
-	
+
 	@PostConstruct
 	public void init() {
-		
+
 		alltimesheet = timesheetServiceImp.getAllTimesheetsByDeveloperJPQL(3);
-		
-		for(Timesheet ts: alltimesheet) {
-			if(ts.getTimesheetEtat().equals(TimesheetEtat.TODO)) {
+
+		for (Timesheet ts : alltimesheet) {
+			if (ts.getTimesheetEtat().equals(TimesheetEtat.TODO)) {
 				todo.add(ts);
-			}
-			else if(ts.getTimesheetEtat().equals(TimesheetEtat.DOING)) {
+			} else if (ts.getTimesheetEtat().equals(TimesheetEtat.DOING)) {
 				doing.add(ts);
-			}
-			else {
+			} else {
 				done.add(ts);
 			}
 		}
@@ -100,15 +93,15 @@ public class TimesheetDeveloperBean implements Serializable {
 		this.state = state;
 	}
 
-
 	public void changeState() {
-		
+
 	}
-    public void addMessage(Timesheet timesheet) {
-        String summary ="Checked" + "Unchecked";
-        System.out.println(timesheet);
-        System.out.println(summary);
-    }
+
+	public void addMessage(Timesheet timesheet) {
+		String summary = "Checked" + "Unchecked";
+		System.out.println(timesheet);
+		System.out.println(summary);
+	}
 
     
     public void todo(Timesheet timesheet) throws IOException {
@@ -151,7 +144,7 @@ public class TimesheetDeveloperBean implements Serializable {
 	   timesheetServiceImp.stopTracking(timesheet);
    }
    
-    
+
 	public String getTo() {
 		System.out.println("hello");
 		return to;
@@ -183,14 +176,5 @@ public class TimesheetDeveloperBean implements Serializable {
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
 
-	
-	
 }

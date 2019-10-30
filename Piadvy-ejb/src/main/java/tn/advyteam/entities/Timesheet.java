@@ -1,7 +1,9 @@
 package tn.advyteam.entities;
 
 import java.io.Serializable;
+
 import java.time.Duration;
+
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -22,8 +24,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-
 import tn.advyteam.serviceImp.TimesheetServiceImp;
+
 
 @Entity
 public class Timesheet implements Serializable{
@@ -64,7 +66,7 @@ public class Timesheet implements Serializable{
 	private Instant debut = null;
 	@Transient
 	private Instant fin = null; 
-	
+
 	
 	
 	@ManyToOne
@@ -278,7 +280,6 @@ public class Timesheet implements Serializable{
 		this.fin = fin;
 	}
 
-	
 
 	@Override
 	public String toString() {

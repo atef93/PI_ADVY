@@ -149,7 +149,6 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 			e.printStackTrace();
 		}
 		//stopTracking();
-		
 		fin = Instant.now();
 
 		long hours = Duration.between(debut, fin).toHours();
@@ -181,6 +180,9 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 		query.setParameter("idD", idD);
 		return (Timesheet) query.getSingleResult();
 	}
+
+	
+	
 
 	@Override
 	public void startTracking(Timesheet timesheet) {
