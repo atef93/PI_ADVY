@@ -15,7 +15,7 @@
 
 		<p:panel id="panel" header="Form" style="margin-bottom:10px;">
 
-			<h:outputLabel  value="#{projectBean.selectedProjet.id}" /> 
+			<h:outputLabel value="#{projectBean.selectedProjet.id}" />
 			<h:panelGrid columns="2" cellpadding="10" width="100%"
 				cellspacing="10">
 
@@ -56,10 +56,6 @@
 					<p:column>
 						<h:outputText value="#{n}" />
 					</p:column>
-
-
-
-	
 				</p:selectOneListbox>
 
 			</h:panelGrid>
@@ -90,11 +86,11 @@
 				</p:panelGrid>
 			</p:dialog>
 			<p:commandButton value="Save"
-				action="#{timesheetBean.addTimesheet(projectBean.selectedProjet.id)}" icon="pi pi-check"
-				resetValues="true" />
-				<p>Hello tous le monde </p>
-		</p:panel>
+				action="#{timesheetBean.addTimesheet(projectBean.selectedProjet.id)}"
+				icon="pi pi-check" resetValues="true" />
+			<p>Hello tous le monde</p>
 
+		</p:panel>
 
 	</h:form>
 </ui:composition>

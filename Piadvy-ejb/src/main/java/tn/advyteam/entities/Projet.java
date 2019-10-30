@@ -29,6 +29,8 @@ public class Projet implements Serializable {
 	private List<CommentProjet> commentsProjet;
 
 	
+	
+	
 	@OneToMany(mappedBy = "projet")
 	private List<Timesheet> timesheets;
 	
