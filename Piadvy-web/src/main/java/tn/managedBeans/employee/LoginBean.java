@@ -117,8 +117,8 @@ public class LoginBean implements Serializable{
 		if (employe != null  && employe.getIsActif()== true )
 		{ 
 			System.out.println(this.employe);
-		//	navigateto= "/views/employeeviews/Profile?faces-redirect=true"; loggeIn = true ;
-			navigateto= "/views/employeeviews/NewFile?faces-redirect=true"; loggeIn = true ;
+			navigateto= "/views/employeeviews/Profile?faces-redirect=true"; loggeIn = true ;
+			//navigateto= "/views/employeeviews/NewFile?faces-redirect=true"; loggeIn = true ;
 			
 		}
 		else {FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad credentials or  you are not actif"));}

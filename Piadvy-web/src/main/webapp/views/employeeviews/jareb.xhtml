@@ -3,7 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 
 
@@ -48,15 +49,92 @@
 						
 
 								<div class="container">
-									<ui:repeat value="#{publicationBean.lpub()}" var="l"	border="1">
-										
-										<p>^^^^^^^ : #{l.description}</p>
-									<p>^^^^^^^ : #{l.employee.nom}</p>
-									<p>^^^^^^^ : #{l.employee.nom}</p>
-									
+								<div class="col-md-6">
 								
-								</ui:repeat>
-						 </div>
+								
+								 <div class="list-single-main-item fl-wrap" >
+								 
+								  <div class="list-single-main-item-title fl-wrap">
+                                                <h3>Acceuil : </h3>
+                                            </div>
+								<form class="add-comment custom-form">
+                                       <fieldset>
+                                       <h:inputTextarea cols="40" rows="3"  pt:placeholder="Your Publication:"></h:inputTextarea>
+                                         </fieldset>
+                                                                                                               <br></br><br></br><br></br><br></br>
+                                         
+                                         
+                      <h:commandButton   class="btn  circle-btn    color-red red-btn " value="sdfsbfsbb" aria-hidden="true" ></h:commandButton>
+                                         
+                                     
+                                                                      <br></br><br></br><br></br><br></br>
+                               
+                                 </form>
+                                    
+                                 
+																	 
+                                            </div>
+                                    <div class="list-single-main-wrapper fl-wrap">
+                                       <div class="list-single-main-item fl-wrap" id="sec4">
+                                           
+                                            
+                         			 <ui:repeat value="#{publicationBean.lpub()}" var="l"	border="1">
+										
+                                            <div class="reviews-comments-wrap">
+                                                <!-- reviews-comments-item -->  
+                                                <div class="reviews-comments-item">
+                                                    <div class="review-comments-avatar">
+                                 <h:graphicImage value="data:image/jpg;base64,#{loginBean.employe.image}"
+ 								 style="max-width: 300px; max-height: 300px;" />                                                 
+ 								     </div>
+                                                    <div class="reviews-comments-item-text">
+                                                        
+                                                        <h4>#{l.employee.nom} &nbsp;#{l.employee.prenom}</h4>
+                                                        <h4></h4>
+                                                        <div class="clearfix"></div>
+                                                        <p> #{l.description}</p>
+                                                        <span class="reviews-comments-item-date"><i class="fa fa-calendar-check-o"></i>#{l.dateCreation}</span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            	
+                                        
+                                          
+                                        <div class="list-single-main-item fl-wrap" id="sec5">
+                                        <div class="list-single-main-item-title fl-wrap">
+                                                <h3>Comments :</h3>
+                                            </div>
+                                      
+                                      	 <div class="reviews-comments-item">
+                                                    <div class="review-comments-avatar">
+                                                        <img src="../images/avatar/1.jpg" alt=""></img>
+                                                    </div>
+                                                    <div class="reviews-comments-item-text">
+                                                        <h4>Nom fjsdfhff</h4>
+                                                        <div class="clearfix"></div>
+                                                        <p>" Commmmm"</p>
+                                                        <span class="reviews-comments-item-date"><i class="fa fa-calendar-check-o"></i>"Date commmm"</span>
+                                                    </div>
+                                                </div>
+                                       
+                                       
+												<div id="add-review" class="add-review-box">
+                                                <!-- Review Comment -->
+                                                <form class="add-comment custom-form">
+                                                    <fieldset>
+	                                                        <h:inputText pt:placeholder="Your Review:"></h:inputText>
+                                                 <h:commandButton   class="btn  circle-btn    color-red red-btn " value="sdfsbfsbb" aria-hidden="true" ></h:commandButton>
+                                                    </fieldset>
+                                                </form>
+                                            </div>                                    </div>
+                                 </ui:repeat>
+                                 </div>
+                                </div>
+                            </div>
+                            
+                            
+								 </div>
 					</div>
 
 				 

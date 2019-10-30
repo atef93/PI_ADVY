@@ -5,13 +5,21 @@ import java.security.GeneralSecurityException;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.primefaces.model.UploadedFile;
 
@@ -80,9 +88,10 @@ public class EmployeBean implements Serializable{
 	public void init() 
 	{
 		getEmployes();
-		//employeServiceImp.test("sss");
+		
 		
 	}
+	
 
 	
 	public String doLogin()
@@ -101,6 +110,7 @@ public class EmployeBean implements Serializable{
 		{ navigateto = "/views/employeeviews/Login?face-redirect=true";}
 		return navigateto;
 	}
+	
 	
 	public String Ajutemp()
 	{
@@ -217,7 +227,6 @@ public class EmployeBean implements Serializable{
 		
 	}
 	
-	
 	public void AjouterContrat() 
 	{
 		employeServiceImp.addContrat(new Contrat(datedebut, datefin, salaire, typeContrat));
@@ -228,7 +237,7 @@ public class EmployeBean implements Serializable{
 
 
 		}
-		System.out.println(encodedString+"nik omk e5dem");
+		System.out.println(encodedString);
 	 return	encodedString;
 	
 		} 
@@ -239,11 +248,49 @@ public class EmployeBean implements Serializable{
 
 	public void AjouterContratemp() 
 	{
+		
+		
+		String	pass =  password ;
+		String  eml = 	email ;
+			
+		
 		byte[] fileContent = file.getContents();
 		String encodedString = Base64.getEncoder().encodeToString(fileContent);
 		System.out.println(encodedString);
 		
-	employeServiceImp.ajoutercontratemploye(new Developpeur(nom, prenom, adresse, email, sexe, isActif, password, datenaissance, etatcivil, role, encodedString) ,new Contrat(datedebut, datefin, salaire, typeContrat));
+		final String username = "porjet2019@gmail.com";
+		final String password = "duwhjaxubkjxebih";
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+ 
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+ 
+		try {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("porjet2019@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse(eml));
+			System.out.println(eml + "dsssssssssssssss");
+			message.setSubject("Le password ");
+			System.out.println("Voici votre  password  "  + pass);
+			message.setText("Voici votre  password  : " + pass);
+			Transport.send(message);
+			System.out.println("Done");
+		} catch (MessagingException e) {
+			System.out.println("ERE");
+		}
+		
+
+		
+	employeServiceImp.ajoutercontratemploye(new Developpeur(nom, prenom, adresse, email, sexe, isActif, this.password, datenaissance, etatcivil, role, encodedString) ,new Contrat(datedebut, datefin, salaire, typeContrat));
 	getEmployes();
 	System.out.println(encodedString);
 	}

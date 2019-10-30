@@ -28,6 +28,7 @@ public class Publication implements Serializable  {
 	private String description;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCreation;
+	private Boolean isActif ;
 	
 	@ManyToOne 
 	@JoinColumn(name="id_emp")
@@ -91,6 +92,18 @@ public class Publication implements Serializable  {
 		super();
 		
 		this.description = description;
+	}
+	public Boolean getIsActif() {
+		return isActif;
+	}
+	public void setIsActif(Boolean isActif) {
+		this.isActif = isActif;
+	}
+	public Publication(String description, Date dateCreation, Boolean isActif) {
+		super();
+		this.description = description;
+		this.dateCreation = dateCreation;
+		this.isActif = isActif;
 	}
 	
 	

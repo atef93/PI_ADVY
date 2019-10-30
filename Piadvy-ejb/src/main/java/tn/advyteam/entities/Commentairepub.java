@@ -34,6 +34,11 @@ public class Commentairepub implements Serializable {
 	
 	
 
+	public Commentairepub(Publication pub) {
+		super();
+		this.pub = pub;
+	}
+
 	public Employee getEmployee() {
 		return employee;
 	}
