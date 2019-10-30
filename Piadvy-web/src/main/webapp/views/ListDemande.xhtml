@@ -1,32 +1,216 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      > 
-<head>
-<title>Insert title here</title>
-</head>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+
+
+
+<h:head>
+	<!--=============== basic  ===============-->
+	<meta charset="UTF-8" />
+	<title>Citybook -Directory Listing Template</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="robots" content="index, follow" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<!--=============== css  ===============-->
+	<link type="text/css" rel="stylesheet" href="../../css/reset.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/plugins.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/color.css" />
+	<!--=============== favicons ===============-->
+	<link rel="shortcut icon" href="../images/favicon.ico" />
+</h:head>
+
 <body>
 
-<h:form>
-<h:dataTable  value="#{missionBean.demandes}" var="a" border="1" selectionMode="single" > 
-<h:column >
-<f:facet name="header">
-<h:outputText value="Libelle"/>
-</f:facet>
-<h:outputText value="#{a.missions.libelle}"/>
-</h:column>
-<h:column >
-<f:facet name="header">
-<h:outputText value="Libelle"/>
-</f:facet>
-<h:outputText value="#{a.missions.description}"/>
-</h:column>
+	<!-- loader -->
+	<div class="loader-wrap">
+		<div class="pin"></div>
+		<div class="pulse"></div>
+	</div>
+	<!--  loader end -->
+	<!-- Main   -->
+	<div id="main">
+	
+	
+		<ui:include src="/views/header.xhtml" />
+			<!-- wrapper -->
 
-</h:dataTable>
-</h:form>
+	<div id="wrapper">
+		<!--content -->
+
+		<div class="content">
+			<!--section -->
+			<section id="sec1"> <!-- container -->
+
+			<div class="container">
+				<!-- profile-edit-wrap -->
+
+				<div class="profile-edit-wrap">
+
+					<div class="profile-edit-page-header">
+
+						<h2>Missions</h2>
+
+						<div class="breadcrumbs">
+							<a href="#">Home</a><a href="#">Dasboard</a>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="col-md-3">
+
+							<div class="fixed-bar fl-wrap">
+
+								<div class="user-profile-menu-wrap fl-wrap">
+									<!-- user-profile-menu-->
+
+									<div class="user-profile-menu">
+
+										<h3>Gestion des missions</h3>
+
+										<ul>
+
+											<li><a href="AjoutTemp.xhtml"><i
+													class="fa fa-user-o" /> Ajouter Mission</a></li>
+
+											<li><a href="ListMission.xhtml"><i
+													class="fa fa-envelope-o" /> Liste des missions <span>3</span></a></li>
+
+											<li><a href="ListDemande.xhtml"><i
+													class="fa fa-unlock-alt" />Liste demandes</a></li>
+										</ul>
+									</div>
+									<!-- user-profile-menu end-->
+									
+									<!-- user-profile-menu-->
+
+									
+									<!-- user-profile-menu end-->
+									<!-- user-profile-menu-->
+
+									
+									
+									<!-- user-profile-menu end-->
+									<a href="#" class="log-out-btn">Log Out</a>
+								</div>
+							</div>
+						</div>
+
+							<div class="col-md-9">
+						
+								<!-- profile-edit-container-->
+
+								<div class="profile-edit-container">
+
+									<div class="profile-edit-header fl-wrap">
+										<h4>Gestion des demandes</h4>
+									</div>
+
+									<br /> <br /> <br />
+						
+						<h:form class="custom-form">
+						
+						
+						<div class="col-md-9">
+						
+						
+                                        <div class="dashboard-list-box fl-wrap">
+                                            <div class="dashboard-header fl-wrap">
+                                                <h3>Liste demandes</h3>
+                                            </div>
+                                            <!-- dashboard-list end-->
+                                            
+                                            <div class="dashboard-list">
+                                                <div class="dashboard-message">
+                                                    
+                                                  <ui:repeat var="f" value="#{missionBean.demandes}">   
+                                                   
+                                                    <div class="dashboard-listing-table-text">
+                                                        <h4>#{f.missions.libelle}</h4>
+                                                        <h3>#{f.missions.description}</h3>
+                                                        <ul class="dashboard-listing-table-opt  fl-wrap">
+                                                        <li>
+                                                        <div align="right">
+                                                      <h:commandLink class="del-btn" action="#" value="Accepter" >
+                                                      <i class="fa fa-pencil-square-o"></i>
+																		</h:commandLink>
+														</div>
+                                                      </li>
+                                                      </ul>
+                                                    </div>
+                                                    </ui:repeat> 
+                                                </div>
+                                            </div>
+                      
+                                            
+						</div>
+						  
+					</div>
+					</h:form>
+					
+
+					
+					</div>
+					</div>
+					
+				</div>
+				<!--profile-edit-wrap end -->
+			</div>
+			</div>
+			<!--container end --> </section>
+			<!-- section end -->
+
+			<div class="limit-box fl-wrap" />
+			<!--section -->
+			<section class="gradient-bg">
+
+			<div class="cirle-bg">
+
+				<div class="bg" data-bg="images/bg/circle.png" />
+			</div>
+
+			<div class="container">
+
+				<div class="join-wrap fl-wrap">
+
+					<div class="row">
+
+						<div class="col-md-8">
+
+							<h3>Do You Have Questions ?</h3>
+
+							<p>Lorem ipsum dolor sit amet, harum dolor nec in, usu
+								molestiae at no.</p>
+						</div>
+
+						<div class="col-md-4">
+							<a href="contacts.html" class="join-wrap-btn">Get In Touch <i
+								class="fa fa-envelope-o" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			</section>
+			<!-- section end -->
+		</div>
+	</div>
+	<!-- wrapper end -->
+		<ui:include src="/views/footer.xhtml" />
+
+
+
+	</div>
+	<!--=============== scripts  ===============-->
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/plugins.js"></script>
+	<script type="text/javascript" src="../../js/scripts.js"></script>
 </body>
 </html>
+		
