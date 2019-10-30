@@ -37,7 +37,8 @@ public class ProjectBean implements Serializable{
 	private int idManager=1;
 	private int idProjet;
 	private Projet selectedProjet;
-	
+    private Date date1;
+    private Date date2;
 	private String color;
 	
 	
@@ -122,8 +123,6 @@ public class ProjectBean implements Serializable{
 		this.selectedProjet = selectedProjet;
 	}
 	
-	
-
 
 	public List<Timesheet> getTimesheets() {
 		return timesheets;
@@ -135,8 +134,6 @@ public class ProjectBean implements Serializable{
 	}
 	
 	
-
-
 	public String getColor() {
 		return this.color;
 	}
@@ -146,11 +143,34 @@ public class ProjectBean implements Serializable{
 		this.color = color;
 	}
 
+	
+
+	public Date getDate1() {
+		return date1;
+	}
+
+
+	public Date getDate2() {
+		return date2;
+	}
+
+
+	public void setDate1(Date date1) {
+		this.date1 = date1;
+	}
+
+
+	public void setDate2(Date date2) {
+		this.date2 = date2;
+	}
+
 
 	public void addProject() throws IOException {
 		Projet projet = new Projet();
 		projet.setTitre(titre);
 		projet.setDescription(description);
+		projet.setDateDebut(date1);
+		projet.setDeadline(date2);
 		Manager manager = new Manager();
 		manager.setId(idManager);
 		projet.setCreatedBy(manager);

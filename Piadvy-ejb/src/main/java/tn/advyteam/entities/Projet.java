@@ -1,6 +1,7 @@
 package tn.advyteam.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Projet implements Serializable {
@@ -29,7 +32,10 @@ public class Projet implements Serializable {
 	private List<CommentProjet> commentsProjet;
 
 	
-	
+	@Temporal(TemporalType.DATE)
+	private Date dateDebut;
+	@Temporal(TemporalType.DATE)
+	private Date deadline;
 	
 	@OneToMany(mappedBy = "projet")
 	private List<Timesheet> timesheets;
@@ -46,6 +52,16 @@ public class Projet implements Serializable {
 		this.titre = titre;
 		this.description = description;
 		this.createdBy = createdBy;
+	}
+
+
+	public Projet(String titre, String description, Manager createdBy, Date dateDebut, Date deadline) {
+		super();
+		this.titre = titre;
+		this.description = description;
+		this.createdBy = createdBy;
+		this.dateDebut = dateDebut;
+		this.deadline = deadline;
 	}
 
 
@@ -115,9 +131,27 @@ public class Projet implements Serializable {
 	}
 
 
-	
+	public Date getDateDebut() {
+		return dateDebut;
+	}
 
 
+
+	public Date getDeadline() {
+		return deadline;
+	}
+
+
+
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+
+
+	public void setDeadline(Date deadline) {
+		this.deadline = deadline;
+	}
 
 
 

@@ -12,6 +12,10 @@ import javax.persistence.OneToMany;
 @DiscriminatorValue(value = "Manager")
 public class Manager extends Employee implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@OneToMany(mappedBy = "createdBy", fetch = FetchType.EAGER)
 	private List<Projet> projets;
 	
