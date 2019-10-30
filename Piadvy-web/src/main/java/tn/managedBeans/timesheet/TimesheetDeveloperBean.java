@@ -7,15 +7,16 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-import tn.advyteam.entities.Developpeur;
 import tn.advyteam.entities.Timesheet;
 import tn.advyteam.entities.TimesheetEtat;
 import tn.advyteam.service.GestionTimesheetRemote;
 
 @ManagedBean
+@ApplicationScoped
 public class TimesheetDeveloperBean implements Serializable {
 
 
@@ -109,35 +110,45 @@ public class TimesheetDeveloperBean implements Serializable {
         System.out.println(summary);
     }
 
+    
     public void todo(Timesheet timesheet) throws IOException {
+    	
     	timesheet.setTimesheetEtat(TimesheetEtat.TODO);
     	timesheetServiceImp.updateTimesheetState(timesheet);
+    	refresch();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("listeTimesheet.xhtml");
 
-    	
+    	//return "listeTimesheet.xhtml";
+
     }
     
     public void doing(Timesheet timesheet) throws IOException {
     	timesheet.setTimesheetEtat(TimesheetEtat.DOING);
     	timesheetServiceImp.updateTimesheetState(timesheet);
 		FacesContext.getCurrentInstance().getExternalContext().redirect("listeTimesheet.xhtml");
-
+    	refresch();
+    	//return "listeTimesheet.xhtml";	
     }
     
    public void done(Timesheet timesheet) throws IOException {
    	timesheet.setTimesheetEtat(TimesheetEtat.DONE);
    	timesheetServiceImp.updateTimesheetState(timesheet);
 	FacesContext.getCurrentInstance().getExternalContext().redirect("listeTimesheet.xhtml");
+	refresch();
+
+   	
+	//return "listeTimesheet.xhtml";
 
     }
    
    
-   public void startTracking(Timesheet timesheet) {
+   public void startTracking() {
 	   timesheetServiceImp.startTracking();
    }
    
    public void endTraking(Timesheet timesheet) {
-	   timesheetServiceImp.updateHeureMinuteTimesheet();
+	   //timesheetServiceImp.updateHeureMinuteTimesheet();
+	   timesheetServiceImp.stopTracking(timesheet);
    }
    
     
@@ -155,7 +166,23 @@ public class TimesheetDeveloperBean implements Serializable {
     //=====================================================================//
 	
 
-	
+	public void refresch() {
+		alltimesheet = timesheetServiceImp.getAllTimesheetsByDeveloperJPQL(3);
+		todo = new ArrayList<>();
+		doing = new ArrayList<>();
+		done = new ArrayList<>();
+		for(Timesheet ts: alltimesheet) {
+			if(ts.getTimesheetEtat().equals(TimesheetEtat.TODO)) {
+				todo.add(ts);
+			}
+			else if(ts.getTimesheetEtat().equals(TimesheetEtat.DOING)) {
+				doing.add(ts);
+			}
+			else {
+				done.add(ts);
+			}
+		}
+	}
 	
 	
 	

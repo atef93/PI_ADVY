@@ -3,6 +3,8 @@ package tn.advyteam.serviceImp;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
+
+import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,6 +22,7 @@ import tn.advyteam.service.GestionTimesheetRemote;
 
 
 @Stateful
+@LocalBean
 public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesheetRemote{
 
 
@@ -131,7 +134,9 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 	@Override
 	public void updateHeureMinuteTimesheet() {
 
-		startTracking();
+		//startTracking();
+		
+		debut = Instant.now();
 		
 		Timesheet timesheet = getTimesheetById(11);
 
@@ -143,7 +148,9 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 			
 			e.printStackTrace();
 		}
-		stopTracking();
+		//stopTracking();
+		
+		fin = Instant.now();
 
 		long hours = Duration.between(debut, fin).toHours();
 		long minutes = Duration.between(debut, fin).toMinutes() - (hours * 60);
@@ -176,13 +183,36 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 	}
 
 	@Override
-	public void startTracking() {
+	public void startTracking(Timesheet timesheet) {
 		debut = Instant.now();
+		timesheet.setDebut(debut);
 	}
 
 	@Override
-	public void stopTracking() {
+	public void stopTracking(Timesheet timesheet){
 		fin = Instant.now();
+		timesheet.setFin(fin);
+		
+		long hours = Duration.between(debut, fin).toHours();
+		long minutes = Duration.between(debut, fin).toMinutes() - (hours * 60);
+		
+		if(timesheet.getMinutePasse()+minutes>=59) {
+			hours+=1;
+			long ecart = Math.abs((timesheet.getMinutePasse()+minutes)-60);
+			timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
+			timesheet.setMinutePasse(ecart);	
+		}
+		else {
+			timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
+			timesheet.setMinutePasse(timesheet.getMinutePasse()+minutes);	
+		}
+		
+		fin = null;
+		debut=null;
+		
+		System.out.println("klk");
+		em.merge(timesheet);
+		
 	}
 
 	@Override
@@ -223,6 +253,18 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 		query.setParameter("id", id);
 		
 		return query.getResultList();
+	}
+
+	@Override
+	public void startTracking() {
+		this.debut = Instant.now();
+		
+	}
+
+	@Override
+	public void stopTracking() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

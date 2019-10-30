@@ -1,11 +1,16 @@
 package tn.advyteam.entities;
 
 import java.io.Serializable;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
+
+import javax.inject.Inject;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -16,6 +21,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import tn.advyteam.serviceImp.TimesheetServiceImp;
 
 @Entity
 public class Timesheet implements Serializable{
@@ -24,6 +32,7 @@ public class Timesheet implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -50,6 +59,11 @@ public class Timesheet implements Serializable{
 	@Column(name = "minutePasse")
 	private long minutePasse;
 	
+
+	@Transient
+	private Instant debut = null;
+	@Transient
+	private Instant fin = null; 
 	
 	
 	
@@ -240,6 +254,31 @@ public class Timesheet implements Serializable{
 	}
 
 
+	
+
+	public Instant getDebut() {
+		return debut;
+	}
+
+
+
+	public Instant getFin() {
+		return fin;
+	}
+
+
+
+	public void setDebut(Instant debut) {
+		this.debut = debut;
+	}
+
+
+
+	public void setFin(Instant fin) {
+		this.fin = fin;
+	}
+
+	
 
 	@Override
 	public String toString() {
@@ -248,6 +287,33 @@ public class Timesheet implements Serializable{
 				+ ", heurePasse=" + heurePasse + ", developpeur=" + developpeur + ", projet=" + projet + "]";
 	}
 	
+	public void startTracking() {
+		this.debut = Instant.now();
+	}
+	
+	
+	public void stopTracking() {
 		
+		this.fin = Instant.now();
+		
+		long hours = Duration.between(debut, fin).toHours();
+		long minutes = Duration.between(debut, fin).toMinutes() - (hours * 60);
+		
+		if(this.getMinutePasse()+minutes>=59) {
+			hours+=1;
+			long ecart = Math.abs((this.getMinutePasse()+minutes)-60);
+			this.setHeurePasse(this.getHeurePasse()+hours);
+			this.setMinutePasse(ecart);	
+		}
+		else {
+			this.setHeurePasse(this.getHeurePasse()+hours);
+			this.setMinutePasse(this.getMinutePasse()+minutes);	
+		}
+		
+		debut = null;
+		fin = null;
+		System.out.println("klk");
+	}
+
 	
 }
