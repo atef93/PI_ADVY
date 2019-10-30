@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+
+
+
+<h:head>
+	<!--=============== basic  ===============-->
+	<meta charset="UTF-8" />
+	<title>Citybook -Directory Listing Template</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="robots" content="index, follow" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<!--=============== css  ===============-->
+	<link type="text/css" rel="stylesheet" href="../../css/reset.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/plugins.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/color.css" />
+	<!--=============== favicons ===============-->
+	<link rel="shortcut icon" href="../images/favicon.ico" />
+</h:head>
+
+<body>
+
+	<!-- loader -->
+	<div class="loader-wrap">
+		<div class="pin"></div>
+		<div class="pulse"></div>
+	</div>
+	<!--  loader end -->
+	<!-- Main   -->
+	<div id="main">
+	
+	
+		<ui:include src="/views/evaluationviews/header.xhtml" />
+			<!-- wrapper -->
+
+	<div id="wrapper">
+		<!--content -->
+
+		<div class="content">
+			<!--section -->
+			<section id="sec1"> <!-- container -->
+
+			<div class="container">
+				<!-- profile-edit-wrap -->
+
+				<div class="profile-edit-wrap">
+
+					<div class="profile-edit-page-header">
+
+						<h2>Evaluation</h2>
+
+						<div class="breadcrumbs">
+							<a href="#">Home</a><a href="#">Dasboard</a>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="col-md-3">
+
+							<div class="fixed-bar fl-wrap">
+
+								<div class="user-profile-menu-wrap fl-wrap">
+									<!-- user-profile-menu-->
+
+									<div class="user-profile-menu">
+
+										<h3>Gestin des evaluations</h3>
+
+										<ul>
+
+											<li><a href="addJSF.xhtml"><i
+													class="fa fa-user-o" /> Ajouter Evaluation</a></li>
+
+											<li><a href="addF.xhtml"><i
+													class="fa fa-envelope-o" /> Consulter Liste Evaluations <span>3</span></a></li>
+
+											<li><a href="statistique.xhtml"><i
+													class="fa fa-unlock-alt" />Les statistique</a></li>
+										</ul>
+									</div>
+									<!-- user-profile-menu end-->
+									
+									<!-- user-profile-menu-->
+
+									<div class="user-profile-menu">
+
+										<h3>Gestion des Fiches</h3>
+
+										<ul>
+									
+											<li><a href="dashboard-myprofile.html">
+											<i class="fa fa-user-o" /> Ajouter une note</a></li>
+
+											<li><a href="dashboard-messages.html"><i
+													class="fa fa-envelope-o" /> Consulter une Fiche <span>3</span></a></li>
+
+											<li><a href="dashboard-password.html"><i
+													class="fa fa-unlock-alt" />Change Password</a></li>
+										</ul>
+									</div>
+									<!-- user-profile-menu end-->
+									<!-- user-profile-menu-->
+
+									
+									
+									<!-- user-profile-menu end-->
+									<a href="#" class="log-out-btn">Log Out</a>
+								</div>
+							</div>
+						</div>
+
+						
+						
+						<form action="custom-form">
+						
+						<div class="col-md-9">
+                                        <div class="dashboard-list-box fl-wrap">
+                                            <div class="dashboard-header fl-wrap">
+                                                <h3>File evaluation</h3>
+                                            </div>
+                                            <!-- dashboard-list end-->
+                                            <form>
+                                            <div class="dashboard-list">
+                                                <div class="dashboard-message">
+                                                
+                                                    <span class="new-dashboard-item" ><a href="addF.xhtml" >back </a></span>
+                                                    
+                                                   <ui:repeat var="e" value="#{redirectionBean.f}"> 
+                                                    <div class="dashboard-listing-table-text">
+                                                
+                                                      <h4>Goals</h4>  <h2>#{redirectionBean.f.objec}</h2>
+                                                      <h4>Score Employee</h4> <h2>#{redirectionBean.f.noteEmploye} %</h2>
+                                                      <h4>Score Manager</h4>  <h2>#{redirectionBean.f.noteManager} %</h2>
+                                                      
+                                                    
+                                                       
+                                                       
+                   									
+    
+                                                        
+                                                        
+                                                    </div>
+                                                    </ui:repeat>
+                                                   
+                                                </div>
+                                            </div>
+                        </form>
+                        
+                        
+                        
+<h:form class="custom-form">
+<div style="float:left;position:relative;z-index:10000">
+<h:panelGrid columns="2">
+<h4>affecter une note a l'employe</h4>
+
+<h:outputText value="   " />
+<h:inputText value="#{redirectionBean.f.noteManager}" />
+
+<div >
+<h:commandLink class="new-dashboard-item" action="#{evaluationBean.modifierNoteMan(redirectionBean.f)}" value="modifier" >
+<i class="fa fa-pencil-square-o"></i>
+</h:commandLink>
+</div>
+
+</h:panelGrid>
+
+</div>
+</h:form>
+
+<h:form class="custom-form" id="form">
+<div style="float:left;position:relative;z-index:10000">
+<h:panelGrid columns="3">
+
+
+
+
+<h:commandLink id="btn" class="btn  big-btn  color-bg flat-btn" action="#{evaluationBean.resultEval(redirectionBean.f)}" value="resultat" >
+<i class="fa fa-pencil-square-o"></i>
+<h:message class="btn  big-btn  color-bg flat-btn" for="btn">
+ 									 <span class="icon text-white-50">
+                     				 <i class="fas fa-check"/>
+                   					 </span>
+                   					 </h:message>
+                   					 </h:commandLink>
+
+
+</h:panelGrid>
+</div>
+</h:form>				
+                        
+                        
+                        
+                        
+                                            
+						</div>
+					</div>
+					</form>
+					
+				</div>
+				<!--profile-edit-wrap end -->
+			</div>
+			</div>
+			<!--container end --> </section>
+			<!-- section end -->
+
+			<div class="limit-box fl-wrap" />
+			<!--section -->
+			<section class="gradient-bg">
+
+			<div class="cirle-bg">
+
+				<div class="bg" data-bg="images/bg/circle.png" />
+			</div>
+
+			<div class="container">
+
+				<div class="join-wrap fl-wrap">
+
+					<div class="row">
+
+						<div class="col-md-8">
+
+							<h3>Do You Have Questions ?</h3>
+
+							<p>Lorem ipsum dolor sit amet, harum dolor nec in, usu
+								molestiae at no.</p>
+						</div>
+
+						<div class="col-md-4">
+							<a href="contacts.html" class="join-wrap-btn">Get In Touch <i
+								class="fa fa-envelope-o" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			</section>
+			<!-- section end -->
+		</div>
+	</div>
+	<!-- wrapper end -->
+		<ui:include src="/views/evaluationviews/footer.xhtml" />
+
+
+
+	</div>
+	<!--=============== scripts  ===============-->
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/plugins.js"></script>
+	<script type="text/javascript" src="../../js/scripts.js"></script>
+</body>
+</html>
+		

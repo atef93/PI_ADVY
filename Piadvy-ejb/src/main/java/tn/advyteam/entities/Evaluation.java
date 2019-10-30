@@ -28,18 +28,17 @@ public class Evaluation implements Serializable {
 	@Column
 	private String description;
 	@Column 
-	private String etat;
+	private boolean etat;
 	@Column
 	private EvaluationType type;
 	
-	@ManyToMany (mappedBy ="evaluation")
-	private List<Employee> employee;
+
 	
 	public Evaluation() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Evaluation(String nom, String description, String etat, EvaluationType type) {
+	public Evaluation(String nom, String description, boolean etat, EvaluationType type) {
 		super();
 		this.nom = nom;
 		this.description = description;
@@ -47,15 +46,13 @@ public class Evaluation implements Serializable {
 		this.type = type;
 	}
 
-	public Evaluation(int id, String nom, String description, String etat, EvaluationType type,
-			List<Employee> employee) {
+	public Evaluation(int id, String nom, String description, boolean etat, EvaluationType type) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.description = description;
 		this.etat = etat;
 		this.type = type;
-		this.employee = employee;
 	}
 
 	public int getId() {
@@ -82,19 +79,13 @@ public class Evaluation implements Serializable {
 		this.description = description;
 	}
 
-	public List<Employee> getEmployee() {
-		return employee;
-	}
 
-	public void setEmployee(List<Employee> employee) {
-		this.employee = employee;
-	}
 
-	public String getEtat() {
+	public boolean getEtat() {
 		return etat;
 	}
 
-	public void setEtat(String etat) {
+	public void setEtat(boolean etat) {
 		this.etat = etat;
 	}
 

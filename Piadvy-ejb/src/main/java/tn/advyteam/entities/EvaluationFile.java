@@ -1,75 +1,44 @@
 package tn.advyteam.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 
-
-import javax.persistence.EmbeddedId;
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name="EvaluationFile")
+@DiscriminatorValue(value = "evaluationfile")
 public class EvaluationFile {
-
-	@EmbeddedId
-	private EvaluationFilePK filepk;
-	
-	@ManyToOne
-	@JoinColumn(name="idEmploye", referencedColumnName="id", insertable=false, updatable=false ) 
-	private Employee employe;
-	@ManyToOne
-	@JoinColumn(name="idEvaluationAnnuel", referencedColumnName="id", insertable=false, updatable=false ) 
-	private EvaluationAnnuel evaluationAnnuel;
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String objec;
 	
 	private int noteManager;
 	private int noteEmploye;
-	private String object;
 	private String result;
 	
 	
-	
-	
-	public EvaluationFile() {
-		super();
+	@OneToOne(mappedBy="file" , cascade=CascadeType.PERSIST)
+	private EvaluationAnnuel eva;
+	@OneToMany(mappedBy="filee",fetch=FetchType.EAGER)
+	private List<Objectifs> objectifs = new ArrayList<Objectifs>();
+	public int getId() {
+		return id;
 	}
-	
-	public EvaluationFile(EvaluationFilePK filepk, Employee employe, EvaluationAnnuel evaluationAnnuel, int noteManager,
-			int noteEmploye, String object, String result) {
-		super();
-		this.filepk = filepk;
-		this.employe = employe;
-		this.evaluationAnnuel = evaluationAnnuel;
-		this.noteManager = noteManager;
-		this.noteEmploye = noteEmploye;
-		this.object = evaluationAnnuel.getObjectif();
-		this.result = result;
+	public void setId(int id) {
+		this.id = id;
 	}
-
-	public EvaluationFilePK getFilepk() {
-		return filepk;
-	}
-	public void setFilepk(EvaluationFilePK filepk) {
-		this.filepk = filepk;
-	}
-	
-
-	public Employee getEmploye() {
-		return employe;
-	}
-
-	public void setEmploye(Employee employe) {
-		this.employe = employe;
-	}
-
-	public EvaluationAnnuel getEvaluationAnnuel() {
-		return evaluationAnnuel;
-	}
-
-	public void setEvaluationAnnuel(EvaluationAnnuel evaluationAnnuel) {
-		this.evaluationAnnuel = evaluationAnnuel;
-	}
-
 	public int getNoteManager() {
 		return noteManager;
 	}
@@ -82,17 +51,44 @@ public class EvaluationFile {
 	public void setNoteEmploye(int noteEmploye) {
 		this.noteEmploye = noteEmploye;
 	}
-	public String getObject() {
-		return object;
-	}
-	public void setObject(String object) {
-		this.object = object;
-	}
+
 	public String getResult() {
 		return result;
 	}
 	public void setResult(String result) {
 		this.result = result;
+	}
+	public EvaluationAnnuel getEva() {
+		return eva;
+	}
+	public void setEva(EvaluationAnnuel eva) {
+		this.eva = eva;
+	}
+	public List<Objectifs> getObjectifs() {
+		return objectifs;
+	}
+	public void setObjectifs(List<Objectifs> objectifs) {
+		this.objectifs = objectifs;
+	}
+	
+	
+	public String getObjec() {
+		return objec;
+	}
+	public void setObjec(String objec) {
+		this.objec = objec;
+	}
+	public EvaluationFile(int id,String objec, int noteManager, int noteEmploye, String result) {
+		super();
+		this.id = id;
+		this.objec=objec;
+		this.noteManager = noteManager;
+		this.noteEmploye = noteEmploye;
+		this.result = result;
+	
+	}
+	public EvaluationFile() {
+		super();
 	}
 	
 	

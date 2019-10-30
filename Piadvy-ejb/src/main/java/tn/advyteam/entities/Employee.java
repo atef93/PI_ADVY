@@ -3,19 +3,18 @@ package tn.advyteam.entities;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "employe")
+@Table(name="Employee")
+@DiscriminatorValue(value = "employee")
 public class Employee {
 
 	
@@ -26,10 +25,10 @@ public class Employee {
 	private String nom;
 	@Column
 	private String prenom;
-	@ManyToMany
-	private List<Evaluation> evaluation;
-	@OneToMany (mappedBy="employe")
-	private List<EvaluationFile> file;
+	
+	@OneToMany(mappedBy="emp")
+	private List<EvaluationAnnuel> evaluation;
+
 	public Employee() {
 		// TODO Auto-generated constructor stub
 	}
@@ -58,22 +57,18 @@ public class Employee {
 		this.prenom = prenom;
 	}
 
-	public List<Evaluation> getEvaluation() {
+	public List<EvaluationAnnuel> getEvaluation() {
 		return evaluation;
 	}
 
-	public void setEvaluation(List<Evaluation> evaluation) {
+	public void setEvaluation(List<EvaluationAnnuel> evaluation) {
 		this.evaluation = evaluation;
 	}
 
-	public List<EvaluationFile> getFile() {
-		return file;
-	}
 
-	public void setFile(List<EvaluationFile> file) {
-		this.file = file;
-	}
+
 	
+
 	
 	
 }

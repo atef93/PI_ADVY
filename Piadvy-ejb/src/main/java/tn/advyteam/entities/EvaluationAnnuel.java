@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
@@ -19,6 +19,10 @@ import javax.persistence.Table;
 @DiscriminatorValue(value = "evaluationAnnuel")
 public class EvaluationAnnuel extends Evaluation implements Serializable{
 
+	/**
+	 * 
+	 */
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -28,9 +32,11 @@ public class EvaluationAnnuel extends Evaluation implements Serializable{
 	private Date rendezVous;
 	@Column
 	private Date dateEcheance;
-	@OneToMany (mappedBy="evaluationAnnuel")
-	private List<EvaluationFile> filee;
+	
+	
 	@OneToOne
+	private EvaluationFile file;
+	@ManyToOne
 	private Employee emp;
 	
 	public EvaluationAnnuel() {
@@ -44,25 +50,25 @@ public class EvaluationAnnuel extends Evaluation implements Serializable{
 		this.dateEcheance = dateEcheance;
 	}
 	
-	public EvaluationAnnuel(int id, String nom, String description, String etat, EvaluationType type,
+	public EvaluationAnnuel(int id, String nom, String description, boolean etat, EvaluationType type,
 			List<Employee> employee,String objectif, Date rendezVous, Date dateEcheance) {
-		super( id,nom, description, etat, type, employee);
+		super( id,nom, description, etat, type);
 		// TODO Auto-generated constructor stub
 		this.objectif = objectif;
 		this.rendezVous = rendezVous;
 		this.dateEcheance = dateEcheance;
 	}
 	
-	public EvaluationAnnuel( String nom, String description, String etat, EvaluationType type,
+	public EvaluationAnnuel( String nom, String description, boolean etat, EvaluationType type,
 			List<Employee> employee,String objectif, Date rendezVous, Date dateEcheance,int id) {
-		super( id,nom, description, etat, type, employee);
+		super( id,nom, description, etat, type);
 		// TODO Auto-generated constructor stub
 		this.objectif = objectif;
 		this.rendezVous = rendezVous;
 		this.dateEcheance = dateEcheance;
 		this.id=id;
 	}
-	public EvaluationAnnuel(String nom, String description, String etat, EvaluationType type) {
+	public EvaluationAnnuel(String nom, String description, boolean etat, EvaluationType type) {
 		super(nom, description, etat, type);
 		// TODO Auto-generated constructor stub
 	}
@@ -90,36 +96,17 @@ public class EvaluationAnnuel extends Evaluation implements Serializable{
 	public void setDateEcheance(Date dateEcheance) {
 		this.dateEcheance = dateEcheance;
 	}
-	public List<EvaluationFile> getFile() {
-		return filee;
+	public EvaluationFile getFile() {
+		return file;
 	}
-	public void setFile(List<EvaluationFile> file) {
-		this.filee = file;
-	}
-	public List<EvaluationFile> getFilee() {
-		return filee;
-	}
-	public void setFilee(List<EvaluationFile> filee) {
-		this.filee = filee;
+	public void setFile(EvaluationFile file) {
+		this.file = file;
 	}
 	public Employee getEmp() {
 		return emp;
 	}
 	public void setEmp(Employee emp) {
 		this.emp = emp;
-	}
-	public EvaluationAnnuel(String objectif, Date rendezVous, Date dateEcheance, Employee emp) {
-		super();
-	
-		this.objectif = objectif;
-		this.rendezVous = rendezVous;
-		this.dateEcheance = dateEcheance;
-		this.emp = emp;
-	}
-	@Override
-	public String toString() {
-		return "EvaluationAnnuel [id=" + id + ", objectif=" + objectif + ", rendezVous=" + rendezVous
-				+ ", dateEcheance=" + dateEcheance + ", emp=" + emp + "]";
 	}
 
 	
