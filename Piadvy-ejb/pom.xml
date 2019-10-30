@@ -36,6 +36,7 @@
 
 	<dependencies>
 
+
 		<!-- Declare the APIs we depend on and need for compilation. All of them 
 			are provided by JBoss WildFly -->
 
@@ -72,7 +73,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-
 		<!-- Test scope dependencies -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -94,6 +94,14 @@
 			<artifactId>arquillian-protocol-servlet</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.flickr4java</groupId>
+			<artifactId>flickr4java</artifactId>
+			<version>3.0.2</version>
+		</dependency>
+
+
 
 	</dependencies>
 
