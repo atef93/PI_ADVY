@@ -21,7 +21,7 @@ import tn.advyteam.service.GestionTimesheetRemote;
 
 @ManagedBean(name = "customTimelineView")
 @ViewScoped
-public class CustomTimelineView implements Serializable {  
+public class CustomTimelineViewManager implements Serializable {  
    
     private TimelineModel model;  
     private Date start;  
@@ -40,7 +40,7 @@ public class CustomTimelineView implements Serializable {
     
     @PostConstruct 
     public void init() {  
-    	timesheets = timesheetServiceImp.getAllTimesheetsByDeveloperJPQL(3);
+    	timesheets = timesheetServiceImp.getAllTimesheetsByProject(15);
     	
         // set initial start / end dates for the axis of the timeline  
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));  

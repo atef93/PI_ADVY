@@ -134,14 +134,14 @@
 
 								<p:panelGrid columns="3" layout="grid" style="color: blue;">
 									<p:panel id="ouvert" header="Ouvert"
-										style="background-color: rgb(48, 191, 191)">
+										style="background: #F03030">
 
 										<h:form id="form1">
 
 											<p:dataGrid columns="1" var="timesheet"
 												value="#{timesheetDeveloperBean.todo}" id="cars">
 												<p:panel header="#{timesheet.titre}"
-													style="text-align:center; background-color: #87E990">
+													style="text-align:center; background-color: #c95757">
 
 													<p:commandButton value="doing"
 														action="#{timesheetDeveloperBean.doing(timesheet)}"
@@ -162,7 +162,7 @@
 									</p:panel>
 
 									<p:panel id="encours" header="En Cours"
-										style="margin-bottom:50px; background-color:  rgb(143, 126, 230)">
+										style="margin-bottom:50px; background:  #FFA500">
 
 										<h:form id="form2">
 											<p:dataGrid columns="1" var="timesheet"
@@ -201,13 +201,13 @@
 									</p:panel>
 
 									<p:panel id="termine" header="Termine"
-										style="margin-bottom:50px;  background-color:  #F88E55">
+										style="margin-bottom:50px;  background:  #1AA11A">
 
 										<h:form id="form3">
 											<p:dataGrid columns="1" var="timesheet"
 												value="#{timesheetDeveloperBean.done}" id="cars">
 												<p:panel header="#{timesheet.titre}"
-													style="text-align:center; background-color: #D473D4 ">
+													style="text-align:center; background-color: #57c988 ">
 
 
 													<p:commandButton value="todo"
