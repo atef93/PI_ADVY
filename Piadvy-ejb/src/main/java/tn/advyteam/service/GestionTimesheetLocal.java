@@ -42,7 +42,8 @@ public interface GestionTimesheetLocal {
 	
 	public void startTracking();
 	public void stopTracking();
-	
+	public void deleteTimesheetById(int id);
+
 	
 	
 	

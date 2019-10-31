@@ -260,7 +260,7 @@ body .ui-staticmessage.ui-message {
 														<!-- 																	detail="#{projectBean.selectedProjet.id}" /> -->
 														<!-- 															</div> -->
 														<!-- 														</div> -->
-														
+
 														<div class="card-btn">
 															<strong>Titre: </strong>
 															#{projectBean.selectedProjet.titre}
@@ -388,27 +388,25 @@ body .ui-staticmessage.ui-message {
 																<f:convertNumber currencySymbol="h" type="currency" />
 															</h:outputText>
 														</p:column>
-														<p:column filterBy="#{timesheet.minutePasse}"
-															headerText="MP"
-															filterFunction="#{dtFilterView.filterByPrice}">
-
+														<p:column filterBy="#{timesheet.id}"
+															headerText="MP">
 
 															<p:commandButton value="supprimer"
-																action="#{projectBean.voirProjet(projet.id)}">
-																<f:param name="idProjet" value="#{projet.id}" />
-															</p:commandButton>
-														</p:column>
-
-														<p:column filterBy="#{timesheet.heureEstime}"
-															headerText="Color">
-
-															<p:commandButton value="modifier"
-																action="#{projectBean.voirProjet(projet.id)}">
-																<f:param name="idProjet" value="#{projet.id}" />
+																action="#{projectBean.supprimertimesheet(timesheet.id)}">
 															</p:commandButton>
 
-
 														</p:column>
+
+<!-- 														<p:column filterBy="#{timesheet.heureEstime}" -->
+<!-- 															headerText="Color"> -->
+
+<!-- 															<p:commandButton value="modifier" -->
+<!-- 																action="#{projectBean.voirProjet(projet.id)}"> -->
+<!-- 																<f:param name="idProjet" value="#{projet.id}" /> -->
+<!-- 															</p:commandButton> -->
+
+
+<!-- 														</p:column> -->
 													</p:dataTable>
 												</h:form>
 											</div>

@@ -38,8 +38,8 @@ public interface GestionTimesheetRemote {
 	public Timesheet getTimesheetById(int id);
 	public List<Timesheet> getTimesheetDP(int idP, int idD);
 	public List<Projet> getAllProjetByEmploye(int id);
-
 	public void startTracking();
 	public void stopTracking();
+	public void deleteTimesheetById(int id);
 
 }

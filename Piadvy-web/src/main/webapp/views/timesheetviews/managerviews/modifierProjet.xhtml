@@ -150,7 +150,7 @@
 												width="100%">
 
 												<p:outputLabel for="titre" value="Titre de projet" />
-												<p:inputText id="titre" value="#{projectBean.titre}"
+												<p:inputText id="titre" value="#{projectBean.projetToUpdate.titre}"
 													required="true" label="titre">
 													<f:validateLength minimum="2" />
 												</p:inputText>
@@ -159,7 +159,7 @@
 
 												<p:outputLabel for="desc" value="description" />
 												<p:inputTextarea id="desc"
-													value="#{projectBean.description}" label="desc"
+													value="#{projectBean.projetToUpdate.description}" label="desc"
 													required="true">
 													<f:validateLength minimum="2" />
 												</p:inputTextarea>
@@ -172,8 +172,8 @@
 
 
 
-											<p:commandButton value="Save" update="panel"
-												action="#{projectBean.addProject()}" icon="pi pi-check"
+											<p:commandButton value="Modifier" update="panel"
+												action="#{projectBean.modifierProjet()}" icon="pi pi-check"
 												resetValues="true" />
 										</p:panel>
 

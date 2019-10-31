@@ -285,6 +285,13 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 		
 	}
 
+	@Override
+	public void deleteTimesheetById(int id) {
+		Timesheet t = em.find(Timesheet.class, id);
+		em.remove(t);
+		
+	}
+
 
 
 }

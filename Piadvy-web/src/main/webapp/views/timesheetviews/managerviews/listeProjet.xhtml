@@ -108,8 +108,8 @@
 												<li><a href="listeProjet.xhtml"><i
 														class="fa fa-envelope-o" /> Consulter Liste Projet <span>3</span></a></li>
 
-<!-- 												<li><a href="dashboard-password.html"><i -->
-<!-- 														class="fa fa-unlock-alt" />Les statistique</a></li> -->
+												<!-- 												<li><a href="dashboard-password.html"><i -->
+												<!-- 														class="fa fa-unlock-alt" />Les statistique</a></li> -->
 											</ul>
 										</div>
 										<!-- user-profile-menu end-->
@@ -154,14 +154,16 @@
 
 									<h:form id="form">
 										<p:dataGrid var="projet" value="#{projectBean.projets}"
-											id="cars">
+											id="cars" columns="2">
 
 											<f:facet name="header">
 										            Vos Projet
 										        </f:facet>
 
-											<p:panel header="#{projet.titre}" style="text-align:center">
-												<h:panelGrid columns="1" style="width:100%">
+											<p:panel header="#{projet.titre}"
+												style="text-align:center; background-color: #7CB9E8">
+												<h:panelGrid columns=""
+													style="width:100%; font-weight: bold ">
 													<img src="../../../images/bg/6.jpg" width="55px"
 														height="55px" />
 													<h:outputText value="#{projet.description}" />
@@ -176,11 +178,57 @@
 												<p:commandButton value="supprimer"
 													action="#{projectBean.supprimerProjet(projet.id)}"
 													icon="pi pi-check" />
-											</p:panel>
 
+
+
+											</p:panel>
+											<h:form>
+												<p:growl id="message" showDetail="true" />
+												<p:commandButton value="Modifier"
+													action="#{projectBean.destroyWorld}" update="message">
+													<p:confirm header="Confirmation" message="Are you sure?"
+														icon="pi pi-exclamation-triangle" />
+												</p:commandButton>
+
+												<p:confirmDialog global="true" showEffect="fadeOut"
+													hideEffect="fadeIn">
+													<p:messages id="msgs" />
+
+													<h:panelGrid columns="1" cellpadding="10" cellspacing="5"
+														width="100%">
+
+														<p:outputLabel for="titre" value="Titre de projet" />
+														<p:inputText id="titre" value="#{projectBean.titre}"
+															required="true" label="titre">
+															<f:validateLength minimum="2" />
+														</p:inputText>
+
+														<p:message for="titre" display="icon" />
+
+														<p:outputLabel for="desc" value="description" />
+														<p:inputTextarea id="desc"
+															value="#{projectBean.description}" label="desc"
+															required="true">
+															<f:validateLength minimum="2" />
+														</p:inputTextarea>
+
+														<p:message for="desc" id="msgLastname" display="icon" />
+													</h:panelGrid>
+
+
+
+
+													<p:commandButton value="Yes" type="button"
+														styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+													<p:commandButton value="No" type="button"
+														styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+												</p:confirmDialog>
+
+											</h:form>
 										</p:dataGrid>
 
 									</h:form>
+
 
 
 									<!-- dashboard-list end-->
@@ -189,48 +237,45 @@
 						</div>
 					</div>
 				</div>
-				<!--profile-edit-wrap end -->
-			
-			<!--container end -->
-			</section>
-			<!-- section end -->
+				<!--profile-edit-wrap end --> <!--container end --> </section>
+				<!-- section end -->
 
-			<div class="limit-box fl-wrap" />
-			<!--section -->
-			<section class="gradient-bg">
+				<div class="limit-box fl-wrap" />
+				<!--section -->
+				<section class="gradient-bg">
 
-			<div class="cirle-bg">
+				<div class="cirle-bg">
 
-				<div class="bg" data-bg="images/bg/circle.png" />
-			</div>
+					<div class="bg" data-bg="images/bg/circle.png" />
+				</div>
 
-			<div class="container">
+				<div class="container">
 
-				<div class="join-wrap fl-wrap">
+					<div class="join-wrap fl-wrap">
 
-					<div class="row">
+						<div class="row">
 
-						<div class="col-md-8">
+							<div class="col-md-8">
 
-							<h3>Do You Have Questions ?</h3>
+								<h3>Do You Have Questions ?</h3>
 
-							<p>Lorem ipsum dolor sit amet, harum dolor nec in, usu
-								molestiae at no.</p>
-						</div>
+								<p>Lorem ipsum dolor sit amet, harum dolor nec in, usu
+									molestiae at no.</p>
+							</div>
 
-						<div class="col-md-4">
-							<a href="contacts.html" class="join-wrap-btn">Get In Touch <i
-								class="fa fa-envelope-o" /></a>
+							<div class="col-md-4">
+								<a href="contacts.html" class="join-wrap-btn">Get In Touch <i
+									class="fa fa-envelope-o" /></a>
+							</div>
 						</div>
 					</div>
 				</div>
+				</section>
+				<!-- section end -->
 			</div>
-			</section>
-			<!-- section end -->
 		</div>
-	</div>
-	<!-- wrapper end -->
-	<ui:include src="/views/timesheetviews/footer.xhtml" />
+		<!-- wrapper end -->
+		<ui:include src="/views/timesheetviews/footer.xhtml" />
 
 
 

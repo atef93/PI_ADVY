@@ -1,16 +1,23 @@
 package tn.managedBeans.timesheet;
 
 import java.io.Serializable;
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.primefaces.model.timeline.TimelineEvent;
 import org.primefaces.model.timeline.TimelineModel;
+
+import tn.advyteam.entities.Timesheet;
+import tn.advyteam.service.GestionTimesheetRemote;
 
 @ManagedBean(name = "customTimelineView")
 @ViewScoped
@@ -18,10 +25,22 @@ public class CustomTimelineView implements Serializable {
    
     private TimelineModel model;  
     private Date start;  
-    private Date end;  
+    private Date end;
+ 
+    private Date dd;
+    private Date df;
+    
    
+    @EJB
+	GestionTimesheetRemote timesheetServiceImp;
+    
+    
+    private List<Timesheet> timesheets = new ArrayList<Timesheet>();
+    
     @PostConstruct 
     public void init() {  
+    	timesheets = timesheetServiceImp.getAllTimesheetsByDeveloperJPQL(3);
+    	
         // set initial start / end dates for the axis of the timeline  
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));  
         Date now = new Date();  
@@ -33,24 +52,43 @@ public class CustomTimelineView implements Serializable {
         end = cal.getTime();  
    
         // groups  
-        String[] NAMES = new String[] {"User 1", "User 2", "User 3", "User 4", "User 5", "User 6"};  
+        //String[] NAMES = new String[] {"User 1", "User 2", "User 3", "User 4", "User 5", "User 6"}; 
+        
+        
+        //Timesheets pour un employee
+        
+        
    
         // create timeline model  
         model = new TimelineModel();  
    
-        for (String name : NAMES) {  
+       // for (String name : NAMES) {  
+        for(Timesheet t: timesheets) {
             now = new Date();  
             Date end = new Date(now.getTime() - 12 * 60 * 60 * 1000);  
    
-            for (int i = 0; i < 5; i++) {  
-                Date start = new Date(end.getTime() + Math.round(Math.random() * 5) * 60 * 60 * 1000);  
-                end = new Date(start.getTime() + Math.round(4 + Math.random() * 5) * 60 * 60 * 1000);  
+            for (int i = 0; i < timesheets.size(); i++) {  
+                Date start = t.getDateDebut();  
+                end = t.getDeadline();
    
-                long r = Math.round(Math.random() * 2);  
-                String availability = (r == 0 ? "Unavailable" : (r == 1 ? "Available" : "Maybe"));  
-   
+                //long r = Math.round(Math.random() * 2);
+                //String availability = (r == 0 ? "Unavailable" : (r == 1 ? "Available" : "Maybe"));  
+                String availability = null;
+                
+                if(t.getHeureEstime()-t.getHeurePasse()<0) {
+                	availability = "Retard";
+                }
+                else if(t.getHeureEstime()-t.getHeurePasse()>0) {
+                	availability = "Encours";
+                }
+                else if(t.getHeureEstime()-t.getHeurePasse() == 0) {
+                	availability = "Termine";
+                }
+                
+                // (r == 0 ? "Unavailable" : (r == 1 ? "Available" : "Maybe"));  
+                
                 // create an event with content, start / end dates, editable flag, group name and custom style class  
-                TimelineEvent event = new TimelineEvent(availability, start, end, true, name, availability.toLowerCase());  
+                TimelineEvent event = new TimelineEvent(availability, t.getDateDebut(), t.getDeadline(), true, t.getTitre(), availability.toLowerCase());  
                 model.add(event);  
             }  
         }  
@@ -66,5 +104,23 @@ public class CustomTimelineView implements Serializable {
    
     public Date getEnd() {  
         return end;  
-    }  
+    }
+
+	public Date getDd() {
+		return dd;
+	}
+
+	public Date getDf() {
+		return df;
+	}
+
+	public void setDd(Date dd) {
+		this.dd = dd;
+	}
+
+	public void setDf(Date df) {
+		this.df = df;
+	}  
+    
+    
 }

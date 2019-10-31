@@ -2,11 +2,13 @@ package tn.managedBeans.timesheet;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.SocketTimeoutException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -15,6 +17,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.CloseEvent;
+import org.primefaces.event.MoveEvent;
 import org.primefaces.event.SelectEvent;
 
 import tn.advyteam.entities.Manager;
@@ -41,6 +45,7 @@ public class ProjectBean implements Serializable{
     private Date date2;
 	private String color;
 	
+	private Projet projetToUpdate;
 	
 	
 	private List<Timesheet> timesheets = new ArrayList<>();
@@ -202,21 +207,37 @@ public class ProjectBean implements Serializable{
 
 	}
 	
-	public void modifierProjet(int id) {
-		Projet projet = new Projet();
+	public void modifierProjet() throws IOException {
+		int id = 0 ;
+		Map<String, String> paramMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		
-		selectedProjet=timesheetServiceImp.getProjectById(id);
+		if(paramMap.get("id") != null) {
+			id = Integer.parseInt(paramMap.get("id"));
+		}
+		
+		projetToUpdate = timesheetServiceImp.getProjectById(id);
+		
+		
+		
+		//selectedProjet=timesheetServiceImp.getProjectById(id);
 		//projet.setId(selectedProjet.getId());
-		projet.setTitre(selectedProjet.getTitre());
-		projet.setDescription(selectedProjet.getDescription());
-		
-		timesheetServiceImp.updateProject(selectedProjet, selectedProjet.getId());
-		
+		//projet.setTitre(selectedProjet.getTitre());
+		//projet.setDescription(selectedProjet.getDescription());	
+		timesheetServiceImp.updateProject(projetToUpdate, id);
+		FacesContext.getCurrentInstance().getExternalContext().redirect("listeProjet.xhtml");
 
 	}
 	
+	public void supprimertimesheet(int id) throws IOException {
+		System.out.println("methode delete...");
+		timesheetServiceImp.deleteTimesheetById(id);
+		FacesContext.getCurrentInstance().getExternalContext().redirect("listeProjet.xhtml");
+	}
 	
 	
+	public String goToPage(int id) {
+		return "modifierProjet.xhtml?id="+id;
+	}
 	
 	
 	
@@ -271,6 +292,35 @@ public class ProjectBean implements Serializable{
 	public void setTitres(List<String> titres) {
 		this.titres = titres;
 	}
+
+
+	public Projet getProjetToUpdate() {
+		return projetToUpdate;
+	}
+
+
+	public void setProjetToUpdate(Projet projetToUpdate) {
+		this.projetToUpdate = projetToUpdate;
+	}
+	
+	//////////////////////////////////////////
+	   public void handleClose(CloseEvent event) {
+	        addMessage(event.getComponent().getId() + " closed", "So you don't like nature?");
+	    }
+	     
+	    public void handleMove(MoveEvent event) {
+	        addMessage(event.getComponent().getId() + " moved", "Left: " + event.getLeft() + ", Top: " + event.getTop());
+	    }
+	     
+	    public void destroyWorld() {
+	        addMessage("System Error", "Please try again later.");
+	    }
+	     
+	    public void addMessage(String summary, String detail) {
+	        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+	        FacesContext.getCurrentInstance().addMessage(null, message);
+	    }
+	
 	     
 //	    public List<String> getColors() {
 //	        return service.getColors();
