@@ -72,22 +72,25 @@
 
 											<h3>Gestion de Employe</h3>
 
-											<ul>
-												<li><a href="Accueil.xhtml"><i class="fa fa-user-o" />
-														Accueil </a></li>
-
-												<li><a href="Profile.xhtml"><i class="fa fa-user-o" />
-														Profile Employee</a></li>
-
+															<ul><li><a href="Accueil.xhtml"><i
+														class="fa fa-user-o" /> Accueil </a></li>
+														
+														<li><a href="Profile.xhtml"><i
+														class="fa fa-user-o" /> Profile Employee</a></li>
+	
+				<ui:fragment rendered="#{loginBean.isrh eq false}">
 
 												<li><a href="addemployee.xhtml"><i
-														class="fa fa-user-o" /> Ajouter Employee</a></li>
+														class="fa fa-user-o" /> Ajouter devlopper</a></li>
 
 												<li><a href="ListEmployee.xhtml"><i
 														class="fa fa-envelope-o" /> List Empolyee </a></li>
+														
+													<li><a href="Addmanager.xhtml"><i
+														class="fa fa-envelope-o" /> Ajouter  manager </a></li>
+	
 
-
-
+</ui:fragment>
 											</ul>
 										</div>
 										<!-- user-profile-menu end-->

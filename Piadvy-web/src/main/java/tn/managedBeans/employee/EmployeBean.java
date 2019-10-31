@@ -1,5 +1,6 @@
 package tn.managedBeans.employee;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.security.GeneralSecurityException;
 import java.util.Base64;
@@ -11,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.mail.Message;
@@ -27,7 +29,7 @@ import tn.advyteam.entities.Contrat;
 import tn.advyteam.entities.Developpeur;
 import tn.advyteam.entities.Employee;
 import tn.advyteam.entities.Etatcivil;
-
+import tn.advyteam.entities.Manager;
 import tn.advyteam.entities.TypeContrat;
 import tn.advyteam.serviceImp.EmployeServiceImp;
 
@@ -57,6 +59,7 @@ public class EmployeBean implements Serializable{
 	private UploadedFile file;
 	private String encodedString="";
 	private String description;
+	private int codedeconfirmaationmail ;
 
 	//contrat
 	private int reference;
@@ -64,6 +67,13 @@ public class EmployeBean implements Serializable{
 	private Date datefin;
 	private Float salaire;
 	private TypeContrat typeContrat;
+	
+	
+	
+	
+	  @ManagedProperty(value="#{loginBean}" )
+	  LoginBean lb;
+	 
 	
 	
 /*
@@ -272,7 +282,6 @@ public class EmployeBean implements Serializable{
 				return new PasswordAuthentication(username, password);
 			}
 		  });
- 
 		try {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("porjet2019@gmail.com"));
@@ -280,8 +289,8 @@ public class EmployeBean implements Serializable{
 				InternetAddress.parse(eml));
 			System.out.println(eml + "dsssssssssssssss");
 			message.setSubject("Le password ");
-			System.out.println("Voici votre  password  "  + pass);
-			message.setText("Voici votre  password  : " + pass);
+			System.out.println("Voici votre  Login: "  + eml +" votre  password : "+ pass );
+			message.setText("Voici votre  Email  : " + eml +" Voici votre  password  : " + pass);
 			Transport.send(message);
 			System.out.println("Done");
 		} catch (MessagingException e) {
@@ -294,6 +303,57 @@ public class EmployeBean implements Serializable{
 	getEmployes();
 	System.out.println(encodedString);
 	}
+	
+
+	public void AjouterContratmana() 
+	{
+		
+		
+		String	pass =  password ;
+		String  eml = 	email ;
+			
+		
+		byte[] fileContent = file.getContents();
+		String encodedString = Base64.getEncoder().encodeToString(fileContent);
+		System.out.println(encodedString);
+		
+		final String username = "porjet2019@gmail.com";
+		final String password = "duwhjaxubkjxebih";
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+ 
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+		try {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("porjet2019@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse(eml));
+			System.out.println(eml + "dsssssssssssssss");
+			message.setSubject("Le password ");
+			System.out.println("Voici votre  Login: "  + eml +" votre  password : "+ pass );
+			message.setText("Voici votre  Email  : " + eml +" Voici votre  password  : " + pass);
+			Transport.send(message);
+			System.out.println("Done");
+		} catch (MessagingException e) {
+			System.out.println("ERE");
+		}
+		
+
+		
+	employeServiceImp.ajoutercontratmanager(new Manager(nom, prenom, adresse, email, sexe, isActif, this.password, datenaissance, etatcivil, role, encodedString),new Contrat(datedebut, datefin, salaire, typeContrat));
+	getEmployes();
+	System.out.println(encodedString);
+	}
+	
+
 	
 	public int getReference() {
 		return reference;
@@ -437,10 +497,6 @@ public class EmployeBean implements Serializable{
 		this.encodedString = encodedString;
 	}
 	
-	
- 
-
-
 
 	public String getDescription() {
 		return description;
@@ -451,6 +507,43 @@ public class EmployeBean implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 
+
+
+	public LoginBean getLb() {
+		return lb;
+	}
+
+
+
+	public void setLb(LoginBean lb) {
+		this.lb = lb;
+	}
+	
+	
+	  public void updatepassworddevloppeur() throws IOException 
+	  {
+		  if (lb.getCodeconection() == codedeconfirmaationmail) 
+		  {
+		  lb.getEmploye().setPassword(password);
+		  lb.getEmploye().setFerstlogin(true);
+		  employeServiceImp.updatepass(lb.getEmploye());
+			  {FacesContext.getCurrentInstance().getExternalContext().redirect("Profile.xhtml");}
+		  }else {{FacesContext.getCurrentInstance().getExternalContext().redirect("Changepass.xhtml");}}
+		  }
+	 
+
+	public int getCodedeconfirmaationmail() {
+		return codedeconfirmaationmail;
+	}
+
+
+
+	public void setCodedeconfirmaationmail(int codedeconfirmaationmail) {
+		this.codedeconfirmaationmail = codedeconfirmaationmail;
+	}
+	 
+	
+	
+			
 }

@@ -51,6 +51,8 @@ public class Employee implements Serializable{
 	private String role ;
 	@Column(columnDefinition="MEDIUMTEXT")
 	private String image ;
+	private Boolean ferstlogin;
+
 
 	
 	
@@ -222,6 +224,14 @@ public class Employee implements Serializable{
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public Boolean getFerstlogin() {
+		return ferstlogin;
+	}
+
+	public void setFerstlogin(Boolean ferstlogin) {
+		this.ferstlogin = ferstlogin;
 	}
 	
 	

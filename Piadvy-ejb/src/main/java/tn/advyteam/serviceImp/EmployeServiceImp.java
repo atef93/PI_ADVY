@@ -17,6 +17,7 @@ import javax.xml.bind.DatatypeConverter;
 import tn.advyteam.entities.Contrat;
 import tn.advyteam.entities.Developpeur;
 import tn.advyteam.entities.Employee;
+import tn.advyteam.entities.Manager;
 import tn.advyteam.entities.Publication;
 import tn.advyteam.service.GestionEmployeLocal;
 import tn.advyteam.service.GestionEmployeRemote;
@@ -33,7 +34,13 @@ public class EmployeServiceImp implements GestionEmployeLocal, GestionEmployeRem
 	Developpeur developpeur;
 	List<Employee> listemp ;
 	Publication publication ;
+	Manager manager ;
 
+
+	public void addmanager (Manager manager) 
+    {
+    	em.persist(manager);
+    }
 
 	
     public void addemploye (Developpeur developpeur) 
@@ -124,6 +131,16 @@ public class EmployeServiceImp implements GestionEmployeLocal, GestionEmployeRem
 		developpeur.setPassword(EmployeServiceImp.MD5(developpeur.getPassword()));
 		em.persist(developpeur);
 	}
+	
+	
+	
+	
+	public void ajoutercontratmanager(Manager manager, Contrat contrat)  
+	{
+		manager.setContrat(contrat);
+		manager.setPassword(EmployeServiceImp.MD5(manager.getPassword()));
+		em.persist(manager);
+	}
 
 	
 	public Developpeur getDeveloppeur()
@@ -153,6 +170,12 @@ public class EmployeServiceImp implements GestionEmployeLocal, GestionEmployeRem
 		return employe;
 	}
 
+	public void updatepass(Employee employee) 
+		{
+		employee.setPassword(EmployeServiceImp.MD5(employee.getPassword()));
+		employee.setFerstlogin(true);
+			em.merge(employee);
+		}	
  
 	
 	

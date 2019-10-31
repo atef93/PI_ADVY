@@ -63,11 +63,11 @@ public class PublicationBean implements Serializable
 	@PostConstruct
 	public void init() throws IOException
 	{
-	if (lb.getEmploye()==null)
-		{FacesContext.getCurrentInstance().getExternalContext().redirect("Login.xhtml");
-		}
-	 	 this.listpublicationcom=listPubCom();
-	 	 
+		/*
+		 * if (lb.getEmploye()==null)
+		 * {FacesContext.getCurrentInstance().getExternalContext().redirect(
+		 * "Login.xhtml"); } this.listpublicationcom=listPubCom();
+		 */
 	 	 
 	}
 	
@@ -95,7 +95,7 @@ public class PublicationBean implements Serializable
 		pub.setIsActif(isactif);
 		pub.setDateCreation(new Date());
 		pub.setEmployee(lb.getEmploye());
-		publicationEmpService.addpub( pub);
+		publicationEmpService.addpub(pub);
 		System.out.println("cbon nemchi");
 		pub=new Publication();
 		this.description="";

@@ -9,6 +9,7 @@ import javax.ejb.Local;
 import tn.advyteam.entities.Contrat;
 import tn.advyteam.entities.Developpeur;
 import tn.advyteam.entities.Employee;
+import tn.advyteam.entities.Manager;
 import tn.advyteam.entities.Publication;
 
 @Local
@@ -21,7 +22,6 @@ public interface GestionEmployeLocal {
 	public void ajoutercontratemploye(Developpeur developpeur, Contrat contrat);
 	public void addemploye (Employee developpeur);
 	public Employee getEmployebyEmailAndPassword(String email , String password );
- 
-
-
+	public void ajoutercontratmanager(Manager manager, Contrat contrat)  ;
+	public void updatepass(Employee employee);
 }

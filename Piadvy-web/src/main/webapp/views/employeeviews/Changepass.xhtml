@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+		 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	
 
 
 
@@ -28,25 +29,96 @@
 	<!--=============== favicons ===============-->
 	<link rel="shortcut icon" href="../images/favicon.ico" />
 </h:head>
+
 <body>
 
+	<!-- loader -->
 	<div class="loader-wrap">
 		<div class="pin"></div>
-
+		<div class="pulse"></div>
 	</div>
-
+	<!--  loader end -->
+	<!-- Main   -->
 	<div id="main">
 
+
+		<ui:include src="/views/employeeviews/header.xhtml" />
+		<!-- wrapper -->
+
 		<div id="wrapper">
+			<!--content -->
+
 			<div class="content">
+				<!--section -->
+				<section id="sec1"> <!-- container -->
+
+				<div class="container">
+					<!-- profile-edit-wrap -->
+
+					<div class="profile-edit-wrap">
+
+						<div class="profile-edit-page-header">
+
+							<h2>Gestion de Employe</h2>
+
+							<div class="breadcrumbs">
+								<a href="#">Home</a><a href="#">Dasboard</a>
+							</div>
+						</div>
+
+						<div class="row">
+
+							<div class="col-md-3">
+
+								<div class="fixed-bar fl-wrap">
+
+									<div class="user-profile-menu-wrap fl-wrap">
+										<!-- user-profile-menu-->
+
+										<div class="user-profile-menu">
+
+											<h3>Gestion de Employe</h3>
+
+															<ul><li><a href="Accueil.xhtml"><i
+														class="fa fa-user-o" /> Accueil </a></li>
+														
+														<li><a href="Profile.xhtml"><i
+														class="fa fa-user-o" /> Profile Employee</a></li>
+	
+				<ui:fragment rendered="#{loginBean.isrh eq false}">
+
+												<li><a href="addemployee.xhtml"><i
+														class="fa fa-user-o" /> Ajouter devlopper</a></li>
+
+												<li><a href="ListEmployee.xhtml"><i
+														class="fa fa-envelope-o" /> List Empolyee </a></li>
+														
+													<li><a href="Addmanager.xhtml"><i
+														class="fa fa-envelope-o" /> Ajouter  manager </a></li>
+	</ui:fragment></ul>
+										</div>
+										
 
 
-			 
-  <div class="container">
-                            <!-- profile-edit-wrap -->
-                            <div class="profile-edit-wrap">
+										<!-- user-profile-menu end-->
+									<h:form>
+											<h:commandButton class="log-out-btn" action="#{employeBean.doLogout()}"
+											value="Logout"/>
+											</h:form>		
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-9">
+
+
+		
+							
+			<div class="content">
+			 <h:form>
+ 				<div class="profile-edit-wrap">
                                 <div class="profile-edit-page-header">
-                                    <h2>Change Password</h2>
+                                    <h2>Change Password if you like</h2>
                                     <div class="breadcrumbs"><a href="#">Home</a><a href="#">Dasboard</a><span>Change Password</span></div>
                                 </div>
                                 <div class="row">
@@ -58,50 +130,51 @@
                                                 <h4>Change Password</h4>
                                             </div>
                                             <div class="custom-form no-icons">
-                                                <div class="pass-input-wrap fl-wrap">
-                                                    <label>Current Password</label>
-                                                    <input type="password" class="pass-input" placeholder="" value=""/>
-                                                    <span class="eye"><i class="fa fa-eye" aria-hidden="true"></i> </span>
-                                                </div>
+                 
                                                 <div class="pass-input-wrap fl-wrap">
                                                     <label>New Password</label>
-                                                    <input type="password" class="pass-input" placeholder="" value=""/>
+                                                    <h:inputText type="text" pt:placeholder="Your Password *" value="#{employeBean.password}"/>
                                                     <span class="eye"><i class="fa fa-eye" aria-hidden="true"></i> </span>
                                                 </div>
-                                                <div class="pass-input-wrap fl-wrap">
-                                                    <label>Confirm New Password</label>
-                                                    <input type="password" class="pass-input" placeholder="" value=""/>
+                                                   <div class="pass-input-wrap fl-wrap">
+                                                    <label>New Password</label>
+                                                    <h:inputText type="text" pt:placeholder="Your Password *" value="#{employeBean.codedeconfirmaationmail}"/>
                                                     <span class="eye"><i class="fa fa-eye" aria-hidden="true"></i> </span>
                                                 </div>
-                                                <button class="btn  big-btn  color-bg flat-btn">Save Changes<i class="fa fa-angle-right"></i></button>
+                                               
+                                         <h:commandButton  class="log-out-btn" action="#{employeBean.updatepassworddevloppeur()}" value="Update password" /> 
                                             </div>
                                         </div>
                                         <!-- profile-edit-container end-->
                                     </div>
                                 </div>
                             </div>
-                            <!--profile-edit-wrap end -->
-                        </div>
+                        </h:form>
+                            
+						</div>
+							</div>
+						</div>
+					</div>
+					<!--profile-edit-wrap end -->
+				</div>
+				<!--container end --> </section>
+				<!-- section end -->
 
-
-				 
-				<!--col-list-wrap -->
-
-				<!--section end -->
+				<div class="limit-box fl-wrap" />
+				<!--section -->
+				
+				<!-- section end -->
 			</div>
-			<!--content end -->
 		</div>
+		<!-- wrapper end -->
+		<ui:include src="/views/employeeviews/footer.xhtml" />
+
+
 
 	</div>
-	<!-- Main end -->
 	<!--=============== scripts  ===============-->
 	<script type="text/javascript" src="../../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../../js/plugins.js"></script>
 	<script type="text/javascript" src="../../js/scripts.js"></script>
-	<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?key=AIzaSyDwJSRi0zFjDemECmFl9JtRj1FY7TiTRRo"></script>
-	<script type="text/javascript" src="../../js/map_infobox.js"></script>
-	<script type="text/javascript" src="../../js/markerclusterer.js"></script>
-	<script type="text/javascript" src="../../js/maps.js"></script>
 </body>
 </html>
