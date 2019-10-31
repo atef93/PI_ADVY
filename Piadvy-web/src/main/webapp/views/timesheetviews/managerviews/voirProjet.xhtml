@@ -184,8 +184,8 @@ body .ui-staticmessage.ui-message {
 												<li><a href="listeProjet.xhtml"><i
 														class="fa fa-envelope-o" /> Consulter Liste Projet <span>3</span></a></li>
 
-<!-- 												<li><a href="dashboard-password.html"><i -->
-<!-- 														class="fa fa-unlock-alt" />Les statistique</a></li> -->
+												<!-- 												<li><a href="dashboard-password.html"><i -->
+												<!-- 														class="fa fa-unlock-alt" />Les statistique</a></li> -->
 											</ul>
 										</div>
 										<!-- user-profile-menu end-->
@@ -241,24 +241,33 @@ body .ui-staticmessage.ui-message {
 													<h:panelGrid columns="2" columnClasses="column"
 														cellpadding="10px" cellspacing="30px">
 
-														<div class="ui-g">
-															<div class="ui-g-12 ui-md-3">
-																<p:staticMessage severity="info" summary="Titre"
-																	detail="#{projectBean.selectedProjet.titre}" />
-															</div>
-														</div>
-														<div class="ui-g">
-															<div class="ui-g-12 ui-md-3">
-																<p:staticMessage severity="info" summary="Description"
-																	detail="#{projectBean.selectedProjet.titre}" />
-															</div>
-														</div>
+														<!-- 														<div class="ui-g"> -->
+														<!-- 															<div class="ui-g-12 ui-md-3"> -->
+														<!-- 																<p:staticMessage severity="info" summary="Titre" -->
+														<!-- 																	detail="#{projectBean.selectedProjet.titre}" /> -->
+														<!-- 															</div> -->
+														<!-- 														</div> -->
+														<!-- 														<div class="ui-g"> -->
+														<!-- 															<div class="ui-g-12 ui-md-3"> -->
+														<!-- 																<p:staticMessage severity="info" summary="Description" -->
+														<!-- 																	detail="#{projectBean.selectedProjet.titre}" /> -->
+														<!-- 															</div> -->
+														<!-- 														</div> -->
 
-														<div class="ui-g">
-															<div class="ui-g-12 ui-md-3">
-																<p:staticMessage severity="info" summary="id"
-																	detail="#{projectBean.selectedProjet.id}" />
-															</div>
+														<!-- 														<div class="ui-g"> -->
+														<!-- 															<div class="ui-g-12 ui-md-3"> -->
+														<!-- 																<p:staticMessage severity="info" summary="id" -->
+														<!-- 																	detail="#{projectBean.selectedProjet.id}" /> -->
+														<!-- 															</div> -->
+														<!-- 														</div> -->
+														
+														<div class="card-btn">
+															<strong>Titre: </strong>
+															#{projectBean.selectedProjet.titre}
+														</div>
+														<div class="card-btn">
+															<strong>Description: </strong>
+															#{projectBean.selectedProjet.description}
 														</div>
 													</h:panelGrid>
 

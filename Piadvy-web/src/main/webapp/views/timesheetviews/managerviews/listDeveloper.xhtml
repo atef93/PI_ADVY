@@ -219,8 +219,7 @@ body .ui-staticmessage.ui-message {
 								<div class="dashboard-list-box fl-wrap">
 
 									<div class="dashboard-header fl-wrap">
-
-										<h3>Ajouter Timesheet for projet</h3>
+										<h3>Membre de mon équipe</h3>
 									</div>
 
 									<!-- dashboard-list end-->
@@ -244,10 +243,10 @@ body .ui-staticmessage.ui-message {
 													<p:dataTable var="developer"
 														value="#{developerStat.developpeurs}">
 														<f:facet name="header">
-													        List of devs
+													        List of developpeur
 													    </f:facet>
 
-														<p:column headerText="Id">
+														<p:column headerText="Id" visible="false">
 															<h:outputText value="#{developer.id}" />
 														</p:column>
 
@@ -260,14 +259,14 @@ body .ui-staticmessage.ui-message {
 														</p:column>
 
 														<p:column headerText="action">
-															<p:commandButton value="bookmarks"
+														
+															<p:commandButton value="participations"
 																action="#{developerStat.consulteDevPr(developer.id)}">
 															</p:commandButton>
 															
-<!-- 															<p:linkButton outcome="projetsDev" value="Bookmark" -->
+<!-- 															<p:linkButton outcome="projetsDev" value="participations" -->
 <!-- 																style="margin-right:20px;" -->
 <!-- 																onclick="#{developerStat.consulteDevPr(developer.id)}"> -->
-
 <!-- 															</p:linkButton> -->
 														</p:column>
 

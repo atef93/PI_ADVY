@@ -138,7 +138,7 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 		
 		debut = Instant.now();
 		
-		Timesheet timesheet = getTimesheetById(11);
+		Timesheet timesheet = getTimesheetById(12);
 
 		System.out.println(timesheet);
 		
@@ -186,33 +186,49 @@ public class TimesheetServiceImp implements GestionTimesheetLocal, GestionTimesh
 
 	@Override
 	public void startTracking(Timesheet timesheet) {
-		debut = Instant.now();
-		timesheet.setDebut(debut);
+		System.out.println("start tracking...");
+		System.out.println("nombre d'heure dans la base: "+timesheet.getHeurePasse());
+		System.out.println("nombre de minutes dans la base: "+timesheet.getMinutePasse());
+		this.debut = Instant.now();
+		//timesheet.setDebut(debut);
 	}
 
 	@Override
 	public void stopTracking(Timesheet timesheet){
-		fin = Instant.now();
-		timesheet.setFin(fin);
+		this.fin = Instant.now();
+		//timesheet.setFin(fin);
 		
-		long hours = Duration.between(debut, fin).toHours();
-		long minutes = Duration.between(debut, fin).toMinutes() - (hours * 60);
+		long hours = Duration.between(this.debut, this.fin).toHours();
+		long minutes = Duration.between(this.debut, this.fin).toMinutes() - (hours * 60);
+		System.out.println("stop tracking...");
+		System.out.println("hours: "+ hours);
+		System.out.println("minutes: "+ minutes);
 		
-		if(timesheet.getMinutePasse()+minutes>=59) {
-			hours+=1;
+		
+		if(timesheet.getMinutePasse()+minutes>=60) {
+			System.out.println("Je suis dans la condition if");
+			hours = timesheet.getHeurePasse()+1;
 			long ecart = Math.abs((timesheet.getMinutePasse()+minutes)-60);
-			timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
-			timesheet.setMinutePasse(ecart);	
+			timesheet.setHeurePasse(hours);
+			timesheet.setMinutePasse(ecart);
+			
+			System.out.println("l'écart est: "+ecart);
+			System.out.println("nombre d'heure passé: "+timesheet.getHeurePasse());
+			System.out.println("nombre minute passé: "+ timesheet.getMinutePasse());
 		}
 		else {
+			System.out.println("Je suis dans la condition else");
+			System.out.println("hours: "+ hours);
+			System.out.println("minutes: "+ minutes);
 			timesheet.setHeurePasse(timesheet.getHeurePasse()+hours);
 			timesheet.setMinutePasse(timesheet.getMinutePasse()+minutes);	
+			System.out.println("nombre d'heure passé: "+timesheet.getHeurePasse());
+			System.out.println("nombre minute passé: "+ timesheet.getMinutePasse());
 		}
 		
-		fin = null;
-		debut=null;
+		this.fin = null;
+		this.debut=null;
 		
-		System.out.println("klk");
 		em.merge(timesheet);
 		
 	}

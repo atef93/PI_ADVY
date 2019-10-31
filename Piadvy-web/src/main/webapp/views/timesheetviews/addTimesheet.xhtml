@@ -15,7 +15,7 @@
 
 		<p:panel id="panel" header="Form" style="margin-bottom:10px;">
 
-			<h:outputLabel value="#{projectBean.selectedProjet.id}" />
+<!-- 			<h:outputLabel  value="#{projectBean.selectedProjet.id}"  /> -->
 			<h:panelGrid columns="2" cellpadding="10" width="100%"
 				cellspacing="10">
 
@@ -45,14 +45,12 @@
 					value="#{timesheetBean.description}" required="true" />
 
 				<p:outputLabel for="advanced" value="Choisissez un Developpeur" />
+				
 				<p:selectOneListbox id="advanced" value="#{timesheetBean.index}"
 					var="n" filter="true" filterMatchMode="contains">
 
 					<f:selectItems value="#{timesheetBean.developpeurs}" var="devp"
-						itemLabel="#{devp.nom}" itemValue="#{devp.id}" />
-
-
-
+						itemLabel="#{devp.nom}" itemValue="#{devp.id}"/>
 					<p:column>
 						<h:outputText value="#{n}" />
 					</p:column>
@@ -88,7 +86,7 @@
 			<p:commandButton value="Save"
 				action="#{timesheetBean.addTimesheet(projectBean.selectedProjet.id)}"
 				icon="pi pi-check" resetValues="true" />
-			<p>Hello tous le monde</p>
+			
 
 		</p:panel>
 

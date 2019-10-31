@@ -220,7 +220,7 @@ body .ui-staticmessage.ui-message {
 
 									<div class="dashboard-header fl-wrap">
 
-										<h3>Ajouter Timesheet for projet</h3>
+										<h3>Participation de #{developerStat.developpeur.nom}</h3>
 									</div>
 
 									<!-- dashboard-list end-->
@@ -238,19 +238,19 @@ body .ui-staticmessage.ui-message {
 												<p:dataTable var="projet" value="#{developerStat.projet}">
 
 													<f:facet name="header">
-													        List of Carsss
-													    </f:facet>
+													      
+													</f:facet>
 
-													<p:column headerText="Id developer">
+													<p:column headerText="Id developer" visible="false" >
 														<h:outputText value="#{developerStat.idD}" />
 													</p:column>
 
-													<p:column headerText="Id Projet">
+													<p:column headerText="Id Projet" visible="false">
 														<h:outputText value="#{projet.id}" />
 													</p:column>
 
-													<p:column headerText="Nom Dev">
-														<h:outputText value="#{developer.nom}" />
+													<p:column headerText="Nom Dev" visible="false">
+														<h:outputText value="#{developerStat.developpeur.nom}" />
 													</p:column>
 
 													<p:column headerText="Nom Pro">
@@ -262,6 +262,7 @@ body .ui-staticmessage.ui-message {
 															action="#{developerStat.consulteRondement(developerStat.idD, projet.id)}">
 														</p:commandButton>
 													</p:column>
+													
 													<f:facet name="footer">
 
 													</f:facet>
