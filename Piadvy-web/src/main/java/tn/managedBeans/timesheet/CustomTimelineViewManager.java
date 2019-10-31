@@ -19,7 +19,7 @@ import org.primefaces.model.timeline.TimelineModel;
 import tn.advyteam.entities.Timesheet;
 import tn.advyteam.service.GestionTimesheetRemote;
 
-@ManagedBean(name = "customTimelineView")
+@ManagedBean
 @ViewScoped
 public class CustomTimelineViewManager implements Serializable {  
    
@@ -40,7 +40,7 @@ public class CustomTimelineViewManager implements Serializable {
     
     @PostConstruct 
     public void init() {  
-    	timesheets = timesheetServiceImp.getAllTimesheetsByProject(15);
+    	timesheets = timesheetServiceImp.getAllTimesheetsByProject(6);
     	
         // set initial start / end dates for the axis of the timeline  
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));  
