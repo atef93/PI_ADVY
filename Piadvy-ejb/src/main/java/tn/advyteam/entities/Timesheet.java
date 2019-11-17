@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +25,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import tn.advyteam.serviceImp.TimesheetServiceImp;
 
 
@@ -52,8 +56,6 @@ public class Timesheet implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date deadline;
 	
-	@OneToMany(mappedBy = "timesheet")
-	private List<Tache> taches;
 	@Column
 	private long heureEstime;
 	@Column
@@ -63,18 +65,23 @@ public class Timesheet implements Serializable{
 	
 
 	@Transient
+	@JsonIgnore
 	private Instant debut = null;
+	
 	@Transient
+	@JsonIgnore
 	private Instant fin = null; 
 
 	
 	
 	@ManyToOne
 	@JoinColumn(name = "idDeveloppeur", referencedColumnName = "id", insertable=false, updatable=false, nullable = true)
+	@JsonIgnore
 	private Developpeur developpeur;
 	
 	@ManyToOne
 	@JoinColumn(name="idProjet", referencedColumnName = "id", insertable=false, updatable=false, nullable = true)
+	@JsonIgnore
 	private Projet projet;
 	
 	
@@ -141,9 +148,7 @@ public class Timesheet implements Serializable{
 
 
 
-	public List<Tache> getTaches() {
-		return taches;
-	}
+	
 
 
 
@@ -161,12 +166,6 @@ public class Timesheet implements Serializable{
 
 	public void setTimesheetPk(TimesheetPK timesheetPk) {
 		this.timesheetPk = timesheetPk;
-	}
-
-
-
-	public void setTaches(List<Tache> taches) {
-		this.taches = taches;
 	}
 
 

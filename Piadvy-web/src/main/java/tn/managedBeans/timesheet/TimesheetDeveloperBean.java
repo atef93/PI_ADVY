@@ -10,20 +10,34 @@ import javax.ejb.EJB;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
+import tn.advyteam.entities.Projet;
 import tn.advyteam.entities.Timesheet;
 import tn.advyteam.entities.TimesheetEtat;
 import tn.advyteam.service.GestionTimesheetRemote;
 
 @ManagedBean
 @ApplicationScoped
+@Path("api")
 public class TimesheetDeveloperBean implements Serializable {
 
 	private TimesheetEtat state;
 	private String to;
 
+	public static List<Timesheet> timesheets = new ArrayList<>();
+	
 	@EJB
-	GestionTimesheetRemote timesheetServiceImp;
+	public static GestionTimesheetRemote timesheetServiceImp;
 
 	List<Timesheet> alltimesheet;
 	List<Timesheet> todo;
@@ -176,5 +190,38 @@ public class TimesheetDeveloperBean implements Serializable {
 			}
 		}
 	}
-
+	/////////////////////////////////////////////////////////////////////////////////////////
+	@GET
+	@Path("/get/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllTimesheet(@PathParam(value = "id") int id) {
+		timesheets=timesheetServiceImp.getAllTimesheetsByDeveloperJPQL(id);
+		return Response.status(Status.OK).entity(timesheets).build();
+	}
+	
+	@GET
+	@Path("/projets/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllProject(@PathParam(value = "id") int id) {
+		return Response.status(Status.OK).entity(timesheetServiceImp.getAllProjectsByManager(id)).build();
+	}
+	
+	@POST
+	@Path("new")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addProject(Projet p) throws Exception{
+		
+		return Response.status(Status.OK).entity(timesheetServiceImp.addProject(p)).build();	
+	}
+	
+	@PUT
+	@Path("update/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateProjet(Projet p, @PathParam(value = "id") int id) throws Exception{
+		timesheetServiceImp.updateProject(p, id);
+		return Response.status(Status.CREATED).entity(p).build();	
+	}
+	
 }

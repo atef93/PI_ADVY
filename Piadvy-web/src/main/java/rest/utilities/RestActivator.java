@@ -3,7 +3,7 @@ package rest.utilities;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("api")
+@ApplicationPath("")
 public class RestActivator extends Application {
 
 }

@@ -42,6 +42,12 @@ public class Manager extends Employee implements Serializable{
 	public void setProjets(List<Projet> projets) {
 		this.projets = projets;
 	}
+
+	@Override
+	public String toString() {
+		return "Manager [projets=" + projets + "]";
+	}
+	
 	
 	
 }
