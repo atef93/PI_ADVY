@@ -2,6 +2,7 @@ package tn.advyteam.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,7 +38,9 @@ public class Employee implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date datenaissance;
 	private Etatcivil etatcivil;
-
+	@OneToMany(mappedBy = "employe")
+	private List<Conge> conges;
+	
 	public Employee() {
 		super();
 	}
@@ -147,6 +151,14 @@ public class Employee implements Serializable {
 
 	public void setDatenaissance(Date datenaissance) {
 		this.datenaissance = datenaissance;
+	}
+
+	public List<Conge> getConges() {
+		return conges;
+	}
+
+	public void setConges(List<Conge> conges) {
+		this.conges = conges;
 	}
 
 	public Employee(int id, String nom, String prenom, String adresse, String email, Boolean isActif, String password,
