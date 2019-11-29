@@ -11,6 +11,7 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -222,6 +223,16 @@ public class TimesheetDeveloperBean implements Serializable {
 	public Response updateProjet(Projet p, @PathParam(value = "id") int id) throws Exception{
 		timesheetServiceImp.updateProject(p, id);
 		return Response.status(Status.CREATED).entity(p).build();	
+	}
+	
+	@DELETE
+	@Path("delete/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteProjet(Projet p, @PathParam(value = "id") int id) {	
+		timesheetServiceImp.deleteProjectById(id);
+		return Response.status(Status.ACCEPTED).entity(p).build();
+		
 	}
 	
 }
