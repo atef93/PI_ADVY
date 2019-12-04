@@ -5,17 +5,28 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
-@DiscriminatorValue(value = "devloppeur")
-public class Developpeur extends Employee implements Serializable {
+@DiscriminatorValue(value = "devloppeur") 
+public class Developpeur extends Employee implements Serializable{
 
 	
-	@OneToMany(mappedBy = "developpeur")
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@OneToMany(mappedBy = "developpeur", fetch = FetchType.LAZY)
 	private List<Timesheet> timesheets;
 
 	
+	
+	public Developpeur() {
+		super();
+	}
+	
+
 	
 	public List<Timesheet> getTimesheets() {
 		return timesheets;

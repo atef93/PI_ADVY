@@ -5,15 +5,14 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.ejb.Local;
+import javax.ejb.Remote;
 
 import tn.advyteam.entities.Contrat;
 import tn.advyteam.entities.Developpeur;
 import tn.advyteam.entities.Employee;
-import tn.advyteam.entities.Manager;
-import tn.advyteam.entities.Publication;
 
-@Local
-public interface GestionEmployeLocal {
+@Remote
+public interface GestionEmployeRemote {
     public void addemploye (Developpeur developpeur);
     public List<Employee> emps();
     public Employee find (int id ) ;
@@ -21,7 +20,5 @@ public interface GestionEmployeLocal {
     public void addContrat (Contrat contrat); 
 	public void ajoutercontratemploye(Developpeur developpeur, Contrat contrat);
 	public void addemploye (Employee developpeur);
-	public Employee getEmployebyEmailAndPassword(String email , String password );
-	public void ajoutercontratmanager(Manager manager, Contrat contrat)  ;
-	public void updatepass(Employee employee);
+ 
 }

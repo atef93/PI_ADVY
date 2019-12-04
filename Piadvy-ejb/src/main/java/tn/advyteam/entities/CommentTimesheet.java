@@ -10,11 +10,7 @@ import javax.persistence.ManyToOne;
 @DiscriminatorValue(value = "timeshcom")
 public class CommentTimesheet extends Commentaire implements Serializable {
 
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	
 	
 	@ManyToOne

@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name="EvaluationAnnuel")
 @DiscriminatorValue(value = "evaluationAnnuel")
@@ -29,8 +31,10 @@ public class EvaluationAnnuel extends Evaluation implements Serializable{
 	@Column
 	private String objectif;
 	@Column 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date rendezVous;
 	@Column
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date dateEcheance;
 	
 	
@@ -68,10 +72,10 @@ public class EvaluationAnnuel extends Evaluation implements Serializable{
 		this.dateEcheance = dateEcheance;
 		this.id=id;
 	}
-	public EvaluationAnnuel(String nom, String description, boolean etat, EvaluationType type) {
+	/*public EvaluationAnnuel(String nom, String description, boolean etat, EvaluationType type) {
 		super(nom, description, etat, type);
 		// TODO Auto-generated constructor stub
-	}
+	}*/
 	public int getId() {
 		return id;
 	}

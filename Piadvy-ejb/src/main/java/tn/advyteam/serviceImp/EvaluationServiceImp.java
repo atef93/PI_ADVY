@@ -1,5 +1,6 @@
 package tn.advyteam.serviceImp;
 
+
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -12,7 +13,6 @@ import javax.persistence.TypedQuery;
 import tn.advyteam.entities.Evaluation;
 import tn.advyteam.entities.EvaluationAnnuel;
 import tn.advyteam.entities.EvaluationFile;
-import tn.advyteam.entities.Objectifs;
 import tn.advyteam.service.GestionEvaluationLocal;
 
 @Stateless
@@ -36,12 +36,13 @@ public class EvaluationServiceImp implements GestionEvaluationLocal{
 	}
 
 	@Override
-	public List<EvaluationAnnuel> getAllEvaluationAnnuel() {
+	public List<Evaluation> getAllEvaluationAnnuel() {
 		// TODO Auto-generated method stub
-		TypedQuery<EvaluationAnnuel> query =
-				entityMan.createQuery("select e from EvaluationAnnuel e",
-						EvaluationAnnuel.class);
+		TypedQuery<Evaluation> query =
+				entityMan.createQuery("select e from Evaluation e",
+						Evaluation.class);
 		return query.getResultList();
+		
 	}
 	
 	public List<EvaluationAnnuel> getEvaluationAnnuelbyEmp(int idemp) {
@@ -59,15 +60,16 @@ public class EvaluationServiceImp implements GestionEvaluationLocal{
 		// TODO Auto-generated method stub
 
 		System.out.println("Deleting ..."+id);
-		EvaluationAnnuel e = FindByIdd(id);
+		Evaluation e = FindById(id);
 		entityMan.remove(e);
 		System.out.println("Deleting ...");
 	}
 
 	@Override
-	public void updateEvaluation(EvaluationAnnuel e) {
+	public int updateEvaluation(EvaluationAnnuel e) {
 		// TODO Auto-generated method stub
 		entityMan.merge(e);
+		return e.getId();
 	}
 	
 	

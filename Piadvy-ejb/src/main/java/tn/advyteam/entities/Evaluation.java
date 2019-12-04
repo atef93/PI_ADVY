@@ -38,12 +38,12 @@ public class Evaluation implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Evaluation(String nom, String description, boolean etat, EvaluationType type) {
+	public Evaluation(String nom, String description, boolean etat) {
 		super();
 		this.nom = nom;
 		this.description = description;
 		this.etat = etat;
-		this.type = type;
+	
 	}
 
 	public Evaluation(int id, String nom, String description, boolean etat, EvaluationType type) {

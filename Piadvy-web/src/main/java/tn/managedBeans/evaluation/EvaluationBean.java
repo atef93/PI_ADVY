@@ -4,10 +4,16 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import tn.advyteam.entities.Employee;
 import tn.advyteam.entities.Evaluation;
@@ -33,7 +39,7 @@ public class EvaluationBean {
 	private EvaluationFile ef = new EvaluationFile();
 	private List<EvaluationFile> filee;
 
-	private List<EvaluationAnnuel> eval;
+	private List<Evaluation> eval;
 	private EvaluationAnnuel evala= new EvaluationAnnuel();
 	
 	
@@ -60,16 +66,15 @@ public class EvaluationBean {
 
 	
 	public void addEval() {
-		int khra=evalService.addEvaluation( new EvaluationAnnuel(id, nom,  description,  false,  type, employee, objectif,  rendezVous,  dateEcheance));
-		int kaka=evalService.addFile(new EvaluationFile( id, objec, noteManager,  noteEmploye,  result));
-		evalService.affecter(khra, kaka);
-		//int pipi=evalService.addObjectif(new Objectifs(id, obj1, obj2, obj3));
-		//evalService.affecterfile(pipi, kaka);
+		int k=evalService.addEvaluation( new EvaluationAnnuel(id, nom,  description,  false,  type, employee, objectif,  rendezVous,  dateEcheance));
+		int ka=evalService.addFile(new EvaluationFile( id, objec, noteManager,  noteEmploye,  result));
+		evalService.affecter(k, ka);
+		
 		FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Evaluation ajoutée avec succès !"));
 	}
 	
 	
-	public List<EvaluationAnnuel> getEval() {
+	public List<Evaluation> getEval() {
 		 eval = evalService.getAllEvaluationAnnuel();
 
 return eval;
@@ -88,7 +93,7 @@ return eval;
 	public List<EvaluationFile> getFil(int ideval) throws IOException {
 		// filee = evalService.getFile();
 		
-FacesContext.getCurrentInstance().getExternalContext().redirect("fileManager.xhtml");
+FacesContext.getCurrentInstance().getExternalContext().redirect("fileJSF.xhtml");
 		
 		EvaluationAnnuel r= evalService.FindByIdd(ideval);
 		EvaluationFile s= r.getFile();
@@ -211,6 +216,8 @@ FacesContext.getCurrentInstance().getExternalContext().redirect("fileManager.xht
 	
 	
 
+	
+	
 
 	public String getNom() {
 		return nom;
@@ -317,7 +324,7 @@ FacesContext.getCurrentInstance().getExternalContext().redirect("fileManager.xht
 	public void setEvalService(EvaluationServiceImp evalService) {
 		this.evalService = evalService;
 	}
-	public void setEval(List<EvaluationAnnuel> eval) {
+	public void setEval(List<Evaluation> eval) {
 		this.eval = eval;
 	}
 
