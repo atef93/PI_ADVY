@@ -1,5 +1,7 @@
 package tn.advyteam.serviceImp;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -7,6 +9,7 @@ import javax.ejb.Stateful;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import tn.advyteam.entities.DemandeMission;
@@ -30,7 +33,9 @@ public List<Mission> findAllMission(){
 	TypedQuery<Mission> querry = em.createQuery("select m from Mission m",Mission.class);
 	return querry.getResultList();
 }
-public void deletemissionfromdb(Mission m) {
+public void deletemissionfromdb(int id) {
+	Mission m= findById(id);
+	
 	em.remove(m);
 }
 public int lastaddmission(DemandeMission dm) {
@@ -48,6 +53,10 @@ public int addDemandeMission(DemandeMission d) {
 	em.persist(d);
 	return d.getId();
 }
+public int addDemandeMission2(DemandeMission d) {
+	em.persist(d);
+	return d.getId();
+}
 @Override
 public void affecter(int idDem,int idMiss) {
 		Mission mi = em.find(Mission.class, idMiss);
@@ -58,10 +67,17 @@ public void affecter(int idDem,int idMiss) {
 		e.setPrenom("slim");
 		dm.setEmployees(e);
 		dm.setMissions(mi);
+		System.out.println("hani ne5dem");
 
 }
+public void modifier (DemandeMission dm) {
+	dm.setEtat(true);
+	em.merge(dm);
+}
 
-
+public Mission findById(int id) {
+	return em.find(Mission.class, id);
+}
 public List<DemandeMission> findAllDemandeMission(){
 	TypedQuery<DemandeMission> querry = em.createQuery("select m from DemandeMission m",DemandeMission.class);
 	return querry.getResultList();

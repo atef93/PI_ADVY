@@ -124,12 +124,13 @@
                                         <div class="dashboard-list-box fl-wrap">
                                             <div class="dashboard-header fl-wrap">
                                                 <h3>Liste demandes</h3>
+                                                <h4></h4>
                                             </div>
                                             <!-- dashboard-list end-->
                                             
                                             <div class="dashboard-list">
                                                 <div class="dashboard-message">
-                                                    
+                                                  <h:outputText value="#{missionBean.message}"></h:outputText>
                                                   <ui:repeat var="f" value="#{missionBean.demandes}">   
                                                    
                                                     <div class="dashboard-listing-table-text">
@@ -138,7 +139,7 @@
                                                         <ul class="dashboard-listing-table-opt  fl-wrap">
                                                         <li>
                                                         <div align="right">
-                                                      <h:commandLink class="del-btn" action="#" value="Accepter" >
+                                                      <h:commandLink class="del-btn" action="#{missionBean.addDemande2(f)}" value="Accepter" >
                                                       <i class="fa fa-pencil-square-o"></i>
 																		</h:commandLink>
 														</div>

@@ -1,7 +1,7 @@
 package tn.advyteam.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,6 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @DiscriminatorColumn(name = "Mission")
@@ -24,14 +28,29 @@ public class Mission implements Serializable{
 	private String libelle;
 	@Column
 	private String description;
+    @JsonIgnore
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column
 	private Date duree;
 	@Column
 	private boolean etat;
-	@Column
+    @JsonIgnore
+	@OneToOne(mappedBy = "mission")
 	private Employee emp;
+    @JsonIgnore
+	@OneToMany(mappedBy = "m")
+	private List<NoteFrais> notefrais;
+    @Column
+	private boolean MissionReussit;
+    @Column
+	private boolean missionNational;
+    @Column
+	private boolean missionInternational;
+    @Column
+	private int nbrMissionReussit;
 	
-	@OneToMany(mappedBy = "missions",fetch=FetchType.EAGER)
+    @JsonIgnore
+	@OneToMany(mappedBy = "missions")
 	private List<DemandeMission> demandesMission;
 	
 	public Mission () {
@@ -119,5 +138,8 @@ public class Mission implements Serializable{
 	public void setDemandesMission(List<DemandeMission> demandesMission) {
 		this.demandesMission = demandesMission;
 	}
+
+	
+	
 }
 	

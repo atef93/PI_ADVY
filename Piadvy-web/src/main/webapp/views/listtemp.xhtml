@@ -73,18 +73,18 @@
 
 									<div class="user-profile-menu">
 
-										<h3>Gestin des evaluations</h3>
+										<h3>Gestion des demandes</h3>
 
 										<ul>
 
-											<li><a href="dashboard-myprofile.html"><i
-													class="fa fa-user-o" /> Ajouter Evaluation</a></li>
+											<li><a href="AjoutTemp.xhtml"><i
+													class="fa fa-user-o" /> Ajouter Mission</a></li>
 
-											<li><a href="dashboard-messages.html"><i
-													class="fa fa-envelope-o" /> Consulter Liste Evaluations <span>3</span></a></li>
+											<li><a href="listttemp.xhtml"><i
+													class="fa fa-envelope-o" /> Consulter Mission<span>3</span></a></li>
 
-											<li><a href="dashboard-password.html"><i
-													class="fa fa-unlock-alt" />Les statistique</a></li>
+											<li><a href="ListDemande.xhtml"><i
+													class="fa fa-unlock-alt" />Consulter demandes</a></li>
 										</ul>
 									</div>
 									<!-- user-profile-menu end-->
@@ -128,7 +128,11 @@
                                                         <h3>#{f.description}</h3>
                                                         
                                                         
-                                                        
+                                                         <div align="right">
+                                                      <h:commandButton class="del-btn" action="#{missionBean.addDemande(f)}" value="Participe" >
+                                                      <i class="fa fa-pencil-square-o"></i>
+																		</h:commandButton>
+														</div>
                                                     </div>
                                                     </ui:repeat> 
                                                 </div>

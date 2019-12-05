@@ -61,8 +61,13 @@
 <tr><td><h:outputText value="Description"></h:outputText></td>
 <td><h:inputText value="#{missionBean.description}"></h:inputText></td></tr>
 
+<div style="margin-bottom: 2px;">
+<h:outputLabel value="date fin de la mission" />
+</div>
+<td><h:inputText value="#{missionBean.dat}"/></h:inputText>
+    <f:convertDateTime pattern="MM/dd/yyyy" />
  
-<tr><td colspan="2"><h:commandButton value="Ajouter Mission" action="#{missionBean.addMission()}" /></td></tr>
+<td colspan="2"><h:commandButton value="Ajouter Mission" action="#{missionBean.addMission()}" />
 
 </table>
 </h:form>

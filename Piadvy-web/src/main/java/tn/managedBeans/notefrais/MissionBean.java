@@ -2,7 +2,7 @@ package tn.managedBeans.notefrais;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -20,6 +20,7 @@ import tn.advyteam.entities.DemandeMission;
 import tn.advyteam.entities.Employee;
 import tn.advyteam.entities.Mission;
 import tn.advyteam.serviceImp.GestionMissionService;
+import tn.managedBeans.employee.EmployeBean;
 
 /**
  * Session Bean implementation class MissionBean
@@ -31,12 +32,13 @@ public class MissionBean implements Serializable {
 	Mission m = new Mission();
 	DemandeMission d = new DemandeMission();
 	private List<DemandeMission> Demandes;
-	
+	private String message="vous n etes pas asser experimente pour faire des missions a l internationnal";
 	private int id;
 	private boolean etat;
 	private String libelle;
 	private String description;
-	private int khra;
+	private int ha;
+	private Date datee;
 	@EJB
 	GestionMissionService Gestion ;
     /**
@@ -62,20 +64,39 @@ public class MissionBean implements Serializable {
 	}*/
 	public List<Mission> getMissions(){
 		Missions = Gestion.findAllMission();
+		
 		return Missions;
 	}
 	public List<DemandeMission> getDemandes(){
+		int i =0;
 		Demandes = Gestion.findAllDemandeMission();
+		for(DemandeMission dm : Demandes) {
+			if(dm.getEtat()==true) {
+				i=i+1;
+			}
+		}
+		if (i>3) {
+			message="vous pouvez faire des mission international";
+		}
+		
+				     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Executed", "vous ne pouvez plus participer"));	
+		
+		
 		return Demandes;
 	}
 	public void addMission() {
-		 khra=Gestion.AddMission(new Mission(id, libelle, description));
+		 ha=Gestion.AddMission(new Mission(id, libelle, description));
+	}
+	public void ajout() {
+		ha=Gestion.AddMission(m);
+	}
+	public void addDemande2(DemandeMission m ) {
+		Gestion.modifier(m);
 	}
 	public void addDemande(Mission m) {
 		System.out.println("iddddd"+ m.getId());
 		int kaka= Gestion.addDemandeMission(new DemandeMission(id, etat)) ;
 		Gestion.affecter(kaka,m.getId());
-	     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Executed", "Using RemoteCommand."));
 
 		
 	}
@@ -94,6 +115,19 @@ public class MissionBean implements Serializable {
 
 	public void setMissions(List<Mission> missions) {
 		Missions = missions;
+	}
+	
+	public int getHa() {
+		return ha;
+	}
+	public void setHa(int ha) {
+		this.ha = ha;
+	}
+	public Date getDatee() {
+		return datee;
+	}
+	public void setDatee(Date datee) {
+		this.datee = datee;
 	}
 	public Mission getM() {
 		return m;
@@ -131,11 +165,11 @@ public class MissionBean implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getKhra() {
-		return khra;
+	public int getha() {
+		return ha;
 	}
-	public void setKhra(int khra) {
-		this.khra = khra;
+	public void setKhra(int ha) {
+		this.ha = ha;
 	}
 	public GestionMissionService getGestion() {
 		return Gestion;
@@ -145,6 +179,12 @@ public class MissionBean implements Serializable {
 	}
 	public void setDemandes(List<DemandeMission> demandes) {
 		Demandes = demandes;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	
 	

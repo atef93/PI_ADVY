@@ -30,6 +30,8 @@ public class Employee implements Serializable{
 	@Column(nullable = false)
 	private String prenom;
 	private Boolean EnMission=false;
+	@OneToOne
+	private Mission mission;
 	
 	@OneToMany(mappedBy = "employees")
 	private List<DemandeMission> demandesMission;
@@ -81,7 +83,14 @@ public class Employee implements Serializable{
 		this.prenom = prenom;
 	}
 	
+	
 
+	public Mission getMission() {
+		return mission;
+	}
+	public void setMission(Mission mission) {
+		this.mission = mission;
+	}
 	public List<DemandeMission> getDemandesMission() {
 		return demandesMission;
 	}
@@ -91,6 +100,12 @@ public class Employee implements Serializable{
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", nom=" + nom + ", prenom=" + prenom + "]";
+	}
+	public Employee(int id, String nom, String prenom) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
 	}
 	
 	

@@ -79,13 +79,13 @@
 
 										<ul>
 
-											<li><a href="dashboard-myprofile.html"><i
+											<li><a href="AjoutTemp.xhtml"><i
 													class="fa fa-user-o" /> Ajouter Mission</a></li>
 
-											<li><a href="ListMission.xhtml"><i
+											<li><a href="listtemp.xhtml"><i
 													class="fa fa-envelope-o" /> Consulter les missions <span>3</span></a></li>
 
-											<li><a href="dashboard-password.html"><i
+											<li><a href="ListDemande.xhtml"><i
 													class="fa fa-unlock-alt" />Consulter les demandes</a></li>
 										</ul>
 									</div>
@@ -126,11 +126,16 @@
 </div>
 <h:inputTextarea row="6" cols="33" value="#{missionBean.description}" />
 
+<div style="margin-bottom: 2px;">
+<h:outputLabel value="date" />
+</div>
+    
+    
+</h:inputText>
+
 <div align="center" style="margin-top:50px;">
 
-    <h:panelGrid columns="1" cellpadding="5">
 <h:commandButton action="#{missionBean.addMission()}" value="Ajouter Mission" type="Button" onclick="PF('dlg3').show();" class="btn  big-btn  color-bg flat-btn" id="notification"/>
- </h:panelGrid>
  <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
     <h:outputText value="This dialog has nice effects." />
 </p:dialog>
