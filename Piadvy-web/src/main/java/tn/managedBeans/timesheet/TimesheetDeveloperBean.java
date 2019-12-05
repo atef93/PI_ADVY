@@ -22,6 +22,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.wildfly.httpclient.common.ContentType;
+
 import tn.advyteam.entities.Projet;
 import tn.advyteam.entities.Timesheet;
 import tn.advyteam.entities.TimesheetEtat;
@@ -227,8 +229,7 @@ public class TimesheetDeveloperBean implements Serializable {
 	
 	@DELETE
 	@Path("delete/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes("application/json")
 	public Response deleteProjet(Projet p, @PathParam(value = "id") int id) {	
 		timesheetServiceImp.deleteProjectById(id);
 		return Response.status(Status.ACCEPTED).entity(p).build();
